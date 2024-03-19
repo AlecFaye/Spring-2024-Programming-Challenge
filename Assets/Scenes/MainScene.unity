@@ -2319,6 +2319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffbc8bccb8d83a47a83b699c993ea3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallaxImageType: 1
   parallaxEffect: 1
   speed: -5
 --- !u!1 &963194225
@@ -3395,6 +3396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffbc8bccb8d83a47a83b699c993ea3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallaxImageType: 0
   parallaxEffect: 0.1
   speed: -5
 --- !u!1 &1189473373
@@ -3446,6 +3448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffbc8bccb8d83a47a83b699c993ea3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallaxImageType: 0
   parallaxEffect: 0.55
   speed: -5
 --- !u!212 &1189473376
@@ -3801,6 +3804,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffbc8bccb8d83a47a83b699c993ea3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallaxImageType: 0
   parallaxEffect: 0.4
   speed: -5
 --- !u!212 &1473007540
@@ -3988,6 +3992,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cffbc8bccb8d83a47a83b699c993ea3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  parallaxImageType: 0
   parallaxEffect: 0.3
   speed: -5
 --- !u!212 &1500081557
@@ -4331,7 +4336,7 @@ MonoBehaviour:
     m_Bits: 8
   groundingForce: -1.5
   grounderDistance: 0.05
-  jumpPower: 24
+  jumpPower: 28
   maxFallSpeed: 20
   fallAcceleration: 55
   jumpEndEarlyGravityModifier: 3

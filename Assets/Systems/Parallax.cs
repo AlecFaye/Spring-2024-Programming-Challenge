@@ -1,19 +1,34 @@
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class Parallax : MonoBehaviour
 {
+    [SerializeField] private ParallaxImageType parallaxImageType = ParallaxImageType.SpriteRenderer;
     [SerializeField, Range(0, 1)] private float parallaxEffect;
     [SerializeField] private float speed = 10.0f;
 
     private float backgroundLength;
     private float xDelta;
 
+    private enum ParallaxImageType
+    {
+        SpriteRenderer,
+        Tilemap
+    }
+
     private void Start()
     {
-        if (TryGetComponent(out SpriteRenderer spriteRenderer))
-            backgroundLength = spriteRenderer.bounds.size.x;
-        else
-            backgroundLength = 18.0f;
+        switch (parallaxImageType)
+        {
+            case ParallaxImageType.SpriteRenderer:
+                if (TryGetComponent(out SpriteRenderer spriteRenderer))
+                    backgroundLength = spriteRenderer.bounds.size.x;
+                break;
+            case ParallaxImageType.Tilemap:
+                if (TryGetComponent(out Tilemap tilemap))
+                    backgroundLength = tilemap.cellBounds.size.x - 2;
+                break;
+        }
     }
 
     private void Update()
