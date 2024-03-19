@@ -10,7 +10,10 @@ public class Parallax : MonoBehaviour
 
     private void Start()
     {
-        backgroundLength = GetComponent<SpriteRenderer>().bounds.size.x;
+        if (TryGetComponent(out SpriteRenderer spriteRenderer))
+            backgroundLength = spriteRenderer.bounds.size.x;
+        else
+            backgroundLength = 18.0f;
     }
 
     private void Update()
