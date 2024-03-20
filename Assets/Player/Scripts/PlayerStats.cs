@@ -6,6 +6,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [Header("References")]
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private DamageFlash damageFlash;
+    [SerializeField] private Outline shieldOutline;
 
     [Header("Health Configurations")]
     [SerializeField] private int healthAmount;
@@ -19,6 +20,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     public bool IsDead => isDead;
 
     private bool isDead = false;
+    private bool isShielded = false;
 
     private float time = 0.0f;
     private float timeWasHit = -999f;
@@ -55,7 +57,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public void TakeDamage(IDamageable damager, int damageAmount)
     {
-        if (isDead || IsInvincible)
+        if (isDead || IsInvincible || isShielded)
             return;
 
         damageFlash.StartFlash();
@@ -65,7 +67,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
         healthSystem.Damage(damageAmount);
     }
 
-    public void Heal(IDamageable healer, int healAmount)
+    public void Heal(int healAmount)
     {
         if (isDead)
             return;
@@ -73,5 +75,21 @@ public class PlayerStats : MonoBehaviour, IDamageable
         healthSystem.Heal(healAmount);
     }
 
+    public void Shield(float shieldDuration)
+    {
+        StartCoroutine(ShieldPlayer(shieldDuration));
+    }
+
     public Transform GetTransform() => transform;
+
+    private IEnumerator ShieldPlayer(float shieldDuration)
+    {
+        isShielded = true;
+        shieldOutline.DisplayOutline();
+
+        yield return new WaitForSeconds(shieldDuration);
+
+        shieldOutline.RemoveOutline();
+        isShielded = false;
+    }
 }

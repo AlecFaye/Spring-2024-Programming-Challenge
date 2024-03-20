@@ -16,11 +16,13 @@ MonoBehaviour:
   - Spawns:
     - SpawnPrefab: {fileID: 9184054023297840930, guid: 8529c6e848bcc5e49833275ea15a2676, type: 3}
       SpawnPosition: 3
+    - SpawnPrefab: {fileID: 9147651030833767493, guid: 14a59f9b8b67b1e4c823101eef4b717c, type: 3}
+      SpawnPosition: 2
     Delay: 3
   - Spawns:
     - SpawnPrefab: {fileID: 9184054023297840930, guid: 48f8e91bc95dfba4297be40e985a7481, type: 3}
       SpawnPosition: 3
-    - SpawnPrefab: {fileID: 6462240982147222586, guid: 69ab4a37d116e36418cff6ca7153053e, type: 3}
+    - SpawnPrefab: {fileID: 4358808662645564719, guid: 69ab4a37d116e36418cff6ca7153053e, type: 3}
       SpawnPosition: 2
     Delay: 3
   - Spawns:

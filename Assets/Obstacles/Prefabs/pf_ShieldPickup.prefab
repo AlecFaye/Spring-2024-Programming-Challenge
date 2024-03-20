@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1001 &7337459512916912405
+--- !u!1001 &2836284570990438527
 PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -62,35 +62,35 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6462240982147222586, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
       propertyPath: m_Name
-      value: pf_HealthPickup
+      value: pf_ShieldPickup
       objectReference: {fileID: 0}
     - target: {fileID: 7830570642437818705, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5c60f372b7bf6f447bd04108422da899, type: 3}
+      objectReference: {fileID: 21300000, guid: 8d703d562de32304082be3c0680d4e3f, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 6462240982147222586, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 8267714558510282978}
+      addedObject: {fileID: 6658892733524093199}
   m_SourcePrefab: {fileID: 100100000, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
---- !u!1 &4358808662645564719 stripped
+--- !u!1 &9147651030833767493 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6462240982147222586, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
-  m_PrefabInstance: {fileID: 7337459512916912405}
+  m_PrefabInstance: {fileID: 2836284570990438527}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8267714558510282978
+--- !u!114 &6658892733524093199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4358808662645564719}
+  m_GameObject: {fileID: 9147651030833767493}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 84a3d7fcdd7418b4ea24c0342e05c8ea, type: 3}
+  m_Script: {fileID: 11500000, guid: 8bad2933c45fedc4b8da7b94cb1d77c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healAmount: 1
+  shieldDuration: 10

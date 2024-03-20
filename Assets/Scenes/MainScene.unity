@@ -4434,7 +4434,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: fbb58fb6c08824e44a69b4cbe5720239, type: 2}
+  - {fileID: 2100000, guid: 535d77892cf3a034da822e4c8bf94fe4, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4514,6 +4514,7 @@ GameObject:
   - component: {fileID: 1761976739}
   - component: {fileID: 1761976744}
   - component: {fileID: 1761976745}
+  - component: {fileID: 1761976746}
   - component: {fileID: 1761976740}
   - component: {fileID: 1761976743}
   - component: {fileID: 1761976742}
@@ -4739,6 +4740,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1325507087}
   damageFlash: {fileID: 1761976745}
+  shieldOutline: {fileID: 1761976746}
   healthAmount: 2
   absoluteMinHealth: 0
   absoluteMaxHealth: 10
@@ -4781,6 +4783,21 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1761976746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761976737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05426e19bfc6f0448b5464b6d17fac2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  xThickness: 0.0032
+  yThickness: 0.025
+  outlineColour: {r: 0.28235295, g: 0.85882354, b: 0.9843137, a: 1}
 --- !u!1 &1851646585
 GameObject:
   m_ObjectHideFlags: 0
