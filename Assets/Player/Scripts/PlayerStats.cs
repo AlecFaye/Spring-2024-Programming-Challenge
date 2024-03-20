@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour, IDamageable
 {
+    [Header("References")]
     [SerializeField] private HealthBar healthBar;
+    [SerializeField] private DamageFlash damageFlash;
 
     [Header("Health Configurations")]
     [SerializeField] private int healthAmount;
     [SerializeField] private int absoluteMinHealth;
     [SerializeField] private int absoluteMaxHealth;
-
-    [Header("Other Configurations")]
     [SerializeField] private float invincibleFrames;
 
     private HealthSystem healthSystem;
@@ -21,7 +21,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     private bool isDead = false;
 
     private float time = 0.0f;
-    private float timeWasHit = 0.0f;
+    private float timeWasHit = -999f;
 
     public bool IsInvincible => timeWasHit + invincibleFrames > time;
 
@@ -57,6 +57,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
     {
         if (isDead || IsInvincible)
             return;
+
+        damageFlash.StartFlash();
 
         timeWasHit = time;
 

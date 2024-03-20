@@ -4389,7 +4389,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9dfc825aed78fcd4ba02077103263b40, type: 2}
+  - {fileID: 2100000, guid: fbb58fb6c08824e44a69b4cbe5720239, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4468,6 +4468,7 @@ GameObject:
   - component: {fileID: 1761976741}
   - component: {fileID: 1761976739}
   - component: {fileID: 1761976744}
+  - component: {fileID: 1761976745}
   - component: {fileID: 1761976740}
   - component: {fileID: 1761976743}
   - component: {fileID: 1761976742}
@@ -4486,7 +4487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1761976737}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5, y: 0, z: 0}
+  m_LocalPosition: {x: -4.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -4692,10 +4693,49 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1325507087}
+  damageFlash: {fileID: 1761976745}
   healthAmount: 2
   absoluteMinHealth: 0
   absoluteMaxHealth: 10
-  invincibleFrames: 2
+  invincibleFrames: 1
+--- !u!114 &1761976745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1761976737}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70c8d9fbc930aa4e9e54ea9a781e6f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flashColor: {r: 1, g: 1, b: 1, a: 1}
+  flashTime: 0.25
+  flashAmountCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 2
+      outSlope: -0.0000018442393
+      tangentMode: 1
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.16159683
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: -0.89455795
+      outSlope: -0.89455795
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.108365
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1851646585
 GameObject:
   m_ObjectHideFlags: 0
