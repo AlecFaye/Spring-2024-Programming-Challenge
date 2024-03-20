@@ -6,6 +6,7 @@ public class Obstacle : MonoBehaviour
     private const float BUFFER = 5.0f;
 
     [SerializeField] private float speed = 10;
+    [SerializeField] private int damage = 1;
 
     private Rigidbody2D rb;
 
@@ -23,7 +24,8 @@ public class Obstacle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Debug.Log(collision.name);
+        if (collision.TryGetComponent(out IDamageable damageable))
+            damageable.TakeDamage(null, damage);
     }
 
     private void CheckDeactivate()

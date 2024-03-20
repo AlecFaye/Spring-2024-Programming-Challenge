@@ -226,15 +226,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6462240982147222586, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
       propertyPath: m_Name
-      value: pf_Wall_One
+      value: pf_Wall_1_0_0_0
       objectReference: {fileID: 0}
     - target: {fileID: 7830570642437818705, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -1737842804, guid: b4dd045b609f52245980b82524ec8dbe, type: 3}
     - target: {fileID: 8382174958249033351, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
+      propertyPath: m_Size.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382174958249033351, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
       propertyPath: m_Size.y
-      value: 2
+      value: 1.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8382174958249033351, guid: a0702996eaba7c1458e9479b0fadb2e0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
