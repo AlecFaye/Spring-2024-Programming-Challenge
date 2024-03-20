@@ -6,6 +6,7 @@ public class PlayerMovement : MonoBehaviour
     public delegate void PlayerMovementEvent();
     public PlayerMovementEvent OnJumped;
     public PlayerMovementEvent OnLanded;
+    public PlayerMovementEvent OnDashed;
 
     [Header("Layers")]
     [SerializeField] private LayerMask playerLayerMask;
@@ -21,6 +22,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpEndEarlyGravityModifier = 3.0f;
     [SerializeField] private float coyoteTime = 0.15f;
     [SerializeField] private float jumpBuffer = 0.2f;
+
+    [Header("Dash Configurations")]
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashCooldown;
 
     public bool IsGrounded => isGrounded;
     public Vector2 FrameVelocity => frameVelocity;
@@ -48,6 +53,11 @@ public class PlayerMovement : MonoBehaviour
     private bool HasBufferedJump => bufferedJumpUsable && time < timeJumpWasPressed + jumpBuffer;
     private bool CanUseCoyote => coyoteUsable && !isGrounded && time < frameLeftGrounded + coyoteTime;
 
+    private float timeDashWasPressed = -999f;
+
+    private bool IsDashing => timeDashWasPressed + dashDuration >= time;
+    private bool CanDash => timeDashWasPressed + dashCooldown <= time;
+
     #region Pipeline Functions
 
     private void Awake()
@@ -66,8 +76,17 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         CheckCollisions();
-        HandleJump();
-        HandleGravity();
+
+        if (IsDashing)
+        {
+            Debug.Log(time - timeDashWasPressed);
+            frameVelocity.y = 0.0f;
+        }
+        else
+        {
+            HandleJump();
+            HandleGravity();
+        }
 
         rb.velocity = frameVelocity;
     }
@@ -89,6 +108,14 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = false;
         }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.started && CanDash)
+        {
+            timeDashWasPressed = time;
+        }  
     }
 
     #endregion
