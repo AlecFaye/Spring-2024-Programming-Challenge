@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c94afcdd1371134f8a6a55b1c51e643, type: 3}
+  m_Name: Wave 01
+  m_EditorClassIdentifier: 
+  waves:
+  - Spawns:
+    - SpawnPrefab: {fileID: 9184054023297840930, guid: 3313f6467fb85364bbfb86b890f8e567, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  - Spawns:
+    - SpawnPrefab: {fileID: 9184054023297840930, guid: 3313f6467fb85364bbfb86b890f8e567, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  - Spawns:
+    - SpawnPrefab: {fileID: 9184054023297840930, guid: 3313f6467fb85364bbfb86b890f8e567, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  - Spawns:
+    - SpawnPrefab: {fileID: 4055971147689481674, guid: b2aab587dadb31646abd6916064c7af6, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  - Spawns:
+    - SpawnPrefab: {fileID: 4055971147689481674, guid: b2aab587dadb31646abd6916064c7af6, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  - Spawns:
+    - SpawnPrefab: {fileID: 9184054023297840930, guid: 3313f6467fb85364bbfb86b890f8e567, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  - Spawns:
+    - SpawnPrefab: {fileID: 4055971147689481674, guid: b2aab587dadb31646abd6916064c7af6, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  - Spawns:
+    - SpawnPrefab: {fileID: 4055971147689481674, guid: c9672a0f81cbc384baf917d6c49ca8eb, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  waveEndDelay: 5
+  isBossWave: 0

@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c94afcdd1371134f8a6a55b1c51e643, type: 3}
+  m_Name: Wave 02
+  m_EditorClassIdentifier: 
+  waves:
+  - Spawns:
+    - SpawnPrefab: {fileID: 9184054023297840930, guid: 8529c6e848bcc5e49833275ea15a2676, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  - Spawns:
+    - SpawnPrefab: {fileID: 9184054023297840930, guid: 48f8e91bc95dfba4297be40e985a7481, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  - Spawns:
+    - SpawnPrefab: {fileID: 4055971147689481674, guid: 37ab5946b94e5c0449df766315b16efc, type: 3}
+      SpawnPosition: 3
+    Delay: 3
+  waveEndDelay: 5
+  isBossWave: 0
