@@ -20,6 +20,8 @@ MonoBehaviour:
   - Spawns:
     - SpawnPrefab: {fileID: 9184054023297840930, guid: 48f8e91bc95dfba4297be40e985a7481, type: 3}
       SpawnPosition: 3
+    - SpawnPrefab: {fileID: 6462240982147222586, guid: 69ab4a37d116e36418cff6ca7153053e, type: 3}
+      SpawnPosition: 2
     Delay: 3
   - Spawns:
     - SpawnPrefab: {fileID: 4055971147689481674, guid: 37ab5946b94e5c0449df766315b16efc, type: 3}

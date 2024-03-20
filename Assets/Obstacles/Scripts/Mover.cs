@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Obstacle : MonoBehaviour
+public class Mover : MonoBehaviour
 {
     private const float BUFFER = 5.0f;
 
