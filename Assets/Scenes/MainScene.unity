@@ -4509,7 +4509,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerLayerMask:
     serializedVersion: 2
-    m_Bits: 8
+    m_Bits: 72
   groundingForce: -1.5
   grounderDistance: 0.05
   jumpPower: 28
