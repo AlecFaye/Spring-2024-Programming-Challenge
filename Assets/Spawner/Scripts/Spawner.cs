@@ -3,6 +3,8 @@ using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
+    public static Spawner Instance { get; private set; }
+
     [SerializeField] private Transform spawnPositionsTF;
     [SerializeField] private GameObject spawnPrefab;
     [SerializeField] private WaveScriptableObject[] waveSOs;
@@ -10,8 +12,15 @@ public class Spawner : MonoBehaviour
     private Transform[] spawnerPositions;
     private bool isFightingBoss = false;
 
+    public Transform[] SpawnerPositions => spawnerPositions;
+
     private void Awake()
     {
+        if (Instance != null)
+            Debug.LogError("There is more than one Spawner in the scene.");
+
+        Instance = this;
+
         spawnerPositions = new Transform[spawnPositionsTF.childCount];
 
         for (int index = 0; index < spawnPositionsTF.childCount; index++)

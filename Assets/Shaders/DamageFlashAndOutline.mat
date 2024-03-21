@@ -55,8 +55,8 @@ Material:
     m_Floats:
     - _EnableExternalAlpha: 0
     - _FlashAmount: 0
-    - _Thickness_X: 0.0032
-    - _Thickness_Y: 0.025
+    - _Thickness_X: 0
+    - _Thickness_Y: 0
     m_Colors:
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _FlashColor: {r: 1, g: 1, b: 1, a: 1}
