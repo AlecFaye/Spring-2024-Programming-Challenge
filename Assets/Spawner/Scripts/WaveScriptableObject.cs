@@ -31,5 +31,7 @@ public enum SpawnPosition
     Top,
     TopMid,
     BotMid,
-    Bot
+    Bot,
+    LeftTop,
+    RightTop
 }
