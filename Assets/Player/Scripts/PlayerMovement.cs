@@ -27,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Dash Configurations")]
     [SerializeField] private float dashDuration;
-    [SerializeField] private float dashCooldown;
 
     public bool IsGrounded => isGrounded;
     public Vector2 FrameVelocity => frameVelocity;
@@ -107,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash)
+        if (context.started && canDash && !Player.Instance.PlayerAttack.IsAttacking)
         {
             StartCoroutine(Dash());
         }  
@@ -135,6 +134,7 @@ public class PlayerMovement : MonoBehaviour
             coyoteUsable = true;
             bufferedJumpUsable = true;
             endedJumpEarly = false;
+            canDash = true;
             OnLanded?.Invoke();
         }
         else if (isGrounded && !isGroundHit)
@@ -200,10 +200,6 @@ public class PlayerMovement : MonoBehaviour
         isDashing = false;
 
         OnDashFinished?.Invoke();
-
-        yield return new WaitForSeconds(dashCooldown);
-
-        canDash = true;
     }
 
     #endregion
