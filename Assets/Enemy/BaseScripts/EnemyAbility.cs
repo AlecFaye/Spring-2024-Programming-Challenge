@@ -10,6 +10,9 @@ public class EnemyAbility : MonoBehaviour
     public bool IsUsingAbility { get; private set; }
 
     [SerializeField] private float abilityCooldown;
+    [SerializeField] private float abilityAftermathCooldown;
+
+    public float AbilityAftermathCooldown => abilityAftermathCooldown;
 
     private float abilityTime = -999f;
 

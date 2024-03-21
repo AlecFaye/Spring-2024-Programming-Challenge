@@ -9,7 +9,7 @@ public class LineFireballAbility : EnemyAbility
 
     [Header("Line Fireball Configurations")]
     [SerializeField] private GameObject fireballPrefab;
-    [SerializeField] private SpawnPosition spawnIndex;
+    [SerializeField] private SpawnPosition[] spawnIndices;
     [SerializeField] private int numberOfFireballs = 1;
     [SerializeField] private float delayBetweenFireballs;
 
@@ -18,7 +18,6 @@ public class LineFireballAbility : EnemyAbility
 
     private void Start()
     {
-        enemy.EnemyMovement.OnReachedDestination += Enemy_OnReachedDestination;
 
         OnTriggerAbility += TriggerAbility;
     }
@@ -28,6 +27,7 @@ public class LineFireballAbility : EnemyAbility
         base.StartAbility();
 
         enemy.EnemyMovement.SetDestination(destinationTF.position);
+        enemy.EnemyMovement.OnReachedDestination += Enemy_OnReachedDestination;
     }
 
     public override void TriggerAbility()
@@ -38,18 +38,21 @@ public class LineFireballAbility : EnemyAbility
     private void Enemy_OnReachedDestination()
     {
         enemy.EnemyAnimationController.SetAnimatorTrigger(animationToPlayParameter);
+        enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedDestination;
     }
 
     private IEnumerator StartFireball()
     {
         WaitForSeconds wait = new(delayBetweenFireballs);
 
-        Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndex];
-
         for (int i = 0; i < numberOfFireballs; i++)
         {
-            Instantiate(fireballPrefab, spawnTF.position, Quaternion.identity);
+            foreach (SpawnPosition spawnIndex in spawnIndices)
+            {
+                Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndex];
 
+                Instantiate(fireballPrefab, spawnTF.position, Quaternion.identity);
+            }
             yield return wait;
         }
     }

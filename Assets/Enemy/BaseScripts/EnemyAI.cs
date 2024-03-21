@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -9,6 +10,7 @@ public class EnemyAI : MonoBehaviour
     private EnemyAbility currentAbility;
 
     private bool isAttacking = false;
+    private bool isCoolingDown = false;
 
     private void Start()
     {
@@ -18,7 +20,7 @@ public class EnemyAI : MonoBehaviour
 
     private void Update()
     {
-        if (isAttacking || enemy.EnemyStats.IsDead)
+        if (isAttacking || isCoolingDown || enemy.EnemyStats.IsDead)
             return;
 
         currentAbility = ChooseAbility();
@@ -50,7 +52,17 @@ public class EnemyAI : MonoBehaviour
         {
             currentAbility.StartAbility();
             isAttacking = true;
+            StartCoroutine(Cooldown());
         }
+    }
+
+    private IEnumerator Cooldown()
+    {
+        isCoolingDown = true;
+
+        yield return new WaitForSeconds(currentAbility.AbilityAftermathCooldown);
+
+        isCoolingDown = false;
     }
 
     private void EnemyAnimator_OnTriggerAbility()

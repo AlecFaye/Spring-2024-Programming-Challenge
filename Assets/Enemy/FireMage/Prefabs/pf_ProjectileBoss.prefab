@@ -98,6 +98,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6949163685867297420}
+  - {fileID: 4506472626624766310}
   m_Father: {fileID: 8578054241196618796}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -230,13 +231,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityCooldown: 5
+  abilityAftermathCooldown: 3
   enemy: {fileID: 2290819740826680190}
   destinationTF: {fileID: 0}
   fireballPrefab: {fileID: 5621841713742333532, guid: d507530473df8a242a5997e8374d4d40, type: 3}
-  spawnIndex: 3
+  spawnIndices: 0000000003000000
   numberOfFireballs: 3
   delayBetweenFireballs: 0.25
   animationToPlayParameter: 2
+--- !u!1 &6048608847811788785
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4506472626624766310}
+  - component: {fileID: 490290931683091002}
+  m_Layer: 0
+  m_Name: FirestormAbility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4506472626624766310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048608847811788785}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6748384037172935766}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &490290931683091002
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048608847811788785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9790a135f7a763439638c05ad478062, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityCooldown: 8
+  abilityAftermathCooldown: 4
+  enemy: {fileID: 2290819740826680190}
+  destinationTF: {fileID: 0}
+  firestormPrefab: {fileID: 5621841713742333532, guid: a470458e8ec81d5449da880c0a50dca6, type: 3}
+  spawnIndex: 3
+  animationToPlayParameter: 1
 --- !u!1 &7807614257624683625
 GameObject:
   m_ObjectHideFlags: 0
@@ -336,6 +389,7 @@ MonoBehaviour:
   enemy: {fileID: 2290819740826680190}
   enemyAbilities:
   - {fileID: 7197743434997261953}
+  - {fileID: 490290931683091002}
 --- !u!114 &2560333719101446067
 MonoBehaviour:
   m_ObjectHideFlags: 0
