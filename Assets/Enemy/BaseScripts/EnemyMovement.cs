@@ -7,6 +7,7 @@ public class EnemyMovement : MonoBehaviour
 
     private const float EPSILON = 0.1f;
 
+    [SerializeField] private Enemy enemy;
     [SerializeField] private float speed = 10.0f;
 
     private Vector2 destination;
@@ -27,8 +28,9 @@ public class EnemyMovement : MonoBehaviour
     public void SetDestination(Vector2 destination)
     {
         this.destination = destination;
-
         hasReachedDestination = false;
+
+        enemy.EnemyAnimationController.SetAnimatorBool(EnemyAnimatorParameter.IsMoving, true);
     }
 
     private void Move()
@@ -41,6 +43,8 @@ public class EnemyMovement : MonoBehaviour
         }
         else
         {
+            enemy.EnemyAnimationController.SetAnimatorBool(EnemyAnimatorParameter.IsMoving, false);
+
             hasReachedDestination = true;
 
             OnReachedDestination?.Invoke();

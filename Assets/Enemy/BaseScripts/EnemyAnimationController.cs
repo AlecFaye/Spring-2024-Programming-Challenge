@@ -27,6 +27,11 @@ public class EnemyAnimationController : MonoBehaviour
         animator.SetTrigger(parameter.ToString());
     }
 
+    public void SetAnimatorBool(EnemyAnimatorParameter parameter, bool status)
+    {
+        animator.SetBool(parameter.ToString(), status);
+    }
+
     public void TriggerAbility()
     {
         OnTriggerAbility?.Invoke();
