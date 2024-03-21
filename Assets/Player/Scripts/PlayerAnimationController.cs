@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
@@ -14,6 +13,7 @@ public class PlayerAnimationController : MonoBehaviour
         Revive,
         Dash,
         FinishedDash,
+        Attack,
     }
 
     private void Awake()
@@ -27,16 +27,23 @@ public class PlayerAnimationController : MonoBehaviour
         Player.Instance.PlayerMovement.OnDashed += Player_OnDashed;
         Player.Instance.PlayerMovement.OnDashFinished += Player_OnDashFinished;
 
+        Player.Instance.PlayerAttack.OnAttackStarted += Player_OnAttackStarted;
+
         Player.Instance.PlayerStats.HealthSystem.OnDie += Player_OnDie;
         Player.Instance.PlayerStats.HealthSystem.OnRevive += Player_OnRevive;
     }
 
     private void FixedUpdate()
     {
-        if (Player.Instance.PlayerStats.IsDead)
+        if (Player.Instance.PlayerStats.IsDead || Player.Instance.PlayerAttack.IsAttacking)
             return;
 
         HandleMovementAnimation();
+    }
+
+    public void ReleaseAttack()
+    {
+        Player.Instance.PlayerAttack.OnAttackReleased?.Invoke();
     }
 
     private void Player_OnJumped()
@@ -46,12 +53,18 @@ public class PlayerAnimationController : MonoBehaviour
 
     private void Player_OnDashed()
     {
+        animator.ResetTrigger(PlayerAnimatorParameter.FinishedDash.ToString());
         animator.SetTrigger(PlayerAnimatorParameter.Dash.ToString());
     }
 
     private void Player_OnDashFinished()
     {
         animator.SetTrigger(PlayerAnimatorParameter.FinishedDash.ToString());
+    }
+
+    private void Player_OnAttackStarted()
+    {
+        animator.SetTrigger(PlayerAnimatorParameter.Attack.ToString());
     }
 
     private void Player_OnDie()
@@ -63,7 +76,7 @@ public class PlayerAnimationController : MonoBehaviour
     {
         animator.SetTrigger(PlayerAnimatorParameter.Revive.ToString());
     }
-    
+
     private void HandleMovementAnimation()
     {
         if (Player.Instance.PlayerMovement.IsGrounded)

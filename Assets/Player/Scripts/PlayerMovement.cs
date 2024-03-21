@@ -107,7 +107,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && canDash)
+        if (context.started && canDash && !Player.Instance.PlayerAttack.IsAttacking)
         {
             StartCoroutine(Dash());
         }  
