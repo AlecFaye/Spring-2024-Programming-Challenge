@@ -307,7 +307,7 @@ GameObject:
   - component: {fileID: 297719420892358465}
   - component: {fileID: 9212345455931915987}
   m_Layer: 10
-  m_Name: pf_ProjectileBoss
+  m_Name: pf_FireMage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
