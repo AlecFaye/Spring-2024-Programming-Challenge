@@ -9,6 +9,7 @@ public class PlayerAttack : MonoBehaviour
     public PlayerAttackEvent OnAttackReleased;
 
     [SerializeField] private GameObject attackPrefab;
+    [SerializeField] private Transform releaseAttackLocationTF;
     [SerializeField] private float attackCooldown = 0.5f;
 
     public bool IsAttacking => !canAttack;
@@ -29,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
 
     private void Player_OnAttackReleased()
     {
-        Instantiate(attackPrefab, transform.position, Quaternion.identity);
+        Instantiate(attackPrefab, releaseAttackLocationTF.position, Quaternion.identity);
     }
 
     private IEnumerator StartAttack()

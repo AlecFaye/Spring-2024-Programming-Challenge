@@ -7,6 +7,9 @@ public class ShieldPickup : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out IDamageable damageable))
+        {
             damageable.Shield(shieldDuration);
+            gameObject.SetActive(false);
+        }
     }
 }
