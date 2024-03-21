@@ -38,7 +38,10 @@ public class Spawner : MonoBehaviour
         {
             foreach (Wave wave in waveSO.Waves)
             {
-                SpawnObstacles(wave);
+                if (waveSO.IsBossWave)
+                    SpawnBoss(wave);
+                else
+                    SpawnObstacles(wave);
 
                 yield return new WaitForSeconds(wave.Delay);
             }
@@ -63,6 +66,19 @@ public class Spawner : MonoBehaviour
             int spawnIndex = (int)spawn.SpawnPosition;
 
             Instantiate(spawnPrefab, spawnerPositions[spawnIndex].position, Quaternion.identity);
+        }
+    }
+
+    private void SpawnBoss(Wave wave)
+    {
+        foreach (Spawn spawn in wave.Spawns)
+        {
+            GameObject spawnPrefab = spawn.SpawnPrefab;
+            int spawnIndex = (int)spawn.SpawnPosition;
+
+            GameObject spawnedObject = Instantiate(spawnPrefab, spawnerPositions[spawnIndex].position, Quaternion.identity);
+            if (spawnedObject.TryGetComponent(out Enemy enemy))
+                enemy.EnemyStats.HealthSystem.OnDie += Spawn_BossDefeated;
         }
     }
 
