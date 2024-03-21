@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
     public delegate void PlayerMovementEvent();
     public PlayerMovementEvent OnJumped;
     public PlayerMovementEvent OnLanded;
+    public PlayerMovementEvent OnDashed;
+    public PlayerMovementEvent OnDashFinished;
 
     [Header("Layers")]
     [SerializeField] private LayerMask playerLayerMask;
@@ -21,6 +24,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpEndEarlyGravityModifier = 3.0f;
     [SerializeField] private float coyoteTime = 0.15f;
     [SerializeField] private float jumpBuffer = 0.2f;
+
+    [Header("Dash Configurations")]
+    [SerializeField] private float dashDuration;
+    [SerializeField] private float dashCooldown;
 
     public bool IsGrounded => isGrounded;
     public Vector2 FrameVelocity => frameVelocity;
@@ -48,6 +55,9 @@ public class PlayerMovement : MonoBehaviour
     private bool HasBufferedJump => bufferedJumpUsable && time < timeJumpWasPressed + jumpBuffer;
     private bool CanUseCoyote => coyoteUsable && !isGrounded && time < frameLeftGrounded + coyoteTime;
 
+    private bool isDashing;
+    private bool canDash = true;
+
     #region Pipeline Functions
 
     private void Awake()
@@ -66,8 +76,12 @@ public class PlayerMovement : MonoBehaviour
     private void FixedUpdate()
     {
         CheckCollisions();
-        HandleJump();
-        HandleGravity();
+
+        if (!isDashing)
+        {
+            HandleJump();
+            HandleGravity();
+        }
 
         rb.velocity = frameVelocity;
     }
@@ -89,6 +103,14 @@ public class PlayerMovement : MonoBehaviour
         {
             jump = false;
         }
+    }
+
+    public void OnDash(InputAction.CallbackContext context)
+    {
+        if (context.started && canDash)
+        {
+            StartCoroutine(Dash());
+        }  
     }
 
     #endregion
@@ -113,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
             coyoteUsable = true;
             bufferedJumpUsable = true;
             endedJumpEarly = false;
-
             OnLanded?.Invoke();
         }
         else if (isGrounded && !isGroundHit)
@@ -146,7 +167,6 @@ public class PlayerMovement : MonoBehaviour
         bufferedJumpUsable = false;
         coyoteUsable = false;
         frameVelocity.y = jumpPower;
-
         OnJumped?.Invoke();
     }
 
@@ -165,6 +185,25 @@ public class PlayerMovement : MonoBehaviour
 
             frameVelocity.y = Mathf.MoveTowards(frameVelocity.y, -maxFallSpeed, inAirGravity * Time.fixedDeltaTime);
         }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+
+        frameVelocity.y = 0.0f;
+        OnDashed?.Invoke();
+
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+
+        OnDashFinished?.Invoke();
+
+        yield return new WaitForSeconds(dashCooldown);
+
+        canDash = true;
     }
 
     #endregion
