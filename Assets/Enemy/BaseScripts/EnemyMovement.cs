@@ -2,11 +2,16 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
+    public delegate void EnemyMovementEvent();
+    public EnemyMovementEvent OnReachedDestination;
+
     private const float EPSILON = 0.1f;
 
     [SerializeField] private float speed = 10.0f;
 
     private Vector2 destination;
+
+    private bool hasReachedDestination = true;
 
     private void Awake()
     {
@@ -15,12 +20,15 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Mouse0))
-        {
-            destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        }
+        if (!hasReachedDestination)
+            Move();
+    }
 
-        Move();
+    public void SetDestination(Vector2 destination)
+    {
+        this.destination = destination;
+
+        hasReachedDestination = false;
     }
 
     private void Move()
@@ -30,6 +38,12 @@ public class EnemyMovement : MonoBehaviour
             float step = speed * Time.deltaTime;
 
             transform.position = Vector2.MoveTowards(transform.position, destination, step);
+        }
+        else
+        {
+            hasReachedDestination = true;
+
+            OnReachedDestination?.Invoke();
         }
     }
 }

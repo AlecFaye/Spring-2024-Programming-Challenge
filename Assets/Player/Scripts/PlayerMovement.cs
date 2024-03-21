@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerMovementEvent OnDashFinished;
 
     [Header("Layers")]
-    [SerializeField] private LayerMask playerLayerMask;
+    [SerializeField] private LayerMask notGroundLayerMask;
 
     [Header("Ground Configurations")]
     [SerializeField] private float groundingForce = -1.5f;
@@ -120,8 +120,8 @@ public class PlayerMovement : MonoBehaviour
     {
         Physics2D.queriesStartInColliders = false;
 
-        bool isGroundHit = Physics2D.CapsuleCast(capsuleCollider.bounds.center, capsuleCollider.size, capsuleCollider.direction, 0, Vector2.down, grounderDistance, ~playerLayerMask);
-        bool isCeilingHit = Physics2D.CapsuleCast(capsuleCollider.bounds.center, capsuleCollider.size, capsuleCollider.direction, 0, Vector2.up, grounderDistance, ~playerLayerMask);
+        bool isGroundHit = Physics2D.CapsuleCast(capsuleCollider.bounds.center, capsuleCollider.size, capsuleCollider.direction, 0, Vector2.down, grounderDistance, ~notGroundLayerMask);
+        bool isCeilingHit = Physics2D.CapsuleCast(capsuleCollider.bounds.center, capsuleCollider.size, capsuleCollider.direction, 0, Vector2.up, grounderDistance, ~notGroundLayerMask);
 
         if (isCeilingHit)
         {

@@ -3,13 +3,22 @@ using UnityEngine;
 public class EnemyAbility : MonoBehaviour
 {
     public delegate void AbilityEvent();
-    public AbilityEvent OnUseAbility;
+    public AbilityEvent OnStartAbility;
+    public AbilityEvent OnTriggerAbility;
+    public AbilityEvent OnEndAbility;
 
-    [HideInInspector] public bool IsUsingAbility;
+    public bool IsUsingAbility { get; private set; }
 
     [SerializeField] private float abilityCooldown;
 
     private float abilityTime = -999f;
+
+    private void Start()
+    {
+        IsUsingAbility = false;
+        OnEndAbility += Ability_OnEndAbility;
+        OnTriggerAbility += TriggerAbility;
+    }
 
     public virtual bool CanUseAbility()
     {
@@ -22,8 +31,16 @@ public class EnemyAbility : MonoBehaviour
 
         IsUsingAbility = true;
 
-        OnUseAbility?.Invoke();
+        OnStartAbility?.Invoke();
     }
 
-    public virtual void TriggerAbility() { }
+    public virtual void TriggerAbility() 
+    {
+        Debug.Log(1);
+    }
+
+    private void Ability_OnEndAbility()
+    {
+        IsUsingAbility = false;
+    }
 }
