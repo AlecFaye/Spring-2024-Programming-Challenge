@@ -16,15 +16,6 @@ public class HealthSystem
     public int MaxHealthAmount => maxHealthAmount;
     public int AbsoluteMaxAmount => absoluteMaxAmount;
 
-    public HealthSystem(int amount)
-    {
-        healthAmount = amount;
-        maxHealthAmount = amount;
-
-        absoluteMinAmount = amount;
-        absoluteMaxAmount = amount;
-    }
-
     public HealthSystem(int amount, int absoluteMinAmount, int absoluteMaxAmount)
     {
         healthAmount = amount;
