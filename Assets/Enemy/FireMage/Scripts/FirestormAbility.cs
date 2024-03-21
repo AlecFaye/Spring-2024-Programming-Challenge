@@ -4,7 +4,7 @@ public class FirestormAbility : EnemyAbility
 {
     [Header("References")]
     [SerializeField] private Enemy enemy;
-    [SerializeField] private Transform destinationTF;
+    [SerializeField] private Destination destination;
 
     [Header("Firestorm Configurations")]
     [SerializeField] private GameObject firestormPrefab;
@@ -22,7 +22,8 @@ public class FirestormAbility : EnemyAbility
     {
         base.StartAbility();
 
-        enemy.EnemyMovement.SetDestination(destinationTF.position);
+        Vector2 destinationPosition = BossArena.Instance.GetDestination(destination);
+        enemy.EnemyMovement.SetDestination(destinationPosition);
         enemy.EnemyMovement.OnReachedDestination += Enemy_OnReachedDestination;
     }
 

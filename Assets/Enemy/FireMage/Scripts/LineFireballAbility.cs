@@ -5,7 +5,7 @@ public class LineFireballAbility : EnemyAbility
 {
     [Header("References")]
     [SerializeField] private Enemy enemy;
-    [SerializeField] private Transform destinationTF;
+    [SerializeField] private Destination destination;
 
     [Header("Line Fireball Configurations")]
     [SerializeField] private GameObject fireballPrefab;
@@ -18,7 +18,6 @@ public class LineFireballAbility : EnemyAbility
 
     private void Start()
     {
-
         OnTriggerAbility += TriggerAbility;
     }
 
@@ -26,7 +25,8 @@ public class LineFireballAbility : EnemyAbility
     {
         base.StartAbility();
 
-        enemy.EnemyMovement.SetDestination(destinationTF.position);
+        Vector2 destinationPosition = BossArena.Instance.GetDestination(destination);
+        enemy.EnemyMovement.SetDestination(destinationPosition);
         enemy.EnemyMovement.OnReachedDestination += Enemy_OnReachedDestination;
     }
 

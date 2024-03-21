@@ -6,9 +6,12 @@ public class EnemyAI : MonoBehaviour
 {
     [SerializeField] private Enemy enemy;
     [SerializeField] private EnemyAbility[] enemyAbilities;
+    [SerializeField] private Destination entranceDestination;
+    [SerializeField] private float delayStart = 1.0f;
 
     private EnemyAbility currentAbility;
 
+    private bool isCurrentlyEntering = true;
     private bool isAttacking = false;
     private bool isCoolingDown = false;
 
@@ -16,11 +19,22 @@ public class EnemyAI : MonoBehaviour
     {
         enemy.EnemyAnimationController.OnTriggerAbility += EnemyAnimator_OnTriggerAbility;
         enemy.EnemyAnimationController.OnEndAbility += EnemyAnimator_OnEndAbility;
+
+        Vector2 entrancePosition = BossArena.Instance.GetDestination(entranceDestination);
+        enemy.EnemyMovement.SetDestination(entrancePosition);
+        enemy.EnemyMovement.OnReachedDestination += Enemy_ReachedEntranceDestination;
+    }
+
+    private void Enemy_ReachedEntranceDestination()
+    {
+        enemy.EnemyMovement.OnReachedDestination -= Enemy_ReachedEntranceDestination;
+
+        StartCoroutine(DelayStart());
     }
 
     private void Update()
     {
-        if (isAttacking || isCoolingDown || enemy.EnemyStats.IsDead)
+        if (isCurrentlyEntering || isAttacking || isCoolingDown || enemy.EnemyStats.IsDead)
             return;
 
         currentAbility = ChooseAbility();
@@ -63,6 +77,13 @@ public class EnemyAI : MonoBehaviour
         yield return new WaitForSeconds(currentAbility.AbilityAftermathCooldown);
 
         isCoolingDown = false;
+    }
+
+    private IEnumerator DelayStart()
+    {
+        yield return new WaitForSeconds(delayStart);
+
+        isCurrentlyEntering = false;
     }
 
     private void EnemyAnimator_OnTriggerAbility()
