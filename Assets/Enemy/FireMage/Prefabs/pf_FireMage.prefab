@@ -99,6 +99,7 @@ Transform:
   m_Children:
   - {fileID: 6949163685867297420}
   - {fileID: 4506472626624766310}
+  - {fileID: 3822661464867861182}
   m_Father: {fileID: 8578054241196618796}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -239,6 +240,59 @@ MonoBehaviour:
   numberOfFireballs: 3
   delayBetweenFireballs: 0.25
   animationToPlayParameter: 2
+--- !u!1 &4446071731775729861
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3822661464867861182}
+  - component: {fileID: 3878122779483618661}
+  m_Layer: 0
+  m_Name: MeteorAbility
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3822661464867861182
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446071731775729861}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6748384037172935766}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3878122779483618661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446071731775729861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4d4f9326e60882e46a1b5c36fd097201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityCooldown: 12
+  abilityAftermathCooldown: 6
+  enemy: {fileID: 2290819740826680190}
+  destination: 3
+  meteorPrefab: {fileID: 5621841713742333532, guid: 4255b9c0051565f4fabbcefb49623b03, type: 3}
+  spawnIndices: 0400000005000000
+  numberOfMeteors: 5
+  delayBetweenMeteors: 0.5
+  animationToPlayParameter: 2
 --- !u!1 &6048608847811788785
 GameObject:
   m_ObjectHideFlags: 0
@@ -328,7 +382,7 @@ Transform:
   - {fileID: 4654214141125672623}
   - {fileID: 6748384037172935766}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2290819740826680190
 MonoBehaviour:
@@ -390,6 +444,7 @@ MonoBehaviour:
   enemyAbilities:
   - {fileID: 7197743434997261953}
   - {fileID: 490290931683091002}
+  - {fileID: 3878122779483618661}
   entranceDestination: 0
   delayStart: 1
 --- !u!114 &2560333719101446067
