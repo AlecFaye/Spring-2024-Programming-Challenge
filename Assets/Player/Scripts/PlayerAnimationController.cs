@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class PlayerAnimationController : MonoBehaviour
@@ -10,7 +11,9 @@ public class PlayerAnimationController : MonoBehaviour
         Jump,
         VerticalVelocity,
         Die,
-        Revive
+        Revive,
+        Dash,
+        FinishedDash,
     }
 
     private void Awake()
@@ -21,6 +24,8 @@ public class PlayerAnimationController : MonoBehaviour
     private void Start()
     {
         Player.Instance.PlayerMovement.OnJumped += Player_OnJumped;
+        Player.Instance.PlayerMovement.OnDashed += Player_OnDashed;
+        Player.Instance.PlayerMovement.OnDashFinished += Player_OnDashFinished;
 
         Player.Instance.PlayerStats.HealthSystem.OnDie += Player_OnDie;
         Player.Instance.PlayerStats.HealthSystem.OnRevive += Player_OnRevive;
@@ -37,6 +42,16 @@ public class PlayerAnimationController : MonoBehaviour
     private void Player_OnJumped()
     {
         animator.SetTrigger(PlayerAnimatorParameter.Jump.ToString());
+    }
+
+    private void Player_OnDashed()
+    {
+        animator.SetTrigger(PlayerAnimatorParameter.Dash.ToString());
+    }
+
+    private void Player_OnDashFinished()
+    {
+        animator.SetTrigger(PlayerAnimatorParameter.FinishedDash.ToString());
     }
 
     private void Player_OnDie()

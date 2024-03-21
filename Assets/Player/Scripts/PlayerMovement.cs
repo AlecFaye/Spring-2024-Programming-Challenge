@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerMovementEvent OnJumped;
     public PlayerMovementEvent OnLanded;
     public PlayerMovementEvent OnDashed;
+    public PlayerMovementEvent OnDashFinished;
 
     [Header("Layers")]
     [SerializeField] private LayerMask playerLayerMask;
@@ -53,10 +55,8 @@ public class PlayerMovement : MonoBehaviour
     private bool HasBufferedJump => bufferedJumpUsable && time < timeJumpWasPressed + jumpBuffer;
     private bool CanUseCoyote => coyoteUsable && !isGrounded && time < frameLeftGrounded + coyoteTime;
 
-    private float timeDashWasPressed = -999f;
-
-    private bool IsDashing => timeDashWasPressed + dashDuration >= time;
-    private bool CanDash => timeDashWasPressed + dashCooldown <= time;
+    private bool isDashing;
+    private bool canDash = true;
 
     #region Pipeline Functions
 
@@ -77,12 +77,7 @@ public class PlayerMovement : MonoBehaviour
     {
         CheckCollisions();
 
-        if (IsDashing)
-        {
-            Debug.Log(time - timeDashWasPressed);
-            frameVelocity.y = 0.0f;
-        }
-        else
+        if (!isDashing)
         {
             HandleJump();
             HandleGravity();
@@ -112,9 +107,9 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context)
     {
-        if (context.started && CanDash)
+        if (context.started && canDash)
         {
-            timeDashWasPressed = time;
+            StartCoroutine(Dash());
         }  
     }
 
@@ -140,7 +135,6 @@ public class PlayerMovement : MonoBehaviour
             coyoteUsable = true;
             bufferedJumpUsable = true;
             endedJumpEarly = false;
-
             OnLanded?.Invoke();
         }
         else if (isGrounded && !isGroundHit)
@@ -173,7 +167,6 @@ public class PlayerMovement : MonoBehaviour
         bufferedJumpUsable = false;
         coyoteUsable = false;
         frameVelocity.y = jumpPower;
-
         OnJumped?.Invoke();
     }
 
@@ -192,6 +185,25 @@ public class PlayerMovement : MonoBehaviour
 
             frameVelocity.y = Mathf.MoveTowards(frameVelocity.y, -maxFallSpeed, inAirGravity * Time.fixedDeltaTime);
         }
+    }
+
+    private IEnumerator Dash()
+    {
+        canDash = false;
+        isDashing = true;
+
+        frameVelocity.y = 0.0f;
+        OnDashed?.Invoke();
+
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+
+        OnDashFinished?.Invoke();
+
+        yield return new WaitForSeconds(dashCooldown);
+
+        canDash = true;
     }
 
     #endregion
