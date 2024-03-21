@@ -10,32 +10,35 @@ public enum EnemyAnimatorParameter
 
 public class EnemyAnimationController : MonoBehaviour
 {
+    public delegate void EnemyAnimationEvent();
+    public EnemyAnimationEvent OnTriggerAbility;
+    public EnemyAnimationEvent OnEndAbility;
+
     [SerializeField] private Enemy enemy;
     [SerializeField] private Animator animator;
-    [SerializeField] private EnemyAbility ability;
 
     private void Start()
     {
         enemy.EnemyStats.HealthSystem.OnDie += Enemy_OnDie;
     }
 
-    public void SetTriggerAnimator(EnemyAnimatorParameter parameter)
+    public void SetAnimatorTrigger(EnemyAnimatorParameter parameter)
     {
         animator.SetTrigger(parameter.ToString());
     }
 
     public void TriggerAbility()
     {
-        ability.OnTriggerAbility?.Invoke();
+        OnTriggerAbility?.Invoke();
     }
 
     public void EndAbility()
     {
-        ability.OnEndAbility?.Invoke();
+        OnEndAbility?.Invoke();
     }
 
     private void Enemy_OnDie()
     {
-        SetTriggerAnimator(EnemyAnimatorParameter.Die);
+        SetAnimatorTrigger(EnemyAnimatorParameter.Die);
     }
 }

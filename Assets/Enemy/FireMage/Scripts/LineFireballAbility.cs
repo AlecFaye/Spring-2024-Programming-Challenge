@@ -16,12 +16,6 @@ public class LineFireballAbility : EnemyAbility
     [Header("Other")]
     [SerializeField] private EnemyAnimatorParameter animationToPlayParameter;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.P))
-            StartAbility();
-    }
-
     private void Start()
     {
         enemy.EnemyMovement.OnReachedDestination += Enemy_OnReachedDestination;
@@ -43,7 +37,7 @@ public class LineFireballAbility : EnemyAbility
 
     private void Enemy_OnReachedDestination()
     {
-        enemy.EnemyAnimationController.SetTriggerAnimator(animationToPlayParameter);
+        enemy.EnemyAnimationController.SetAnimatorTrigger(animationToPlayParameter);
     }
 
     private IEnumerator StartFireball()

@@ -17,7 +17,6 @@ public class EnemyAbility : MonoBehaviour
     {
         IsUsingAbility = false;
         OnEndAbility += Ability_OnEndAbility;
-        OnTriggerAbility += TriggerAbility;
     }
 
     public virtual bool CanUseAbility()
@@ -34,10 +33,7 @@ public class EnemyAbility : MonoBehaviour
         OnStartAbility?.Invoke();
     }
 
-    public virtual void TriggerAbility() 
-    {
-        Debug.Log(1);
-    }
+    public virtual void TriggerAbility() { }
 
     private void Ability_OnEndAbility()
     {

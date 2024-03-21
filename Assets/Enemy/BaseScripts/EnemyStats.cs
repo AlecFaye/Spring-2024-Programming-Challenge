@@ -10,42 +10,41 @@ public class EnemyStats : MonoBehaviour, IDamageable
     [SerializeField] private int absoluteMinHealth;
     [SerializeField] private int absoluteMaxHealth;
 
-    private HealthSystem healthSystem;
-    public HealthSystem HealthSystem => healthSystem;
+    public HealthSystem HealthSystem { get; private set; }
 
-    private bool isDead = false;
+    public bool IsDead { get; private set; }
 
     private void Awake()
     {
-        healthSystem = new(baseHealth, absoluteMinHealth, absoluteMaxHealth);
+        HealthSystem = new(baseHealth, absoluteMinHealth, absoluteMaxHealth);
     }
 
     private void Start()
     {
-        healthSystem.OnDie += Enemy_OnDie;
+        HealthSystem.OnDie += Enemy_OnDie;
     }
 
     private void Enemy_OnDie()
     {
-        isDead = true;
+        IsDead = true;
     }
 
     public void TakeDamage(IDamageable damager, int damageAmount)
     {
-        if (isDead)
+        if (IsDead)
             return;
 
         damageFlash.StartFlash();
 
-        healthSystem.Damage(damageAmount);
+        HealthSystem.Damage(damageAmount);
     }
 
     public void Heal(int healAmount)
     {
-        if (isDead)
+        if (IsDead)
             return;
 
-        healthSystem.Heal(healAmount);
+        HealthSystem.Heal(healAmount);
     }
 
     public void Shield(float shieldDuration) { }
