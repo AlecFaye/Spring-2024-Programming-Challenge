@@ -9,6 +9,7 @@ public class FirestormAbility : EnemyAbility
     [Header("Firestorm Configurations")]
     [SerializeField] private GameObject firestormPrefab;
     [SerializeField] private SpawnPosition spawnIndex;
+    [SerializeField] private SpawnPosition[] dangerIndicatorsSpawns;
 
     [Header("Other")]
     [SerializeField] private EnemyAnimatorParameter animationToPlayParameter;
@@ -38,5 +39,8 @@ public class FirestormAbility : EnemyAbility
     {
         enemy.EnemyAnimationController.SetAnimatorTrigger(animationToPlayParameter);
         enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedDestination;
+
+        foreach (SpawnPosition spawnIndex in dangerIndicatorsSpawns)
+            DangerIndicatorManager.Instance.DisplayIndicator(spawnIndex);
     }
 }

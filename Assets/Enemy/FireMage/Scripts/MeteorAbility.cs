@@ -39,6 +39,9 @@ public class MeteorAbility : EnemyAbility
     {
         enemy.EnemyAnimationController.SetAnimatorTrigger(animationToPlayParameter);
         enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedDestination;
+
+        foreach (SpawnPosition spawnIndex in spawnIndices)
+            DangerIndicatorManager.Instance.DisplayIndicator(spawnIndex);
     }
 
     private IEnumerator StartFireball()

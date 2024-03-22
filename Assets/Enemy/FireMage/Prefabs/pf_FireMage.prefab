@@ -343,6 +343,7 @@ MonoBehaviour:
   destination: 2
   firestormPrefab: {fileID: 5621841713742333532, guid: a470458e8ec81d5449da880c0a50dca6, type: 3}
   spawnIndex: 3
+  dangerIndicatorsSpawns: 0200000003000000
   animationToPlayParameter: 1
 --- !u!1 &7807614257624683625
 GameObject:
