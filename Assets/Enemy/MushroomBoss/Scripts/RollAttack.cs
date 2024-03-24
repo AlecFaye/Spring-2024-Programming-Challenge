@@ -7,6 +7,7 @@ public class RollAttack : EnemyAbility
     [SerializeField] private Collider2D damageCollider;
 
     [Header("Roll Attack Configurations")]
+    [SerializeField] private Destination startDestination;
     [SerializeField] private Destination rollAttackDestination;
     [SerializeField] private Destination originalDestination;
 
@@ -23,10 +24,9 @@ public class RollAttack : EnemyAbility
     {
         base.StartAbility();
 
-        enemy.EnemyAnimationController.SetAnimatorTrigger(EnemyAnimatorParameter.RollAttack);
-        
-        foreach (SpawnPosition spawnIndex in dangerPositions)
-            DangerIndicatorManager.Instance.DisplayIndicator(spawnIndex);
+        Vector2 destinationPosition = BossArena.Instance.GetDestination(startDestination);
+        enemy.EnemyMovement.SetDestination(destinationPosition);
+        enemy.EnemyMovement.OnReachedDestination += Enemy_OnReachedDestination;
     }
 
     public override void TriggerAbility()
@@ -34,12 +34,22 @@ public class RollAttack : EnemyAbility
         TriggerFirstPart();
     }
 
+    private void Enemy_OnReachedDestination()
+    {
+        enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedDestination;
+        enemy.EnemyAnimationController.SetAnimatorTrigger(EnemyAnimatorParameter.RollAttack);
+    }
+
     private void TriggerFirstPart()
     {
         Vector2 destinationPosition = BossArena.Instance.GetDestination(rollAttackDestination);
         enemy.EnemyMovement.SetDestination(destinationPosition);
         enemy.EnemyMovement.OnReachedDestination += Enemy_ReachedFirstDestination;
+
         damageCollider.enabled = true;
+
+        foreach (SpawnPosition spawnIndex in dangerPositions)
+            DangerIndicatorManager.Instance.DisplayIndicator(spawnIndex);
     }
 
     private void Enemy_ReachedFirstDestination()

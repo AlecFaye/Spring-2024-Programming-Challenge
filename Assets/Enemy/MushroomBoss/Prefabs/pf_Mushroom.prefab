@@ -48,7 +48,8 @@ MonoBehaviour:
   abilityAftermathCooldown: 3
   enemy: {fileID: 2290819740826680190}
   damageCollider: {fileID: 8707871968024609576}
-  rollAttackDestination: 5
+  startDestination: 5
+  rollAttackDestination: 6
   originalDestination: 4
   dangerPositions: 0200000003000000
 --- !u!1 &993593946194704297
