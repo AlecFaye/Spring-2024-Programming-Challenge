@@ -8,7 +8,8 @@ public enum Destination
     Firestorm,
     Meteor,
 
-    EntranceMushroom
+    EntranceMushroom,
+    RollAttack,
 }
 
 public class BossArena : MonoBehaviour
@@ -23,6 +24,7 @@ public class BossArena : MonoBehaviour
 
     [Header("Mushroom Arena Configurations")]
     [SerializeField] private Transform entranceMushroomTF;
+    [SerializeField] private Transform rollAttackTF;
 
     private readonly Dictionary<Destination, Vector2> destinations = new();
 
@@ -39,6 +41,7 @@ public class BossArena : MonoBehaviour
         destinations.Add(Destination.Meteor, meteorFireballTF.position);
 
         destinations.Add(Destination.EntranceMushroom, entranceMushroomTF.position);
+        destinations.Add(Destination.RollAttack, rollAttackTF.position);
     }
 
     public Vector2 GetDestination(Destination destination)

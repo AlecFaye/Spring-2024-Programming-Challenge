@@ -1,5 +1,56 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &609134340990843329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3056759924905073524}
+  - component: {fileID: 1475532763923183117}
+  m_Layer: 0
+  m_Name: RollAttack
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3056759924905073524
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609134340990843329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6748384037172935766}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1475532763923183117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 609134340990843329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cab3b27be03764e4a9ab0e748f096036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  abilityCooldown: 10
+  abilityAftermathCooldown: 3
+  enemy: {fileID: 2290819740826680190}
+  damageCollider: {fileID: 8707871968024609576}
+  rollAttackDestination: 5
+  originalDestination: 4
+  dangerPositions: 0200000003000000
 --- !u!1 &993593946194704297
 GameObject:
   m_ObjectHideFlags: 0
@@ -9,7 +60,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4654214141125672623}
-  - component: {fileID: 8772768230800062675}
+  - component: {fileID: 456636824931034907}
   - component: {fileID: 8345089528970258792}
   m_Layer: 0
   m_Name: VisualManager
@@ -31,10 +82,11 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7753175702591565662}
+  - {fileID: 160123728194352213}
   m_Father: {fileID: 8578054241196618796}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &8772768230800062675
+--- !u!114 &456636824931034907
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -43,11 +95,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 993593946194704297}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd8bcc069aad93442a92c3cf58ccc576, type: 3}
+  m_Script: {fileID: 11500000, guid: 0211e16fe11a8c6458b90dc5f66d0219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 2290819740826680190}
   animator: {fileID: 8345089528970258792}
+  visualManagerTF: {fileID: 4654214141125672623}
 --- !u!95 &8345089528970258792
 Animator:
   serializedVersion: 5
@@ -96,7 +149,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3056759924905073524}
   m_Father: {fileID: 8578054241196618796}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -184,6 +238,87 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5010064088287373268
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 160123728194352213}
+  - component: {fileID: 7405150395738254726}
+  - component: {fileID: 8707871968024609576}
+  m_Layer: 9
+  m_Name: RollHurtbox
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &160123728194352213
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010064088287373268}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4654214141125672623}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7405150395738254726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010064088287373268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 196920bad33a75644b8a1719bde709d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 1
+--- !u!58 &8707871968024609576
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5010064088287373268}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0, y: 1.5}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1 &7807614257624683625
 GameObject:
   m_ObjectHideFlags: 0
@@ -238,7 +373,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EnemyStats: {fileID: 844492392466896997}
   EnemyMovement: {fileID: 2515737168090521881}
-  EnemyAnimationController: {fileID: 8772768230800062675}
+  EnemyAnimationController: {fileID: 456636824931034907}
 --- !u!114 &844492392466896997
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,7 +417,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemy: {fileID: 2290819740826680190}
-  enemyAbilities: []
+  enemyAbilities:
+  - {fileID: 1475532763923183117}
   entranceDestination: 4
   delayStart: 1
 --- !u!114 &2560333719101446067
