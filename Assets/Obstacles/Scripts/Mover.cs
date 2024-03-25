@@ -16,7 +16,7 @@ public class Mover : MonoBehaviour
 
     private void FixedUpdate()
     {
-        rb.velocity = new(speed * Time.fixedDeltaTime, 0.0f);
+        rb.velocity = new(speed * Time.fixedDeltaTime, rb.velocity.y);
 
         CheckDeactivate();
     }

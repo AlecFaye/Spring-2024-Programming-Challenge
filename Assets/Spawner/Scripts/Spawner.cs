@@ -7,7 +7,7 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private Transform spawnPositionsTF;
     [SerializeField] private GameObject spawnPrefab;
-    [SerializeField] private WaveScriptableObject[] waveSOs;
+    [SerializeField] private WaveScriptableObject[] waveScriptableObjects;
 
     private Transform[] spawnerPositions;
     private bool isFightingBoss = false;
@@ -34,7 +34,7 @@ public class Spawner : MonoBehaviour
 
     private IEnumerator StartSpawn()
     {
-        foreach (WaveScriptableObject waveSO in waveSOs)
+        foreach (WaveScriptableObject waveSO in waveScriptableObjects)
         {
             foreach (Wave wave in waveSO.Waves)
             {

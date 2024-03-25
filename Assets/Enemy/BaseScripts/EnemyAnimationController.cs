@@ -5,7 +5,16 @@ public enum EnemyAnimatorParameter
     IsMoving,
     Attack,
     AttackNoEffect,
-    Die
+    Die,
+
+    ChargeUp,
+    RollAttack,
+    FinishRollAttack,
+    FinishMiniAttack,
+    ChargeUpHover,
+    Hover,
+    Slam,
+    FinishSlam,
 }
 
 public class EnemyAnimationController : MonoBehaviour
@@ -14,8 +23,9 @@ public class EnemyAnimationController : MonoBehaviour
     public EnemyAnimationEvent OnTriggerAbility;
     public EnemyAnimationEvent OnEndAbility;
 
-    [SerializeField] private Enemy enemy;
+    [SerializeField] protected Enemy enemy;
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform visualManagerTF;
 
     private void Start()
     {
@@ -45,5 +55,12 @@ public class EnemyAnimationController : MonoBehaviour
     private void Enemy_OnDie()
     {
         SetAnimatorTrigger(EnemyAnimatorParameter.Die);
+    }
+
+    public void Flip()
+    {
+        Vector3 visualScale = visualManagerTF.localScale;
+        visualScale.x *= -1;
+        visualManagerTF.localScale = visualScale;
     }
 }

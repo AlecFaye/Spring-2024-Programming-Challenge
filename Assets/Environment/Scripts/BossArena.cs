@@ -7,16 +7,32 @@ public enum Destination
     LineFireball,
     Firestorm,
     Meteor,
+
+    EntranceMushroom,
+    RollAttackStart,
+    RollAttack,
+    MiniMushroom,
+    Hover,
+    Slam,
 }
 
 public class BossArena : MonoBehaviour
 {
     public static BossArena Instance { get; private set; }
 
+    [Header("Fire Mage Arena Configurations")]
     [SerializeField] private Transform entranceFireMageTF;
     [SerializeField] private Transform lineFireballTF;
     [SerializeField] private Transform firestormTF;
     [SerializeField] private Transform meteorFireballTF;
+
+    [Header("Mushroom Arena Configurations")]
+    [SerializeField] private Transform entranceMushroomTF;
+    [SerializeField] private Transform rollAttackStartTF;
+    [SerializeField] private Transform rollAttackTF;
+    [SerializeField] private Transform miniMushroomTF;
+    [SerializeField] private Transform hoverTF;
+    [SerializeField] private Transform slamTF;
 
     private readonly Dictionary<Destination, Vector2> destinations = new();
 
@@ -31,6 +47,13 @@ public class BossArena : MonoBehaviour
         destinations.Add(Destination.LineFireball, lineFireballTF.position);
         destinations.Add(Destination.Firestorm, firestormTF.position);
         destinations.Add(Destination.Meteor, meteorFireballTF.position);
+
+        destinations.Add(Destination.EntranceMushroom, entranceMushroomTF.position);
+        destinations.Add(Destination.RollAttackStart, rollAttackStartTF.position);
+        destinations.Add(Destination.RollAttack, rollAttackTF.position);
+        destinations.Add(Destination.MiniMushroom, miniMushroomTF.position);
+        destinations.Add(Destination.Hover, hoverTF.position);
+        destinations.Add(Destination.Slam, slamTF.position);
     }
 
     public Vector2 GetDestination(Destination destination)
