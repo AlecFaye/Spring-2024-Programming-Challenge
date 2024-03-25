@@ -12,6 +12,8 @@ public enum Destination
     RollAttackStart,
     RollAttack,
     MiniMushroom,
+    Hover,
+    Slam,
 }
 
 public class BossArena : MonoBehaviour
@@ -29,6 +31,8 @@ public class BossArena : MonoBehaviour
     [SerializeField] private Transform rollAttackStartTF;
     [SerializeField] private Transform rollAttackTF;
     [SerializeField] private Transform miniMushroomTF;
+    [SerializeField] private Transform hoverTF;
+    [SerializeField] private Transform slamTF;
 
     private readonly Dictionary<Destination, Vector2> destinations = new();
 
@@ -48,6 +52,8 @@ public class BossArena : MonoBehaviour
         destinations.Add(Destination.RollAttackStart, rollAttackStartTF.position);
         destinations.Add(Destination.RollAttack, rollAttackTF.position);
         destinations.Add(Destination.MiniMushroom, miniMushroomTF.position);
+        destinations.Add(Destination.Hover, hoverTF.position);
+        destinations.Add(Destination.Slam, slamTF.position);
     }
 
     public Vector2 GetDestination(Destination destination)

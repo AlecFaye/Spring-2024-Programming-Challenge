@@ -11,6 +11,10 @@ public enum EnemyAnimatorParameter
     RollAttack,
     FinishRollAttack,
     FinishMiniAttack,
+    ChargeUpHover,
+    Hover,
+    Slam,
+    FinishSlam,
 }
 
 public class EnemyAnimationController : MonoBehaviour

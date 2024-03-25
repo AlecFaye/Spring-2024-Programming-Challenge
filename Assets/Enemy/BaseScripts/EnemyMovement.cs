@@ -13,9 +13,11 @@ public class EnemyMovement : MonoBehaviour
     private Vector2 destination;
 
     private bool hasReachedDestination = true;
+    private float defaultSpeed;
 
     private void Awake()
     {
+        defaultSpeed = speed;
         destination = transform.position;
     }
 
@@ -31,6 +33,16 @@ public class EnemyMovement : MonoBehaviour
         hasReachedDestination = false;
 
         enemy.EnemyAnimationController.SetAnimatorBool(EnemyAnimatorParameter.IsMoving, true);
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+    }
+
+    public void ResetSpeed()
+    {
+        speed = defaultSpeed;
     }
 
     private void Move()
