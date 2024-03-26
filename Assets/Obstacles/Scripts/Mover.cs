@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Mover : MonoBehaviour
@@ -7,6 +8,7 @@ public class Mover : MonoBehaviour
 
     [SerializeField] private float speed = 10;
 
+    private ObjectPool<Mover> pool;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -21,9 +23,14 @@ public class Mover : MonoBehaviour
         CheckDeactivate();
     }
 
+    public void SetPool(ObjectPool<Mover> pool)
+    {
+        this.pool = pool;
+    }
+
     private void CheckDeactivate()
     {
         if (transform.position.x < -((Camera.main.orthographicSize * 2) + BUFFER))
-            gameObject.SetActive(false);
+            pool.Release(this);
     }
 }

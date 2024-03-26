@@ -22,7 +22,7 @@ public struct Wave
 [System.Serializable]
 public struct Spawn
 {
-    public GameObject SpawnPrefab;
+    public ObstacleType ObstacleType;
     public SpawnPosition SpawnPosition;
 }
 

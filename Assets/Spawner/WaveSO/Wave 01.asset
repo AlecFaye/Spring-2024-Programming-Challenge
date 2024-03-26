@@ -14,35 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waves:
   - Spawns:
-    - SpawnPrefab: {fileID: 9184054023297840930, guid: 3313f6467fb85364bbfb86b890f8e567, type: 3}
+    - ObstacleType: 3
       SpawnPosition: 3
     Delay: 3
   - Spawns:
-    - SpawnPrefab: {fileID: 9184054023297840930, guid: 3313f6467fb85364bbfb86b890f8e567, type: 3}
+    - ObstacleType: 4
       SpawnPosition: 3
     Delay: 3
   - Spawns:
-    - SpawnPrefab: {fileID: 9184054023297840930, guid: 3313f6467fb85364bbfb86b890f8e567, type: 3}
+    - ObstacleType: 5
       SpawnPosition: 3
     Delay: 3
   - Spawns:
-    - SpawnPrefab: {fileID: 4055971147689481674, guid: b2aab587dadb31646abd6916064c7af6, type: 3}
+    - ObstacleType: 6
       SpawnPosition: 3
     Delay: 3
   - Spawns:
-    - SpawnPrefab: {fileID: 4055971147689481674, guid: b2aab587dadb31646abd6916064c7af6, type: 3}
+    - ObstacleType: 7
       SpawnPosition: 3
     Delay: 3
   - Spawns:
-    - SpawnPrefab: {fileID: 9184054023297840930, guid: 3313f6467fb85364bbfb86b890f8e567, type: 3}
-      SpawnPosition: 3
-    Delay: 3
-  - Spawns:
-    - SpawnPrefab: {fileID: 4055971147689481674, guid: b2aab587dadb31646abd6916064c7af6, type: 3}
-      SpawnPosition: 3
-    Delay: 3
-  - Spawns:
-    - SpawnPrefab: {fileID: 4055971147689481674, guid: c9672a0f81cbc384baf917d6c49ca8eb, type: 3}
+    - ObstacleType: 8
       SpawnPosition: 3
     Delay: 3
   waveEndDelay: 5

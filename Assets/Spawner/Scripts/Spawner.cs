@@ -6,7 +6,6 @@ public class Spawner : MonoBehaviour
     public static Spawner Instance { get; private set; }
 
     [SerializeField] private Transform spawnPositionsTF;
-    [SerializeField] private GameObject spawnPrefab;
     [SerializeField] private WaveScriptableObject[] waveScriptableObjects;
 
     private Transform[] spawnerPositions;
@@ -62,24 +61,25 @@ public class Spawner : MonoBehaviour
     {
         foreach (Spawn spawn in wave.Spawns)
         {
-            GameObject spawnPrefab = spawn.SpawnPrefab;
-            int spawnIndex = (int)spawn.SpawnPosition;
+            ObstacleSpawner obstacleSpawner = ObstacleSpawnerManager.Instance.GetObstacleSpawner(spawn.ObstacleType);
+            obstacleSpawner.Pool.Get(out Mover mover);
 
-            Instantiate(spawnPrefab, spawnerPositions[spawnIndex].position, Quaternion.identity);
+            int spawnIndex = (int)spawn.SpawnPosition;
+            mover.transform.position = spawnerPositions[spawnIndex].position;
         }
     }
 
     private void SpawnBoss(Wave wave)
     {
-        foreach (Spawn spawn in wave.Spawns)
-        {
-            GameObject spawnPrefab = spawn.SpawnPrefab;
-            int spawnIndex = (int)spawn.SpawnPosition;
+        //foreach (Spawn spawn in wave.Spawns)
+        //{
+        //    GameObject spawnPrefab = spawn.SpawnPrefab;
+        //    int spawnIndex = (int)spawn.SpawnPosition;
 
-            GameObject spawnedObject = Instantiate(spawnPrefab, spawnerPositions[spawnIndex].position, Quaternion.identity);
-            if (spawnedObject.TryGetComponent(out Enemy enemy))
-                enemy.EnemyStats.HealthSystem.OnDie += Spawn_BossDefeated;
-        }
+        //    GameObject spawnedObject = Instantiate(spawnPrefab, spawnerPositions[spawnIndex].position, Quaternion.identity);
+        //    if (spawnedObject.TryGetComponent(out Enemy enemy))
+        //        enemy.EnemyStats.HealthSystem.OnDie += Spawn_BossDefeated;
+        //}
     }
 
     private void Spawn_BossDefeated()
