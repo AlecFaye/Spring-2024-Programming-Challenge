@@ -14,6 +14,11 @@ public class Enemy : MonoBehaviour
         EnemyAnimationController.OnFinishDeath += Enemy_OnFinishDeath;
     }
 
+    private void OnDisable()
+    {
+        EnemyStats.HealthSystem.OnDie -= Spawner.Instance.Spawn_BossDefeated;
+    }
+
     private void Enemy_OnFinishDeath()
     {
         pool.Release(this);
