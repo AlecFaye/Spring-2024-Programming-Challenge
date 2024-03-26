@@ -12,7 +12,7 @@ public enum ObstacleType
     Wall_1011,
     Wall_1100,
     Wall_1101,
-    Wall_1110
+    Wall_1110,
 }
 
 public class ObstacleSpawnerManager : MonoBehaviour
@@ -27,7 +27,7 @@ public class ObstacleSpawnerManager : MonoBehaviour
     private struct MoverInfo
     {
         public ObstacleType Type;
-        public Mover Mover;
+        public Obstacle Mover;
     }
 
     private void Awake()

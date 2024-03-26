@@ -3,12 +3,12 @@ using UnityEngine.Pool;
 
 public class ObstacleSpawner : MonoBehaviour
 {
-    public ObjectPool<Mover> Pool;
+    public ObjectPool<Obstacle> Pool;
 
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxSize = 10000;
 
-    [HideInInspector] public Mover ObstaclePrefab;
+    [HideInInspector] public Obstacle ObstaclePrefab;
     
     private GameObject parent;
 
@@ -18,28 +18,28 @@ public class ObstacleSpawner : MonoBehaviour
         Pool = new(CreateObstacle, OnGetMoverFromPool, OnReleaseMoverToPool, OnDestroyMover, true, defaultCapacity, maxSize);
     }
 
-    private Mover CreateObstacle()
+    private Obstacle CreateObstacle()
     {
-        Mover obstacleObject = Instantiate(ObstaclePrefab, Vector3.zero, Quaternion.identity, parent.transform);
+        Obstacle obstacleObject = Instantiate(ObstaclePrefab, Vector3.zero, Quaternion.identity, parent.transform);
 
         obstacleObject.SetPool(Pool);
 
         return obstacleObject;
     }
 
-    private void OnGetMoverFromPool(Mover mover)
+    private void OnGetMoverFromPool(Obstacle mover)
     {
         mover.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
 
         mover.gameObject.SetActive(true);
     }
     
-    private void OnReleaseMoverToPool(Mover mover)
+    private void OnReleaseMoverToPool(Obstacle mover)
     {
         mover.gameObject.SetActive(false);
     }
 
-    private void OnDestroyMover(Mover mover)
+    private void OnDestroyMover(Obstacle mover)
     {
         Destroy(mover.gameObject);
     }

@@ -1044,7 +1044,7 @@ Transform:
   - {fileID: 2130327357}
   - {fileID: 1050214267}
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &542073243
 MonoBehaviour:
@@ -1393,7 +1393,7 @@ Transform:
   - {fileID: 339694011}
   - {fileID: 727435762}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &727435761
 GameObject:
@@ -2537,13 +2537,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 875332990}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 2071817076}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &875332992
 MonoBehaviour:
@@ -6263,7 +6263,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1650345991}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -6274,8 +6274,8 @@ Transform:
   - {fileID: 1851646586}
   - {fileID: 917425128}
   - {fileID: 2129324376}
-  m_Father: {fileID: 2071817076}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1660075621
 GameObject:
@@ -6541,7 +6541,7 @@ Transform:
   - {fileID: 401884452}
   - {fileID: 213907024}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1761976737
 GameObject:
@@ -7024,7 +7024,7 @@ Transform:
   - {fileID: 1114090135}
   - {fileID: 318573713}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1841782590
 MonoBehaviour:
@@ -7502,9 +7502,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1650345992}
-  - {fileID: 875332991}
+  m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7521,9 +7519,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPositionsTF: {fileID: 1650345992}
-  waveScriptableObjects:
-  - {fileID: 11400000, guid: 357ec53f6f4659d4990c6085182f0df9, type: 2}
-  - {fileID: 11400000, guid: ee4a35d34e96ace4997829b7ceb5800c, type: 2}
+  waveScriptableObjects: []
+  wallObstacles:
+  - ObstacleType: 3
+    SpawnPosition: 3
+  - ObstacleType: 4
+    SpawnPosition: 3
+  - ObstacleType: 5
+    SpawnPosition: 3
+  - ObstacleType: 6
+    SpawnPosition: 3
+  - ObstacleType: 7
+    SpawnPosition: 3
+  - ObstacleType: 8
+    SpawnPosition: 3
+  pickupObstacles: 0000000002000000
+  spawnDelay: 5
 --- !u!1 &2092690635
 GameObject:
   m_ObjectHideFlags: 0
