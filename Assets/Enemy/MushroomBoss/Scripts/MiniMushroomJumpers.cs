@@ -9,7 +9,6 @@ public class MiniMushroomJumpers : EnemyAbility
     [Header("Mini Mushroom Configurations")]
     [SerializeField] private Destination destination;
     [SerializeField] private SpawnPosition spawnIndex;
-    [SerializeField] private GameObject miniMushroomPrefab;
     [SerializeField] private int numberOfMushroomsToSpawn = 1;
     [SerializeField] private float spawnDelay = 0.25f;
 
@@ -40,10 +39,12 @@ public class MiniMushroomJumpers : EnemyAbility
         WaitForSeconds wait = new(spawnDelay);
 
         Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndex];
+        ObstacleSpawner obstacleSpawner = ObstacleSpawnerManager.Instance.GetObstacleSpawner(ObstacleType.MiniMushroom);
 
         for (int i = 0; i <  numberOfMushroomsToSpawn; i++)
         {
-            Instantiate(miniMushroomPrefab, spawnTF.position, Quaternion.identity);
+            obstacleSpawner.Pool.Get(out Obstacle obstacle);
+            obstacle.transform.position = spawnTF.position;
 
             yield return wait;
         }

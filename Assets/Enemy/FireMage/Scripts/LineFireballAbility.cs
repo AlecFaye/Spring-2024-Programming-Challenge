@@ -8,7 +8,7 @@ public class LineFireballAbility : EnemyAbility
     [SerializeField] private Destination destination;
 
     [Header("Line Fireball Configurations")]
-    [SerializeField] private GameObject fireballPrefab;
+    [SerializeField] private ProjectileSpawner fireballSpawner;
     [SerializeField] private SpawnPosition[] spawnIndices;
     [SerializeField] private int numberOfFireballs = 1;
     [SerializeField] private float delayBetweenFireballs;
@@ -54,7 +54,8 @@ public class LineFireballAbility : EnemyAbility
             {
                 Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndex];
 
-                Instantiate(fireballPrefab, spawnTF.position, Quaternion.identity);
+                fireballSpawner.Pool.Get(out Projectile projectile);
+                projectile.transform.position = spawnTF.position;
             }
             yield return wait;
         }

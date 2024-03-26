@@ -6,7 +6,6 @@ public class Spawner : MonoBehaviour
     public static Spawner Instance { get; private set; }
 
     [SerializeField] private Transform spawnPositionsTF;
-    [SerializeField] private WaveScriptableObject[] waveScriptableObjects;
     [SerializeField] private ObstacleInfo[] wallObstacles;
     [SerializeField] private ObstacleType[] pickupObstacles;
     [SerializeField] private float spawnDelay = 5.0f;
@@ -32,15 +31,15 @@ public class Spawner : MonoBehaviour
 
         Instance = this;
 
-        spawnerPositions = new Transform[spawnPositionsTF.childCount];
-
-        for (int index = 0; index < spawnPositionsTF.childCount; index++)
-            spawnerPositions[index] = spawnPositionsTF.GetChild(index).transform;
+        InitSpawnPositions();
     }
 
     private void Start()
     {
-        StartCoroutine(StartSpawn());
+        //StartCoroutine(StartObstacleSpawn());
+
+        EnemySpawner enemySpawner = EnemySpawnerManager.Instance.GetEnemySpawner(EnemyType.Mushroom);
+        enemySpawner.Pool.Get();
     }
 
     private void Update()
@@ -48,13 +47,13 @@ public class Spawner : MonoBehaviour
         time += Time.deltaTime;
     }
 
-    private IEnumerator StartSpawn()
+    private IEnumerator StartObstacleSpawn()
     {
         while (true)
         {
-            ObstacleInfo obstacleType = ChooseObstacle();
+            ObstacleInfo obstacleInfo = ChooseObstacle();
 
-            SpawnObstacle(obstacleType);
+            SpawnObstacle(obstacleInfo);
 
             yield return new WaitForSeconds(spawnDelay);
         }
@@ -92,17 +91,9 @@ public class Spawner : MonoBehaviour
         mover.transform.position = spawnerPositions[spawnIndex].position;
     }
 
-    private void SpawnBoss(Wave wave)
+    private void SpawnBoss()
     {
-        //foreach (Spawn spawn in wave.Spawns)
-        //{
-        //    GameObject spawnPrefab = spawn.SpawnPrefab;
-        //    int spawnIndex = (int)spawn.SpawnPosition;
-
-        //    GameObject spawnedObject = Instantiate(spawnPrefab, spawnerPositions[spawnIndex].position, Quaternion.identity);
-        //    if (spawnedObject.TryGetComponent(out Enemy enemy))
-        //        enemy.EnemyStats.HealthSystem.OnDie += Spawn_BossDefeated;
-        //}
+        
     }
 
     private ObstacleInfo ChooseObstacle()
@@ -115,5 +106,13 @@ public class Spawner : MonoBehaviour
     private void Spawn_BossDefeated()
     {
         isFightingBoss = false;
+    }
+
+    private void InitSpawnPositions()
+    {
+        spawnerPositions = new Transform[spawnPositionsTF.childCount];
+
+        for (int index = 0; index < spawnPositionsTF.childCount; index++)
+            spawnerPositions[index] = spawnPositionsTF.GetChild(index).transform;
     }
 }

@@ -9,6 +9,11 @@ public class Jumper : MonoBehaviour
 
     private float time = 0.0f;
 
+    private void OnEnable()
+    {
+        time = 0.0f;
+    }
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();

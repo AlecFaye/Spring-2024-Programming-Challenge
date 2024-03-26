@@ -15,6 +15,8 @@ public enum EnemyAnimatorParameter
     Hover,
     Slam,
     FinishSlam,
+    
+    FinishDeath,
 }
 
 public class EnemyAnimationController : MonoBehaviour
@@ -22,6 +24,7 @@ public class EnemyAnimationController : MonoBehaviour
     public delegate void EnemyAnimationEvent();
     public EnemyAnimationEvent OnTriggerAbility;
     public EnemyAnimationEvent OnEndAbility;
+    public EnemyAnimationEvent OnFinishDeath;
 
     [SerializeField] protected Enemy enemy;
     [SerializeField] private Animator animator;
@@ -50,6 +53,11 @@ public class EnemyAnimationController : MonoBehaviour
     public void EndAbility()
     {
         OnEndAbility?.Invoke();
+    }
+
+    public void FinishDeath()
+    {
+        OnFinishDeath?.Invoke();
     }
 
     private void Enemy_OnDie()

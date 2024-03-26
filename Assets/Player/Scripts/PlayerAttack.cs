@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour
     public PlayerAttackEvent OnAttackStarted;
     public PlayerAttackEvent OnAttackReleased;
 
-    [SerializeField] private GameObject attackPrefab;
+    [SerializeField] private ProjectileSpawner projectileSpawner;
     [SerializeField] private Transform releaseAttackLocationTF;
     [SerializeField] private float attackCooldown = 0.5f;
 
@@ -30,7 +30,9 @@ public class PlayerAttack : MonoBehaviour
 
     private void Player_OnAttackReleased()
     {
-        Instantiate(attackPrefab, releaseAttackLocationTF.position, Quaternion.identity);
+        projectileSpawner.Pool.Get(out Projectile projectile);
+
+        projectile.transform.position = releaseAttackLocationTF.position;
     }
 
     private IEnumerator StartAttack()
