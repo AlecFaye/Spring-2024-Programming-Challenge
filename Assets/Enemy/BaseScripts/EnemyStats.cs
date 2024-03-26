@@ -22,6 +22,7 @@ public class EnemyStats : MonoBehaviour, IDamageable
     private void Start()
     {
         HealthSystem.OnDie += Enemy_OnDie;
+        HealthSystem.OnDie += Spawner.Instance.Spawn_BossDefeated;
     }
 
     private void Enemy_OnDie()

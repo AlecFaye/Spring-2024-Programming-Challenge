@@ -18,12 +18,17 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Transform spawnPositionsTF;
     [SerializeField] private ObstacleInfo[] wallObstacles;
     [SerializeField] private ObstacleType[] pickupObstacles;
-    [SerializeField] private float spawnDelay = 5.0f;
+
+    [SerializeField] private float startSpawnDelay = 5.0f;
+    [SerializeField] private float obstacleSpawnDelay = 5.0f;
+    [SerializeField] private float bossDelay = 30.0f;
 
     private Transform[] spawnerPositions;
     public Transform[] SpawnerPositions => spawnerPositions;
 
     private float time = 0.0f;
+    private float timeBossWasDefeated = 0.0f;
+    private bool isFightingBoss = false;
 
     [System.Serializable]
     private struct ObstacleInfo
@@ -44,24 +49,34 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(StartObstacleSpawn());
-
-        SpawnBoss(EnemyType.Mushroom);
+        StartCoroutine(StartObstacleSpawn());
     }
 
     private void Update()
     {
         time += Time.deltaTime;
+
+        if (time >= timeBossWasDefeated + bossDelay && !isFightingBoss)
+        {
+            StopAllCoroutines();
+
+            EnemyType bossType = ChooseBoss();
+            SpawnBoss(bossType);
+
+            isFightingBoss = true;
+        }
     }
 
     private IEnumerator StartObstacleSpawn()
     {
+        yield return new WaitForSeconds(startSpawnDelay);
+
         while (true)
         {
             ObstacleInfo obstacleInfo = ChooseObstacle();
             SpawnObstacle(obstacleInfo);
 
-            yield return new WaitForSeconds(spawnDelay);
+            yield return new WaitForSeconds(obstacleSpawnDelay);
         }
     }
 
@@ -90,8 +105,19 @@ public class Spawner : MonoBehaviour
         return wallObstacles[randomIndex];
     }
 
+    private EnemyType ChooseBoss()
+    {
+        int randomIndex = Random.Range(0, System.Enum.GetNames(typeof(EnemyType)).Length);
+
+        return (EnemyType)randomIndex;
+    }
+
     public void Spawn_BossDefeated()
     {
+        isFightingBoss = false;
+
+        timeBossWasDefeated = time;
+
         StartCoroutine(StartObstacleSpawn());
     }
 
