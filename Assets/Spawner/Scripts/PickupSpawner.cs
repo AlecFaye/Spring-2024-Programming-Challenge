@@ -24,20 +24,20 @@ public class PickupSpawner : MonoBehaviour
 
         while (true)
         {
-            ObstacleType randomObstacle = ChooseObstacle();
-            ObstacleSpawner obstacleSpawner = ObstacleSpawnerManager.Instance.GetObstacleSpawner(randomObstacle);
-            obstacleSpawner.Pool.Get(out Obstacle obstacle);
+            ObstacleType randomPickup = ChooseRandomPickup();
+            ObstacleSpawner pickupSpawner = ObstacleSpawnerManager.Instance.GetObstacleSpawner(randomPickup);
+            pickupSpawner.Pool.Get(out Obstacle pickup);
 
             int randomIndex = Random.Range(0, pickupSpawnPositions.Length);
             Vector3 randomPosition = spawnerPositions[randomIndex].position;
-            obstacle.transform.position = randomPosition;
+            pickup.transform.position = randomPosition;
 
             float randomDelay = Random.Range(minSpawnDelay, maxSpawnDelay);
             yield return new WaitForSeconds(randomDelay);
         }
     }
 
-    private ObstacleType ChooseObstacle()
+    private ObstacleType ChooseRandomPickup()
     {
         int randomIndex = Random.Range(0, pickupObstacles.Length);
 

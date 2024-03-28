@@ -72,7 +72,7 @@ public class Spawner : MonoBehaviour
 
         while (true)
         {
-            ObstacleInfo obstacleInfo = ChooseObstacle();
+            ObstacleInfo obstacleInfo = ChooseRandomWallObstacle();
             SpawnObstacle(obstacleInfo);
 
             yield return new WaitForSeconds(obstacleSpawnDelay);
@@ -97,7 +97,7 @@ public class Spawner : MonoBehaviour
         enemy.transform.position = spawnPosition;
     }
 
-    private ObstacleInfo ChooseObstacle()
+    private ObstacleInfo ChooseRandomWallObstacle()
     {
         int randomIndex = Random.Range(0, wallObstacles.Length);
 

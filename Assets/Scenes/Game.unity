@@ -152,10 +152,10 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2071817076}
+  - {fileID: 2044676473}
   - {fileID: 1650345992}
   - {fileID: 875332991}
   - {fileID: 1784769178}
-  - {fileID: 2044676473}
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2598,7 +2598,7 @@ GameObject:
   - component: {fileID: 875332991}
   - component: {fileID: 875332992}
   m_Layer: 0
-  m_Name: ObstacleSpawners
+  m_Name: ObstacleSpawnersPools
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7173,7 +7173,7 @@ GameObject:
   - component: {fileID: 1784769178}
   - component: {fileID: 1784769179}
   m_Layer: 0
-  m_Name: EnemySpawners
+  m_Name: EnemySpawnersPools
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
