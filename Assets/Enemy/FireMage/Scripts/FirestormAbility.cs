@@ -10,6 +10,10 @@ public class FirestormAbility : EnemyAbility
     [SerializeField] private ProjectileObjectPool firestormSpawner;
     [SerializeField] private SpawnPosition spawnIndex;
     [SerializeField] private SpawnPosition[] dangerIndicatorsSpawns;
+    [SerializeField] private float firestormSpeed = -10.0f;
+
+    [Header("Hard Mode Configurations")]
+    [SerializeField] private float hardModeFirestormSpeed = -20.0f;
 
     [Header("Other")]
     [SerializeField] private EnemyAnimatorParameter animationToPlayParameter;
@@ -34,6 +38,12 @@ public class FirestormAbility : EnemyAbility
 
         firestormSpawner.Pool.Get(out Projectile projectile);
         projectile.transform.position = spawnTF.position;
+
+        float adjustedSpeed = enemy.EnemyAI.IsHardModeOn
+            ? hardModeFirestormSpeed
+            : firestormSpeed;
+
+        projectile.SetSpeed(adjustedSpeed);
     }
 
     private void Enemy_OnReachedDestination()

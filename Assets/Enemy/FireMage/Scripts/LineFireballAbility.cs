@@ -11,7 +11,13 @@ public class LineFireballAbility : EnemyAbility
     [SerializeField] private ProjectileObjectPool fireballSpawner;
     [SerializeField] private SpawnPosition[] spawnIndices;
     [SerializeField] private int numberOfFireballs = 1;
+    [SerializeField] private float fireballSpeed = -350;
     [SerializeField] private float delayBetweenFireballs;
+
+    [Header("Hard Mode Configurations")]
+    [SerializeField] private int hardModeNumberOfFireballs = 1;
+    [SerializeField] private float hardModeFireballSpeed = -350;
+    [SerializeField] private float hardModeDelayBetweenFireballs;
 
     [Header("Other")]
     [SerializeField] private EnemyAnimatorParameter animationToPlayParameter;
@@ -46,9 +52,21 @@ public class LineFireballAbility : EnemyAbility
 
     private IEnumerator StartFireball()
     {
-        WaitForSeconds wait = new(delayBetweenFireballs);
+        float adjustedDelay = enemy.EnemyAI.IsHardModeOn
+            ? hardModeDelayBetweenFireballs
+            : delayBetweenFireballs;
 
-        for (int i = 0; i < numberOfFireballs; i++)
+        int adjustedFireballs = enemy.EnemyAI.IsHardModeOn
+            ? hardModeNumberOfFireballs
+            : numberOfFireballs;
+
+        float adjustedFireballSpeed = enemy.EnemyAI.IsHardModeOn
+            ? hardModeFireballSpeed
+            : fireballSpeed;
+
+        WaitForSeconds wait = new(adjustedDelay);
+
+        for (int i = 0; i < adjustedFireballs; i++)
         {
             foreach (SpawnPosition spawnIndex in spawnIndices)
             {
@@ -56,6 +74,8 @@ public class LineFireballAbility : EnemyAbility
 
                 fireballSpawner.Pool.Get(out Projectile projectile);
                 projectile.transform.position = spawnTF.position;
+
+                projectile.SetSpeed(adjustedFireballSpeed);
             }
             yield return wait;
         }

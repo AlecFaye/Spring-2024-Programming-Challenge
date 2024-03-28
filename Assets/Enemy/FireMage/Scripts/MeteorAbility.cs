@@ -13,6 +13,9 @@ public class MeteorAbility : EnemyAbility
     [SerializeField] private int numberOfMeteors = 1;
     [SerializeField] private float delayBetweenMeteors;
 
+    [Header("Hard Mode Configurations")]
+    [SerializeField] private int hardModeNumberOfMeteors = 1;
+
     [Header("Other")]
     [SerializeField] private EnemyAnimatorParameter animationToPlayParameter;
 
@@ -48,7 +51,11 @@ public class MeteorAbility : EnemyAbility
     {
         WaitForSeconds wait = new(delayBetweenMeteors);
 
-        for (int i = 0; i < numberOfMeteors; i++)
+        int adjustedNumberOfMeteors = enemy.EnemyAI.IsHardModeOn
+            ? hardModeNumberOfMeteors
+            : numberOfMeteors;
+
+        for (int i = 0; i < adjustedNumberOfMeteors; i++)
         {
             int randomIndex = Random.Range(0, spawnIndices.Length);
 

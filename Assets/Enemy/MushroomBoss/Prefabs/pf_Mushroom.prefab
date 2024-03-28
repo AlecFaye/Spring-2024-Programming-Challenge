@@ -519,7 +519,6 @@ MonoBehaviour:
   enemy: {fileID: 2290819740826680190}
   destination: 7
   spawnIndex: 3
-  miniMushroomPrefab: {fileID: 7286792618122891329, guid: 358ca2e5637ec6244862396dd57ac3c4, type: 3}
   numberOfMushroomsToSpawn: 10
   spawnDelay: 0.25
 --- !u!1 &7807614257624683625
@@ -577,6 +576,7 @@ MonoBehaviour:
   EnemyStats: {fileID: 844492392466896997}
   EnemyMovement: {fileID: 2515737168090521881}
   EnemyAnimationController: {fileID: 1255378528857295746}
+  EnemyAI: {fileID: 1535550410153797018}
 --- !u!114 &844492392466896997
 MonoBehaviour:
   m_ObjectHideFlags: 0

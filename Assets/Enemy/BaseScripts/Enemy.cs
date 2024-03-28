@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public EnemyStats EnemyStats;
     public EnemyMovement EnemyMovement;
     public EnemyAnimationController EnemyAnimationController;
+    public EnemyAI EnemyAI;
 
     private ObjectPool<Enemy> pool;
 

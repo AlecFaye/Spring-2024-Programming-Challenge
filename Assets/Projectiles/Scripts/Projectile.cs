@@ -50,4 +50,9 @@ public class Projectile : MonoBehaviour
     {
         this.pool = pool;
     }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
+    }
 }
