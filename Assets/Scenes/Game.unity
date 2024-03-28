@@ -7899,9 +7899,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5383e339c268a44db5ebb1bc50c9c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossSpawns: 0000000001000000
+  bossSpawns: 01000000
   startSpawnDelay: 5
-  bossDelay: 15
+  bossDelay: 10000
 --- !u!1 &2071817075
 GameObject:
   m_ObjectHideFlags: 0
@@ -7961,6 +7961,30 @@ MonoBehaviour:
     SpawnPosition: 3
   startSpawnDelay: 5
   obstacleSpawnDelay: 5
+  spawnDelayDifficultyCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: -0.7068112
+      outSlope: -0.7068112
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.096201286
+    - serializedVersion: 3
+      time: 1
+      value: 0.33
+      inSlope: -0.0269445
+      outSlope: -0.0269445
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.47338402
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &2092690635
 GameObject:
   m_ObjectHideFlags: 0

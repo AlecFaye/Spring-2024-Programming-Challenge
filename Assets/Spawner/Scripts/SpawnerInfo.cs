@@ -13,6 +13,7 @@ public enum SpawnPosition
 public class SpawnerInfo : MonoBehaviour
 {
     public static SpawnerInfo Instance {  get; private set; }
+    public static float DifficultyTime = 1 * 60;
 
     [SerializeField] private Transform spawnPositionsTF;
 

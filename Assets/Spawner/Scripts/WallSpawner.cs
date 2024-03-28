@@ -8,6 +8,8 @@ public class WallSpawner : MonoBehaviour
     [SerializeField] private float startSpawnDelay = 5.0f;
     [SerializeField] private float obstacleSpawnDelay = 5.0f;
 
+    [SerializeField] private AnimationCurve spawnDelayDifficultyCurve;
+
     private Transform[] spawnerPositions;
 
     [System.Serializable]
@@ -36,7 +38,12 @@ public class WallSpawner : MonoBehaviour
             ObstacleInfo obstacleInfo = ChooseRandomWallObstacle();
             SpawnObstacle(obstacleInfo);
 
-            yield return new WaitForSeconds(obstacleSpawnDelay);
+            float difficultyPercent = Mathf.Clamp(GameTimer.Instance.CurrentTimeInSeconds / SpawnerInfo.DifficultyTime, 0, 1);
+            float spawnDelay = obstacleSpawnDelay * spawnDelayDifficultyCurve.Evaluate(difficultyPercent);
+
+            Debug.Log(spawnDelay);
+
+            yield return new WaitForSeconds(spawnDelay);
         }
     }
 
