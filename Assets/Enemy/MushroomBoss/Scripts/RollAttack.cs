@@ -16,6 +16,7 @@ public class RollAttack : EnemyAbility
     private void Start()
     {
         OnTriggerAbility += TriggerAbility;
+        enemy.EnemyStats.HealthSystem.OnDie += Enemy_OnDie;
 
         damageCollider.enabled = false;
     }
@@ -69,6 +70,15 @@ public class RollAttack : EnemyAbility
 
         enemy.EnemyMovement.OnReachedDestination -= Enemy_ReachedSecondDestination;
         enemy.EnemyAnimationController.SetAnimatorTrigger(EnemyAnimatorParameter.FinishRollAttack);
+
+        damageCollider.enabled = false;
+    }
+
+    private void Enemy_OnDie()
+    {
+        enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedDestination;
+        enemy.EnemyMovement.OnReachedDestination -= Enemy_ReachedFirstDestination;
+        enemy.EnemyMovement.OnReachedDestination -= Enemy_ReachedSecondDestination;
 
         damageCollider.enabled = false;
     }

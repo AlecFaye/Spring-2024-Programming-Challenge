@@ -23,6 +23,7 @@ public class HoverSlamAttack : EnemyAbility
     private void Start()
     {
         OnTriggerAbility += TriggerAbility;
+        enemy.EnemyStats.HealthSystem.OnDie += Enemy_OnDie;
 
         damageCollider.enabled = false;
     }
@@ -115,5 +116,16 @@ public class HoverSlamAttack : EnemyAbility
         enemy.EnemyAnimationController.Flip();
 
         enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedEndDestination;
+    }
+
+    private void Enemy_OnDie()
+    {
+        StopAllCoroutines();
+
+        enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedHoverDestination;
+        enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedSlamDestination;
+        enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedEndDestination;
+
+        damageCollider.enabled = false;
     }
 }
