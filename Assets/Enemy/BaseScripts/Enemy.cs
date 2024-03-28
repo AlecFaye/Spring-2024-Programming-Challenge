@@ -1,26 +1,42 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class Enemy : MonoBehaviour
 {
+    private const float DISABLE_TIMER = 3.0f;
+
     public EnemyStats EnemyStats;
     public EnemyMovement EnemyMovement;
     public EnemyAnimationController EnemyAnimationController;
 
     private ObjectPool<Enemy> pool;
 
-    private void Awake()
+    private void Start()
     {
-        EnemyAnimationController.OnFinishDeath += Enemy_OnFinishDeath;
+        EnemyStats.HealthSystem.OnDie += Enemy_OnDie;
     }
 
-    private void Enemy_OnFinishDeath()
+    private void Enemy_OnDie()
     {
-        pool.Release(this);
+        StartCoroutine(DisableEnemy());
+    }
+
+    private void OnEnable()
+    {
+        if (EnemyStats.IsDead)
+            EnemyStats.HealthSystem?.Revive();
     }
 
     public void SetPool(ObjectPool<Enemy> pool)
     {
         this.pool = pool;
+    }
+
+    private IEnumerator DisableEnemy()
+    {
+        yield return new WaitForSeconds(DISABLE_TIMER);
+
+        pool.Release(this);
     }
 }

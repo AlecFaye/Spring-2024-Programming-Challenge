@@ -20,9 +20,29 @@ public class EnemyAI : MonoBehaviour
         enemy.EnemyAnimationController.OnTriggerAbility += EnemyAnimator_OnTriggerAbility;
         enemy.EnemyAnimationController.OnEndAbility += EnemyAnimator_OnEndAbility;
 
+        enemy.EnemyStats.HealthSystem.OnDie += Enemy_OnDie;
+        enemy.EnemyStats.HealthSystem.OnRevive += Enemy_OnRevive;
+    }
+
+    private void OnEnable()
+    {
         Vector2 entrancePosition = BossArena.Instance.GetDestination(entranceDestination);
         enemy.EnemyMovement.SetDestination(entrancePosition);
         enemy.EnemyMovement.OnReachedDestination += Enemy_ReachedEntranceDestination;
+    }
+
+    private void Enemy_OnDie()
+    {
+        if (currentAbility != null)
+            currentAbility.OnEndAbility?.Invoke();
+        StopAllCoroutines();
+    }
+
+    private void Enemy_OnRevive()
+    {
+        isCurrentlyEntering = false;
+        isAttacking = false;
+        isCoolingDown = false;
     }
 
     private void Enemy_ReachedEntranceDestination()

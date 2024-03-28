@@ -7819,9 +7819,9 @@ MonoBehaviour:
   - ObstacleType: 8
     SpawnPosition: 3
   pickupObstacles: 0000000002000000
-  startSpawnDelay: 2.5
+  startSpawnDelay: 5
   obstacleSpawnDelay: 5
-  bossDelay: 60
+  bossDelay: 10
 --- !u!1 &2092690635
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,6 +17,7 @@ public enum EnemyAnimatorParameter
     FinishSlam,
     
     FinishDeath,
+    Revive,
 }
 
 public class EnemyAnimationController : MonoBehaviour
@@ -24,7 +25,6 @@ public class EnemyAnimationController : MonoBehaviour
     public delegate void EnemyAnimationEvent();
     public EnemyAnimationEvent OnTriggerAbility;
     public EnemyAnimationEvent OnEndAbility;
-    public EnemyAnimationEvent OnFinishDeath;
 
     [SerializeField] protected Enemy enemy;
     [SerializeField] private Animator animator;
@@ -33,6 +33,7 @@ public class EnemyAnimationController : MonoBehaviour
     private void Start()
     {
         enemy.EnemyStats.HealthSystem.OnDie += Enemy_OnDie;
+        enemy.EnemyStats.HealthSystem.OnRevive += Enemy_OnRevive;
     }
 
     public void SetAnimatorTrigger(EnemyAnimatorParameter parameter)
@@ -55,14 +56,15 @@ public class EnemyAnimationController : MonoBehaviour
         OnEndAbility?.Invoke();
     }
 
-    public void FinishDeath()
-    {
-        OnFinishDeath?.Invoke();
-    }
-
     private void Enemy_OnDie()
     {
+        animator.ResetTrigger(EnemyAnimatorParameter.Revive.ToString());
         SetAnimatorTrigger(EnemyAnimatorParameter.Die);
+    }
+
+    private void Enemy_OnRevive()
+    {
+        SetAnimatorTrigger(EnemyAnimatorParameter.Revive);
     }
 
     public void Flip()
