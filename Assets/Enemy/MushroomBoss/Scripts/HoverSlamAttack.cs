@@ -18,6 +18,11 @@ public class HoverSlamAttack : EnemyAbility
     [SerializeField] private float slamEndDelay = 0.25f;
     [SerializeField] private float slamSpeed = 50.0f;
 
+    [Header("Hard Mode Configurations")]
+    [SerializeField] private float hardModeHoverTime = 1.0f;
+    [SerializeField] private float hardModeSlamSpeed = 75.0f;
+
+    [Header("Other")]
     [SerializeField] private Destination endDestination;
 
     private void Start()
@@ -55,9 +60,13 @@ public class HoverSlamAttack : EnemyAbility
     {
         float time = 0.0f;
 
+        float adjustedHoverTime = enemy.EnemyAI.IsHardModeOn
+            ? hardModeHoverTime
+            : hoverTime;
+
         Vector2 destinationPosition = BossArena.Instance.GetDestination(hoverDestination);
 
-        while (time < hoverTime)
+        while (time < adjustedHoverTime)
         {
             Vector2 hoverPosition = new(Player.Instance.transform.position.x, destinationPosition.y);
             enemy.EnemyMovement.SetDestination(hoverPosition);
@@ -81,7 +90,11 @@ public class HoverSlamAttack : EnemyAbility
         Vector2 destinationPosition = BossArena.Instance.GetDestination(slamDestination);
         Vector2 slamPosition = new(transform.position.x, destinationPosition.y);
 
-        enemy.EnemyMovement.SetSpeed(slamSpeed);
+        float adjustedSlamSpeed = enemy.EnemyAI.IsHardModeOn
+            ? hardModeSlamSpeed
+            : slamSpeed;
+
+        enemy.EnemyMovement.SetSpeed(adjustedSlamSpeed);
         enemy.EnemyMovement.SetDestination(slamPosition);
 
         enemy.EnemyMovement.OnReachedDestination += Enemy_OnReachedSlamDestination;

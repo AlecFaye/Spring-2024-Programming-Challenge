@@ -7,10 +7,15 @@ public class RollAttack : EnemyAbility
     [SerializeField] private Collider2D damageCollider;
 
     [Header("Roll Attack Configurations")]
+    [SerializeField] private float rollSpeed;
     [SerializeField] private Destination startDestination;
     [SerializeField] private Destination rollAttackDestination;
     [SerializeField] private Destination originalDestination;
 
+    [Header("Hard Mode Configurations")]
+    [SerializeField] private float hardModeRollSpeed;
+
+    [Header("Other")]
     [SerializeField] private SpawnPosition[] dangerPositions;
 
     private void Start()
@@ -30,15 +35,15 @@ public class RollAttack : EnemyAbility
         enemy.EnemyMovement.OnReachedDestination += Enemy_OnReachedDestination;
     }
 
-    public override void TriggerAbility()
-    {
-        TriggerFirstPart();
-    }
-
     private void Enemy_OnReachedDestination()
     {
         enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedDestination;
         enemy.EnemyAnimationController.SetAnimatorTrigger(EnemyAnimatorParameter.RollAttack);
+    }
+
+    public override void TriggerAbility()
+    {
+        TriggerFirstPart();
     }
 
     private void TriggerFirstPart()
@@ -46,6 +51,11 @@ public class RollAttack : EnemyAbility
         Vector2 destinationPosition = BossArena.Instance.GetDestination(rollAttackDestination);
         enemy.EnemyMovement.SetDestination(destinationPosition);
         enemy.EnemyMovement.OnReachedDestination += Enemy_ReachedFirstDestination;
+
+        float adjustedRollSpeed = enemy.EnemyAI.IsHardModeOn
+            ? hardModeRollSpeed
+            : rollSpeed;
+        enemy.EnemyMovement.SetSpeed(adjustedRollSpeed);
 
         damageCollider.enabled = true;
 
@@ -68,6 +78,7 @@ public class RollAttack : EnemyAbility
     {
         enemy.EnemyAnimationController.Flip();
 
+        enemy.EnemyMovement.ResetSpeed();
         enemy.EnemyMovement.OnReachedDestination -= Enemy_ReachedSecondDestination;
         enemy.EnemyAnimationController.SetAnimatorTrigger(EnemyAnimatorParameter.FinishRollAttack);
 

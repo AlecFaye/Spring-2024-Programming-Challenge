@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public delegate void EnemyAIEvent();
+    public EnemyAIEvent OnHardModeEngaged;
+
     private const float HARD_MODE_PERCENT = 0.5f;
 
     [SerializeField] private Enemy enemy;
@@ -35,6 +38,9 @@ public class EnemyAI : MonoBehaviour
         enemy.EnemyMovement.OnReachedDestination += Enemy_ReachedEntranceDestination;
 
         IsHardModeOn = (GameTimer.Instance.CurrentTimeInSeconds / HARD_MODE_PERCENT) > HARD_MODE_PERCENT;
+
+        if (IsHardModeOn)
+            OnHardModeEngaged?.Invoke();
     }
 
     private void Enemy_OnDie()
