@@ -17,7 +17,6 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private Transform spawnPositionsTF;
     [SerializeField] private ObstacleInfo[] wallObstacles;
-    [SerializeField] private ObstacleType[] pickupObstacles;
 
     [SerializeField] private float startSpawnDelay = 5.0f;
     [SerializeField] private float obstacleSpawnDelay = 5.0f;
