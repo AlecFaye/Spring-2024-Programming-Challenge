@@ -7,7 +7,7 @@ public class FirestormAbility : EnemyAbility
     [SerializeField] private Destination destination;
 
     [Header("Firestorm Configurations")]
-    [SerializeField] private ProjectileSpawner firestormSpawner;
+    [SerializeField] private ProjectileObjectPool firestormSpawner;
     [SerializeField] private SpawnPosition spawnIndex;
     [SerializeField] private SpawnPosition[] dangerIndicatorsSpawns;
 
@@ -30,7 +30,7 @@ public class FirestormAbility : EnemyAbility
 
     public override void TriggerAbility()
     {
-        Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndex];
+        Transform spawnTF = SpawnerInfo.Instance.SpawnerPositions[(int)spawnIndex];
 
         firestormSpawner.Pool.Get(out Projectile projectile);
         projectile.transform.position = spawnTF.position;

@@ -8,7 +8,7 @@ public class PlayerAttack : MonoBehaviour
     public PlayerAttackEvent OnAttackStarted;
     public PlayerAttackEvent OnAttackReleased;
 
-    [SerializeField] private ProjectileSpawner projectileSpawner;
+    [SerializeField] private ProjectileObjectPool projectileSpawner;
     [SerializeField] private Transform releaseAttackLocationTF;
     [SerializeField] private float attackCooldown = 0.5f;
 

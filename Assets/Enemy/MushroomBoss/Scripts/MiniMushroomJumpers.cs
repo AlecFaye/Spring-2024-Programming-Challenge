@@ -38,8 +38,8 @@ public class MiniMushroomJumpers : EnemyAbility
     {
         WaitForSeconds wait = new(spawnDelay);
 
-        Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndex];
-        ObstacleSpawner obstacleSpawner = ObstacleSpawnerManager.Instance.GetObstacleSpawner(ObstacleType.MiniMushroom);
+        Transform spawnTF = SpawnerInfo.Instance.SpawnerPositions[(int)spawnIndex];
+        ObstacleObjectPool obstacleSpawner = ObstacleObjectPoolManager.Instance.GetObstacleSpawner(ObstacleType.MiniMushroom);
 
         for (int i = 0; i <  numberOfMushroomsToSpawn; i++)
         {

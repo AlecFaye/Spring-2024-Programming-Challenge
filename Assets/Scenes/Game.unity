@@ -151,9 +151,10 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1443869760}
   - {fileID: 2071817076}
+  - {fileID: 2069090783}
   - {fileID: 2044676473}
-  - {fileID: 1650345992}
   - {fileID: 875332991}
   - {fileID: 1784769178}
   m_Father: {fileID: 0}
@@ -2598,7 +2599,7 @@ GameObject:
   - component: {fileID: 875332991}
   - component: {fileID: 875332992}
   m_Layer: 0
-  m_Name: ObstacleSpawnersPools
+  m_Name: ObstacleObjectPoolManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2628,7 +2629,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 875332990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00a6c5bba221c0e45bfb2fb9c5c0a1d1, type: 3}
+  m_Script: {fileID: 11500000, guid: 13471a0412982ea47834fe3cbc0f4d9f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   obstacles:
@@ -5768,6 +5769,51 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1443869759
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1443869760}
+  - component: {fileID: 1443869761}
+  m_Layer: 0
+  m_Name: SpawnerInfo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1443869760
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443869759}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 114441808}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1443869761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1443869759}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1415d046e4cba8c4a9bf38024aca521f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spawnPositionsTF: {fileID: 1650345992}
 --- !u!1 &1473007537
 GameObject:
   m_ObjectHideFlags: 0
@@ -6496,8 +6542,8 @@ Transform:
   - {fileID: 1851646586}
   - {fileID: 917425128}
   - {fileID: 2129324376}
-  m_Father: {fileID: 114441808}
-  m_RootOrder: -1
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1660075621
 GameObject:
@@ -7156,7 +7202,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1761976737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc33bc97850f4f341b6da16826f4afe2, type: 3}
+  m_Script: {fileID: 11500000, guid: a71e80f0974795141b3d5e0ded85ef00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCapacity: 10
@@ -7173,7 +7219,7 @@ GameObject:
   - component: {fileID: 1784769178}
   - component: {fileID: 1784769179}
   m_Layer: 0
-  m_Name: EnemySpawnersPools
+  m_Name: EnemyObjectPoolManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7809,6 +7855,53 @@ MonoBehaviour:
   pickupSpawnPositions: 00000000010000000200000003000000
   minSpawnDelay: 75
   maxSpawnDelay: 125
+--- !u!1 &2069090782
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2069090783}
+  - component: {fileID: 2069090784}
+  m_Layer: 0
+  m_Name: BossSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2069090783
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069090782}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 114441808}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2069090784
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2069090782}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5383e339c268a44db5ebb1bc50c9c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bossSpawns: 0000000001000000
+  startSpawnDelay: 5
+  bossDelay: 15
 --- !u!1 &2071817075
 GameObject:
   m_ObjectHideFlags: 0
@@ -7820,7 +7913,7 @@ GameObject:
   - component: {fileID: 2071817076}
   - component: {fileID: 2071817077}
   m_Layer: 0
-  m_Name: Spawner
+  m_Name: WallSpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7850,10 +7943,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2071817075}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1415d046e4cba8c4a9bf38024aca521f, type: 3}
+  m_Script: {fileID: 11500000, guid: 0335a885398867e4aa717b214eba508b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnPositionsTF: {fileID: 1650345992}
   wallObstacles:
   - ObstacleType: 3
     SpawnPosition: 3
@@ -7869,7 +7961,6 @@ MonoBehaviour:
     SpawnPosition: 3
   startSpawnDelay: 5
   obstacleSpawnDelay: 5
-  bossDelay: 10
 --- !u!1 &2092690635
 GameObject:
   m_ObjectHideFlags: 0

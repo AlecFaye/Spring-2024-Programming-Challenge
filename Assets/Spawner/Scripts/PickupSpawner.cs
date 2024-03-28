@@ -13,7 +13,7 @@ public class PickupSpawner : MonoBehaviour
 
     private void Start()
     {
-        spawnerPositions = Spawner.Instance.SpawnerPositions;
+        spawnerPositions = SpawnerInfo.Instance.SpawnerPositions;
 
         StartCoroutine(StartPickupSpawn());
     }
@@ -25,7 +25,7 @@ public class PickupSpawner : MonoBehaviour
         while (true)
         {
             ObstacleType randomPickup = ChooseRandomPickup();
-            ObstacleSpawner pickupSpawner = ObstacleSpawnerManager.Instance.GetObstacleSpawner(randomPickup);
+            ObstacleObjectPool pickupSpawner = ObstacleObjectPoolManager.Instance.GetObstacleSpawner(randomPickup);
             pickupSpawner.Pool.Get(out Obstacle pickup);
 
             int randomIndex = Random.Range(0, pickupSpawnPositions.Length);

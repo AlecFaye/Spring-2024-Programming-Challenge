@@ -8,7 +8,7 @@ public class MeteorAbility : EnemyAbility
     [SerializeField] private Destination destination;
 
     [Header("Meteor Configurations")]
-    [SerializeField] private ProjectileSpawner meteorSpawner;
+    [SerializeField] private ProjectileObjectPool meteorSpawner;
     [SerializeField] private SpawnPosition[] spawnIndices;
     [SerializeField] private int numberOfMeteors = 1;
     [SerializeField] private float delayBetweenMeteors;
@@ -52,7 +52,7 @@ public class MeteorAbility : EnemyAbility
         {
             int randomIndex = Random.Range(0, spawnIndices.Length);
 
-            Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndices[randomIndex]];
+            Transform spawnTF = SpawnerInfo.Instance.SpawnerPositions[(int)spawnIndices[randomIndex]];
 
             meteorSpawner.Pool.Get(out Projectile projectile);
             projectile.transform.position = spawnTF.position;

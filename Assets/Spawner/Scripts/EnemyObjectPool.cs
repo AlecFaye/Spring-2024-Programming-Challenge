@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class EnemySpawner : MonoBehaviour
+public class EnemyObjectPool : MonoBehaviour
 {
     public ObjectPool<Enemy> Pool;
 

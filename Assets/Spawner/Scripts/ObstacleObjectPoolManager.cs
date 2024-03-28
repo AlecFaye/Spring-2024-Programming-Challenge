@@ -15,13 +15,13 @@ public enum ObstacleType
     Wall_1110,
 }
 
-public class ObstacleSpawnerManager : MonoBehaviour
+public class ObstacleObjectPoolManager : MonoBehaviour
 {
-    public static ObstacleSpawnerManager Instance { get; private set; }
+    public static ObstacleObjectPoolManager Instance { get; private set; }
 
     [SerializeField] private ObstacleInfo[] obstacles;
 
-    private readonly Dictionary<ObstacleType, ObstacleSpawner> obstacleSpawners = new();
+    private readonly Dictionary<ObstacleType, ObstacleObjectPool> obstacleSpawners = new();
 
     [System.Serializable]
     private struct ObstacleInfo
@@ -44,7 +44,7 @@ public class ObstacleSpawnerManager : MonoBehaviour
             GameObject obstacleParent = new($"{obstacleInfo.Obstacle} (Obstacle Spawner)");
             obstacleParent.transform.parent = transform;
 
-            ObstacleSpawner obstacleSpawner = obstacleParent.transform.AddComponent<ObstacleSpawner>();
+            ObstacleObjectPool obstacleSpawner = obstacleParent.transform.AddComponent<ObstacleObjectPool>();
             obstacleSpawner.ObstaclePrefab = obstacleInfo.Obstacle;
             obstacleSpawner.transform.parent = obstacleParent.transform;
 
@@ -52,7 +52,7 @@ public class ObstacleSpawnerManager : MonoBehaviour
         }
     }
 
-    public ObstacleSpawner GetObstacleSpawner(ObstacleType type)
+    public ObstacleObjectPool GetObstacleSpawner(ObstacleType type)
     {
         if (obstacleSpawners.ContainsKey(type))
             return obstacleSpawners[type];
