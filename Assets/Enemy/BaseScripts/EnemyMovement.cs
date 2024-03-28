@@ -29,6 +29,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        if (enemy.EnemyStats.IsDead)
+            return;
+
         if (!hasReachedDestination)
             Move();
     }

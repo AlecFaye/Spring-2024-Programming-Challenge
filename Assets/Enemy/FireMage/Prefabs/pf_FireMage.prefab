@@ -240,7 +240,11 @@ MonoBehaviour:
   fireballSpawner: {fileID: 1057199782872349848}
   spawnIndices: 0000000003000000
   numberOfFireballs: 3
+  fireballSpeed: -10
   delayBetweenFireballs: 0.25
+  hardModeNumberOfFireballs: 3
+  hardModeFireballSpeed: -20
+  hardModeDelayBetweenFireballs: 0.15
   animationToPlayParameter: 2
 --- !u!114 &1057199782872349848
 MonoBehaviour:
@@ -251,7 +255,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4297387536955546414}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc33bc97850f4f341b6da16826f4afe2, type: 3}
+  m_Script: {fileID: 11500000, guid: a71e80f0974795141b3d5e0ded85ef00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCapacity: 10
@@ -310,6 +314,7 @@ MonoBehaviour:
   spawnIndices: 0400000005000000
   numberOfMeteors: 5
   delayBetweenMeteors: 0.5
+  hardModeNumberOfMeteors: 6
   animationToPlayParameter: 2
 --- !u!114 &955286727074803613
 MonoBehaviour:
@@ -320,7 +325,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4446071731775729861}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc33bc97850f4f341b6da16826f4afe2, type: 3}
+  m_Script: {fileID: 11500000, guid: a71e80f0974795141b3d5e0ded85ef00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCapacity: 10
@@ -378,6 +383,8 @@ MonoBehaviour:
   firestormSpawner: {fileID: 6963059121962860890}
   spawnIndex: 3
   dangerIndicatorsSpawns: 0200000003000000
+  firestormSpeed: -10
+  hardModeFirestormSpeed: -17.5
   animationToPlayParameter: 1
 --- !u!114 &6963059121962860890
 MonoBehaviour:
@@ -388,7 +395,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 6048608847811788785}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc33bc97850f4f341b6da16826f4afe2, type: 3}
+  m_Script: {fileID: 11500000, guid: a71e80f0974795141b3d5e0ded85ef00, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   defaultCapacity: 10
@@ -449,6 +456,7 @@ MonoBehaviour:
   EnemyStats: {fileID: 844492392466896997}
   EnemyMovement: {fileID: 2515737168090521881}
   EnemyAnimationController: {fileID: 8772768230800062675}
+  EnemyAI: {fileID: 1535550410153797018}
 --- !u!114 &844492392466896997
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ProjectileSpawner : MonoBehaviour
+public class ProjectileObjectPool : MonoBehaviour
 {
     public ObjectPool<Projectile> Pool;
 

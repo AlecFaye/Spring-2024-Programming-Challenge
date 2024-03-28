@@ -8,10 +8,13 @@ public class MeteorAbility : EnemyAbility
     [SerializeField] private Destination destination;
 
     [Header("Meteor Configurations")]
-    [SerializeField] private ProjectileSpawner meteorSpawner;
+    [SerializeField] private ProjectileObjectPool meteorSpawner;
     [SerializeField] private SpawnPosition[] spawnIndices;
     [SerializeField] private int numberOfMeteors = 1;
     [SerializeField] private float delayBetweenMeteors;
+
+    [Header("Hard Mode Configurations")]
+    [SerializeField] private int hardModeNumberOfMeteors = 1;
 
     [Header("Other")]
     [SerializeField] private EnemyAnimatorParameter animationToPlayParameter;
@@ -48,11 +51,15 @@ public class MeteorAbility : EnemyAbility
     {
         WaitForSeconds wait = new(delayBetweenMeteors);
 
-        for (int i = 0; i < numberOfMeteors; i++)
+        int adjustedNumberOfMeteors = enemy.EnemyAI.IsHardModeOn
+            ? hardModeNumberOfMeteors
+            : numberOfMeteors;
+
+        for (int i = 0; i < adjustedNumberOfMeteors; i++)
         {
             int randomIndex = Random.Range(0, spawnIndices.Length);
 
-            Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndices[randomIndex]];
+            Transform spawnTF = SpawnerInfo.Instance.SpawnerPositions[(int)spawnIndices[randomIndex]];
 
             meteorSpawner.Pool.Get(out Projectile projectile);
             projectile.transform.position = spawnTF.position;

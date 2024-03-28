@@ -12,6 +12,9 @@ public class MiniMushroomJumpers : EnemyAbility
     [SerializeField] private int numberOfMushroomsToSpawn = 1;
     [SerializeField] private float spawnDelay = 0.25f;
 
+    [Header("Hard Mode Configurations")]
+    [SerializeField] private int hardModeNumberOfMushroomsToSpawn = 10;
+
     private void Start()
     {
         OnTriggerAbility += TriggerAbility;
@@ -38,10 +41,14 @@ public class MiniMushroomJumpers : EnemyAbility
     {
         WaitForSeconds wait = new(spawnDelay);
 
-        Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndex];
-        ObstacleSpawner obstacleSpawner = ObstacleSpawnerManager.Instance.GetObstacleSpawner(ObstacleType.MiniMushroom);
+        Transform spawnTF = SpawnerInfo.Instance.SpawnerPositions[(int)spawnIndex];
+        ObstacleObjectPool obstacleSpawner = ObstacleObjectPoolManager.Instance.GetObstacleSpawner(ObstacleType.MiniMushroom);
 
-        for (int i = 0; i <  numberOfMushroomsToSpawn; i++)
+        int adjustedSpawn = enemy.EnemyAI.IsHardModeOn
+            ? hardModeNumberOfMushroomsToSpawn
+            : numberOfMushroomsToSpawn;
+
+        for (int i = 0; i < adjustedSpawn; i++)
         {
             obstacleSpawner.Pool.Get(out Obstacle obstacle);
             obstacle.transform.position = spawnTF.position;

@@ -8,13 +8,13 @@ public enum EnemyType
     Mushroom,
 }
 
-public class EnemySpawnerManager : MonoBehaviour
+public class EnemyObjectPoolManager : MonoBehaviour
 {
-    public static EnemySpawnerManager Instance { get; private set; }
+    public static EnemyObjectPoolManager Instance { get; private set; }
 
     [SerializeField] private EnemyInfo[] enemies;
 
-    private readonly Dictionary<EnemyType, EnemySpawner> enemySpawners = new();
+    private readonly Dictionary<EnemyType, EnemyObjectPool> enemySpawners = new();
 
     [System.Serializable]
     private struct EnemyInfo
@@ -37,7 +37,7 @@ public class EnemySpawnerManager : MonoBehaviour
             GameObject enemyParent = new($"{enemyInfo.Enemy} (Obstacle Spawner)");
             enemyParent.transform.parent = transform;
 
-            EnemySpawner obstacleSpawner = enemyParent.transform.AddComponent<EnemySpawner>();
+            EnemyObjectPool obstacleSpawner = enemyParent.transform.AddComponent<EnemyObjectPool>();
             obstacleSpawner.EnemyPrefab = enemyInfo.Enemy;
             obstacleSpawner.transform.parent = enemyParent.transform;
 
@@ -45,7 +45,7 @@ public class EnemySpawnerManager : MonoBehaviour
         }
     }
 
-    public EnemySpawner GetEnemySpawner(EnemyType type)
+    public EnemyObjectPool GetEnemySpawner(EnemyType type)
     {
         if (enemySpawners.ContainsKey(type))
             return enemySpawners[type];

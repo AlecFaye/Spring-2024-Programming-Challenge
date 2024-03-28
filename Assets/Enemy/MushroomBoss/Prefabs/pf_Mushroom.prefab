@@ -45,12 +45,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   abilityCooldown: 10
-  abilityAftermathCooldown: 8
+  abilityAftermathCooldown: 7
   enemy: {fileID: 2290819740826680190}
   damageCollider: {fileID: 8707871968024609576}
+  rollSpeed: 10
   startDestination: 5
   rollAttackDestination: 6
   originalDestination: 4
+  hardModeRollSpeed: 15
   dangerPositions: 0200000003000000
 --- !u!1 &993593946194704297
 GameObject:
@@ -469,6 +471,8 @@ MonoBehaviour:
   slamDelay: 1
   slamEndDelay: 0.5
   slamSpeed: 50
+  hardModeHoverTime: 1
+  hardModeSlamSpeed: 75
   endDestination: 4
 --- !u!1 &7164836667909845201
 GameObject:
@@ -519,9 +523,9 @@ MonoBehaviour:
   enemy: {fileID: 2290819740826680190}
   destination: 7
   spawnIndex: 3
-  miniMushroomPrefab: {fileID: 7286792618122891329, guid: 358ca2e5637ec6244862396dd57ac3c4, type: 3}
-  numberOfMushroomsToSpawn: 10
+  numberOfMushroomsToSpawn: 6
   spawnDelay: 0.25
+  hardModeNumberOfMushroomsToSpawn: 10
 --- !u!1 &7807614257624683625
 GameObject:
   m_ObjectHideFlags: 0
@@ -577,6 +581,7 @@ MonoBehaviour:
   EnemyStats: {fileID: 844492392466896997}
   EnemyMovement: {fileID: 2515737168090521881}
   EnemyAnimationController: {fileID: 1255378528857295746}
+  EnemyAI: {fileID: 1535550410153797018}
 --- !u!114 &844492392466896997
 MonoBehaviour:
   m_ObjectHideFlags: 0

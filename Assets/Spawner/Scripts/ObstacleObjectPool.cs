@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Pool;
 
-public class ObstacleSpawner : MonoBehaviour
+public class ObstacleObjectPool : MonoBehaviour
 {
     public ObjectPool<Obstacle> Pool;
 

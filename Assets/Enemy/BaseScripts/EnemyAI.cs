@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
 {
+    public delegate void EnemyAIEvent();
+    public EnemyAIEvent OnHardModeEngaged;
+
+    private const float HARD_MODE_PERCENT = 0.5f;
+
     [SerializeField] private Enemy enemy;
     [SerializeField] private EnemyAbility[] enemyAbilities;
     [SerializeField] private Destination entranceDestination;
@@ -14,6 +19,8 @@ public class EnemyAI : MonoBehaviour
     private bool isCurrentlyEntering = true;
     private bool isAttacking = false;
     private bool isCoolingDown = false;
+
+    public bool IsHardModeOn { get; private set; }
 
     private void Start()
     {
@@ -29,6 +36,11 @@ public class EnemyAI : MonoBehaviour
         Vector2 entrancePosition = BossArena.Instance.GetDestination(entranceDestination);
         enemy.EnemyMovement.SetDestination(entrancePosition);
         enemy.EnemyMovement.OnReachedDestination += Enemy_ReachedEntranceDestination;
+
+        IsHardModeOn = (GameTimer.Instance.CurrentTimeInSeconds / HARD_MODE_PERCENT) > HARD_MODE_PERCENT;
+
+        if (IsHardModeOn)
+            OnHardModeEngaged?.Invoke();
     }
 
     private void Enemy_OnDie()
