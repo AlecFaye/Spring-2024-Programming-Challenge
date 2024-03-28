@@ -21,6 +21,12 @@ public class EnemyMovement : MonoBehaviour
         destination = transform.position;
     }
 
+    private void OnEnable()
+    {
+        speed = defaultSpeed;
+        hasReachedDestination = true;
+    }
+
     private void Update()
     {
         if (!hasReachedDestination)

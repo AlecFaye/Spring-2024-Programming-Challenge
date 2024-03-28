@@ -198,6 +198,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6949163685867297420}
   - component: {fileID: 7197743434997261953}
+  - component: {fileID: 1057199782872349848}
   m_Layer: 0
   m_Name: LineFireballAbility
   m_TagString: Untagged
@@ -236,11 +237,26 @@ MonoBehaviour:
   abilityAftermathCooldown: 4
   enemy: {fileID: 2290819740826680190}
   destination: 1
-  fireballPrefab: {fileID: 5621841713742333532, guid: d507530473df8a242a5997e8374d4d40, type: 3}
+  fireballSpawner: {fileID: 1057199782872349848}
   spawnIndices: 0000000003000000
   numberOfFireballs: 3
   delayBetweenFireballs: 0.25
   animationToPlayParameter: 2
+--- !u!114 &1057199782872349848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4297387536955546414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc33bc97850f4f341b6da16826f4afe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCapacity: 10
+  maxSize: 10000
+  ProjectilePrefab: {fileID: 8595861256015890963, guid: d507530473df8a242a5997e8374d4d40, type: 3}
 --- !u!1 &4446071731775729861
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,6 +267,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3822661464867861182}
   - component: {fileID: 3878122779483618661}
+  - component: {fileID: 955286727074803613}
   m_Layer: 0
   m_Name: MeteorAbility
   m_TagString: Untagged
@@ -289,11 +306,26 @@ MonoBehaviour:
   abilityAftermathCooldown: 6
   enemy: {fileID: 2290819740826680190}
   destination: 3
-  meteorPrefab: {fileID: 5621841713742333532, guid: 4255b9c0051565f4fabbcefb49623b03, type: 3}
+  meteorSpawner: {fileID: 955286727074803613}
   spawnIndices: 0400000005000000
   numberOfMeteors: 5
   delayBetweenMeteors: 0.5
   animationToPlayParameter: 2
+--- !u!114 &955286727074803613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4446071731775729861}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc33bc97850f4f341b6da16826f4afe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCapacity: 10
+  maxSize: 10000
+  ProjectilePrefab: {fileID: 8595861256015890963, guid: 4255b9c0051565f4fabbcefb49623b03, type: 3}
 --- !u!1 &6048608847811788785
 GameObject:
   m_ObjectHideFlags: 0
@@ -304,6 +336,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4506472626624766310}
   - component: {fileID: 490290931683091002}
+  - component: {fileID: 6963059121962860890}
   m_Layer: 0
   m_Name: FirestormAbility
   m_TagString: Untagged
@@ -342,10 +375,25 @@ MonoBehaviour:
   abilityAftermathCooldown: 5
   enemy: {fileID: 2290819740826680190}
   destination: 2
-  firestormPrefab: {fileID: 5621841713742333532, guid: a470458e8ec81d5449da880c0a50dca6, type: 3}
+  firestormSpawner: {fileID: 6963059121962860890}
   spawnIndex: 3
   dangerIndicatorsSpawns: 0200000003000000
   animationToPlayParameter: 1
+--- !u!114 &6963059121962860890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6048608847811788785}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc33bc97850f4f341b6da16826f4afe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCapacity: 10
+  maxSize: 10000
+  ProjectilePrefab: {fileID: 8595861256015890963, guid: a470458e8ec81d5449da880c0a50dca6, type: 3}
 --- !u!1 &7807614257624683625
 GameObject:
   m_ObjectHideFlags: 0

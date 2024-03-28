@@ -7,7 +7,7 @@ public class FirestormAbility : EnemyAbility
     [SerializeField] private Destination destination;
 
     [Header("Firestorm Configurations")]
-    [SerializeField] private GameObject firestormPrefab;
+    [SerializeField] private ProjectileSpawner firestormSpawner;
     [SerializeField] private SpawnPosition spawnIndex;
     [SerializeField] private SpawnPosition[] dangerIndicatorsSpawns;
 
@@ -32,7 +32,8 @@ public class FirestormAbility : EnemyAbility
     {
         Transform spawnTF = Spawner.Instance.SpawnerPositions[(int)spawnIndex];
 
-        Instantiate(firestormPrefab, spawnTF.position, Quaternion.identity);
+        firestormSpawner.Pool.Get(out Projectile projectile);
+        projectile.transform.position = spawnTF.position;
     }
 
     private void Enemy_OnReachedDestination()

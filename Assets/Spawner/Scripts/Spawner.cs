@@ -1,17 +1,41 @@
 using System.Collections;
 using UnityEngine;
 
+public enum SpawnPosition
+{
+    Top,
+    TopMid,
+    BotMid,
+    Bot,
+    LeftTop,
+    RightTop
+}
+
 public class Spawner : MonoBehaviour
 {
     public static Spawner Instance { get; private set; }
 
     [SerializeField] private Transform spawnPositionsTF;
-    [SerializeField] private WaveScriptableObject[] waveScriptableObjects;
+    [SerializeField] private ObstacleInfo[] wallObstacles;
+    [SerializeField] private ObstacleType[] pickupObstacles;
+
+    [SerializeField] private float startSpawnDelay = 5.0f;
+    [SerializeField] private float obstacleSpawnDelay = 5.0f;
+    [SerializeField] private float bossDelay = 30.0f;
 
     private Transform[] spawnerPositions;
+    public Transform[] SpawnerPositions => spawnerPositions;
+
+    private float time = 0.0f;
+    private float timeBossWasDefeated = 0.0f;
     private bool isFightingBoss = false;
 
-    public Transform[] SpawnerPositions => spawnerPositions;
+    [System.Serializable]
+    private struct ObstacleInfo
+    {
+        public ObstacleType ObstacleType;
+        public SpawnPosition SpawnPosition;
+    }
 
     private void Awake()
     {
@@ -20,70 +44,88 @@ public class Spawner : MonoBehaviour
 
         Instance = this;
 
-        spawnerPositions = new Transform[spawnPositionsTF.childCount];
-
-        for (int index = 0; index < spawnPositionsTF.childCount; index++)
-            spawnerPositions[index] = spawnPositionsTF.GetChild(index).transform;
+        InitSpawnPositions();
     }
 
     private void Start()
     {
-        StartCoroutine(StartSpawn());
+        StartCoroutine(StartObstacleSpawn());
     }
 
-    private IEnumerator StartSpawn()
+    private void Update()
     {
-        foreach (WaveScriptableObject waveSO in waveScriptableObjects)
+        time += Time.deltaTime;
+
+        if (time >= timeBossWasDefeated + bossDelay && !isFightingBoss)
         {
-            foreach (Wave wave in waveSO.Waves)
-            {
-                if (waveSO.IsBossWave)
-                    SpawnBoss(wave);
-                else
-                    SpawnObstacles(wave);
+            StopAllCoroutines();
 
-                yield return new WaitForSeconds(wave.Delay);
-            }
+            EnemyType bossType = ChooseBoss();
+            SpawnBoss(bossType);
 
-            if (waveSO.IsBossWave)
-            {
-                isFightingBoss = true;
-
-                while (isFightingBoss)
-                    yield return null;
-            }
-
-            yield return new WaitForSeconds(waveSO.WaveEndDelay);
+            isFightingBoss = true;
         }
     }
 
-    private void SpawnObstacles(Wave wave)
+    private IEnumerator StartObstacleSpawn()
     {
-        foreach (Spawn spawn in wave.Spawns)
-        {
-            ObstacleSpawner obstacleSpawner = ObstacleSpawnerManager.Instance.GetObstacleSpawner(spawn.ObstacleType);
-            obstacleSpawner.Pool.Get(out Mover mover);
+        yield return new WaitForSeconds(startSpawnDelay);
 
-            int spawnIndex = (int)spawn.SpawnPosition;
-            mover.transform.position = spawnerPositions[spawnIndex].position;
+        while (true)
+        {
+            ObstacleInfo obstacleInfo = ChooseObstacle();
+            SpawnObstacle(obstacleInfo);
+
+            yield return new WaitForSeconds(obstacleSpawnDelay);
         }
     }
 
-    private void SpawnBoss(Wave wave)
+    private void SpawnObstacle(ObstacleInfo obstacleInfo)
     {
-        //foreach (Spawn spawn in wave.Spawns)
-        //{
-        //    GameObject spawnPrefab = spawn.SpawnPrefab;
-        //    int spawnIndex = (int)spawn.SpawnPosition;
+        ObstacleSpawner obstacleSpawner = ObstacleSpawnerManager.Instance.GetObstacleSpawner(obstacleInfo.ObstacleType);
+        obstacleSpawner.Pool.Get(out Obstacle mover);
 
-        //    GameObject spawnedObject = Instantiate(spawnPrefab, spawnerPositions[spawnIndex].position, Quaternion.identity);
-        //    if (spawnedObject.TryGetComponent(out Enemy enemy))
-        //        enemy.EnemyStats.HealthSystem.OnDie += Spawn_BossDefeated;
-        //}
+        int spawnIndex = (int)obstacleInfo.SpawnPosition;
+        mover.transform.position = spawnerPositions[spawnIndex].position;
     }
 
-    private void Spawn_BossDefeated()
+    private void SpawnBoss(EnemyType enemyType)
+    {
+        EnemySpawner enemySpawner = EnemySpawnerManager.Instance.GetEnemySpawner(enemyType);
+        enemySpawner.Pool.Get(out Enemy enemy);
+
+        Vector2 spawnPosition = spawnerPositions[(int)SpawnPosition.Bot].position;
+        enemy.transform.position = spawnPosition;
+    }
+
+    private ObstacleInfo ChooseObstacle()
+    {
+        int randomIndex = Random.Range(0, wallObstacles.Length);
+
+        return wallObstacles[randomIndex];
+    }
+
+    private EnemyType ChooseBoss()
+    {
+        int randomIndex = Random.Range(0, System.Enum.GetNames(typeof(EnemyType)).Length);
+
+        return (EnemyType)randomIndex;
+    }
+
+    public void Spawn_BossDefeated()
     {
         isFightingBoss = false;
+
+        timeBossWasDefeated = time;
+
+        StartCoroutine(StartObstacleSpawn());
+    }
+
+    private void InitSpawnPositions()
+    {
+        spawnerPositions = new Transform[spawnPositionsTF.childCount];
+
+        for (int index = 0; index < spawnPositionsTF.childCount; index++)
+            spawnerPositions[index] = spawnPositionsTF.GetChild(index).transform;
     }
 }

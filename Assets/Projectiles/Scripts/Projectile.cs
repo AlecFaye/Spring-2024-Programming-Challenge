@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Pool;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Projectile : MonoBehaviour
@@ -17,10 +18,18 @@ public class Projectile : MonoBehaviour
     private Vector2 frameVelocity;
     private Rigidbody2D rb;
 
+    private ObjectPool<Projectile> pool;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
     }
+
+    private void OnDisable()
+    {
+        pool.Release(this);
+    }
+
     private void FixedUpdate()
     {
         if (direction == Direction.Horizontal)
@@ -35,5 +44,10 @@ public class Projectile : MonoBehaviour
     {
         if (collision.TryGetComponent(out IDamageable damageable))
             damageable.TakeDamage(null, damage);
+    }
+
+    public void SetPool(ObjectPool<Projectile> pool)
+    {
+        this.pool = pool;
     }
 }

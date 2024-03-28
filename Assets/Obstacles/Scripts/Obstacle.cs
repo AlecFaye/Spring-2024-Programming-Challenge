@@ -2,13 +2,13 @@ using UnityEngine;
 using UnityEngine.Pool;
 
 [RequireComponent(typeof(Rigidbody2D))]
-public class Mover : MonoBehaviour
+public class Obstacle : MonoBehaviour
 {
     private const float BUFFER = 5.0f;
 
     [SerializeField] private float speed = 10;
 
-    private ObjectPool<Mover> pool;
+    private ObjectPool<Obstacle> pool;
     private Rigidbody2D rb;
 
     private void Awake()
@@ -23,7 +23,7 @@ public class Mover : MonoBehaviour
         CheckDeactivate();
     }
 
-    public void SetPool(ObjectPool<Mover> pool)
+    public void SetPool(ObjectPool<Obstacle> pool)
     {
         this.pool = pool;
     }

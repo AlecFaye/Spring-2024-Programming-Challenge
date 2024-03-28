@@ -12,22 +12,22 @@ public enum ObstacleType
     Wall_1011,
     Wall_1100,
     Wall_1101,
-    Wall_1110
+    Wall_1110,
 }
 
 public class ObstacleSpawnerManager : MonoBehaviour
 {
     public static ObstacleSpawnerManager Instance { get; private set; }
 
-    [SerializeField] private MoverInfo[] movers;
+    [SerializeField] private ObstacleInfo[] obstacles;
 
     private readonly Dictionary<ObstacleType, ObstacleSpawner> obstacleSpawners = new();
 
     [System.Serializable]
-    private struct MoverInfo
+    private struct ObstacleInfo
     {
         public ObstacleType Type;
-        public Mover Mover;
+        public Obstacle Obstacle;
     }
 
     private void Awake()
@@ -39,16 +39,16 @@ public class ObstacleSpawnerManager : MonoBehaviour
 
     private void InitObstacleSpawners()
     {
-        foreach (MoverInfo moverInfo in movers)
+        foreach (ObstacleInfo obstacleInfo in obstacles)
         {
-            GameObject obstacleParent = new($"{moverInfo.Mover} (Obstacle Spawner)");
+            GameObject obstacleParent = new($"{obstacleInfo.Obstacle} (Obstacle Spawner)");
             obstacleParent.transform.parent = transform;
 
             ObstacleSpawner obstacleSpawner = obstacleParent.transform.AddComponent<ObstacleSpawner>();
-            obstacleSpawner.ObstaclePrefab = moverInfo.Mover;
+            obstacleSpawner.ObstaclePrefab = obstacleInfo.Obstacle;
             obstacleSpawner.transform.parent = obstacleParent.transform;
 
-            obstacleSpawners.Add(moverInfo.Type, obstacleSpawner);
+            obstacleSpawners.Add(obstacleInfo.Type, obstacleSpawner);
         }
     }
 
