@@ -17,7 +17,6 @@ public class Spawner : MonoBehaviour
 
     [SerializeField] private Transform spawnPositionsTF;
     [SerializeField] private ObstacleInfo[] wallObstacles;
-    [SerializeField] private ObstacleType[] pickupObstacles;
 
     [SerializeField] private float startSpawnDelay = 5.0f;
     [SerializeField] private float obstacleSpawnDelay = 5.0f;
@@ -73,7 +72,7 @@ public class Spawner : MonoBehaviour
 
         while (true)
         {
-            ObstacleInfo obstacleInfo = ChooseObstacle();
+            ObstacleInfo obstacleInfo = ChooseRandomWallObstacle();
             SpawnObstacle(obstacleInfo);
 
             yield return new WaitForSeconds(obstacleSpawnDelay);
@@ -98,7 +97,7 @@ public class Spawner : MonoBehaviour
         enemy.transform.position = spawnPosition;
     }
 
-    private ObstacleInfo ChooseObstacle()
+    private ObstacleInfo ChooseRandomWallObstacle()
     {
         int randomIndex = Random.Range(0, wallObstacles.Length);
 
