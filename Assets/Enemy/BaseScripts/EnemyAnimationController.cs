@@ -16,8 +16,12 @@ public enum EnemyAnimatorParameter
     Slam,
     FinishSlam,
     
-    FinishDeath,
     Revive,
+
+    FlameAttack,
+    BlockIdle,
+    Block,
+    ChargeFlameAttack,
 }
 
 public class EnemyAnimationController : MonoBehaviour

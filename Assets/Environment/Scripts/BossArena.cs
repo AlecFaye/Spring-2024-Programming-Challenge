@@ -14,6 +14,9 @@ public enum Destination
     MiniMushroom,
     Hover,
     Slam,
+
+    EntranceDarkKnight,
+    Laser,
 }
 
 public class BossArena : MonoBehaviour
@@ -34,7 +37,15 @@ public class BossArena : MonoBehaviour
     [SerializeField] private Transform hoverTF;
     [SerializeField] private Transform slamTF;
 
+    [Header("Dark Knight Configurations")]
+    [SerializeField] private Transform entranceDarkKnightTF;
+    [SerializeField] private Transform laserTF;
+    [SerializeField] private GameObject laserHorizontalGO;
+    [SerializeField] private GameObject laserVerticalLeftGO;
+    [SerializeField] private GameObject laserVerticalRightGO;
+
     private readonly Dictionary<Destination, Vector2> destinations = new();
+    private readonly Dictionary<LaserType, GameObject> lasers = new();
 
     private void Awake()
     {
@@ -43,6 +54,12 @@ public class BossArena : MonoBehaviour
 
         Instance = this;
 
+        InitDestinations();
+        InitLasers();
+    }
+
+    private void InitDestinations()
+    {
         destinations.Add(Destination.EntranceFireMage, entranceFireMageTF.position);
         destinations.Add(Destination.LineFireball, lineFireballTF.position);
         destinations.Add(Destination.Firestorm, firestormTF.position);
@@ -54,11 +71,21 @@ public class BossArena : MonoBehaviour
         destinations.Add(Destination.MiniMushroom, miniMushroomTF.position);
         destinations.Add(Destination.Hover, hoverTF.position);
         destinations.Add(Destination.Slam, slamTF.position);
+
+        destinations.Add(Destination.EntranceDarkKnight, entranceDarkKnightTF.position);
+        destinations.Add(Destination.Laser, laserTF.position);
+    }
+
+    private void InitLasers()
+    {
+        lasers.Add(LaserType.Horizontal, laserHorizontalGO);
+        lasers.Add(LaserType.VerticalLeft, laserVerticalLeftGO);
+        lasers.Add(LaserType.VerticalRight, laserVerticalRightGO);
     }
 
     public Vector2 GetDestination(Destination destination)
     {
-        if (destinations.TryGetValue(destination, out var destinationPosition))
+        if (destinations.TryGetValue(destination, out Vector2 destinationPosition))
         {
             return destinationPosition;
         }
@@ -66,6 +93,19 @@ public class BossArena : MonoBehaviour
         {
             Debug.LogError($"There is no destination of type: {destination}. Returning destination: (0, 0)");
             return Vector2.zero;
+        }
+    }
+
+    public GameObject GetLaser(LaserType laserType)
+    {
+        if (lasers.TryGetValue(laserType, out GameObject laser))
+        {
+            return laser;
+        }
+        else
+        {
+            Debug.LogError($"There is no laser of type: {laser}. Returning null");
+            return null;
         }
     }
 }
