@@ -6,6 +6,7 @@ public enum EnemyType
 {
     FireMage,
     Mushroom,
+    DarkKnight,
 }
 
 public class EnemyObjectPoolManager : MonoBehaviour

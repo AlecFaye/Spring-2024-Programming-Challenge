@@ -37,7 +37,7 @@ public class EnemyAI : MonoBehaviour
         enemy.EnemyMovement.SetDestination(entrancePosition);
         enemy.EnemyMovement.OnReachedDestination += Enemy_ReachedEntranceDestination;
 
-        IsHardModeOn = (GameTimer.Instance.CurrentTimeInSeconds / HARD_MODE_PERCENT) > HARD_MODE_PERCENT;
+        IsHardModeOn = (GameTimer.Instance.CurrentTimeInSeconds / SpawnerInfo.DifficultyTime) > HARD_MODE_PERCENT;
 
         if (IsHardModeOn)
             OnHardModeEngaged?.Invoke();
