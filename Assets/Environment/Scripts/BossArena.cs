@@ -17,6 +17,8 @@ public enum Destination
 
     EntranceDarkKnight,
     Laser,
+    ParryProjectile,
+    ParryProjectileSpawn,
 }
 
 public class BossArena : MonoBehaviour
@@ -40,6 +42,8 @@ public class BossArena : MonoBehaviour
     [Header("Dark Knight Configurations")]
     [SerializeField] private Transform entranceDarkKnightTF;
     [SerializeField] private Transform laserTF;
+    [SerializeField] private Transform parryProjectileTF;
+    [SerializeField] private Transform parryProjectileSpawnTF;
     [SerializeField] private GameObject laserHorizontalGO;
     [SerializeField] private GameObject laserVerticalLeftGO;
     [SerializeField] private GameObject laserVerticalRightGO;
@@ -74,6 +78,8 @@ public class BossArena : MonoBehaviour
 
         destinations.Add(Destination.EntranceDarkKnight, entranceDarkKnightTF.position);
         destinations.Add(Destination.Laser, laserTF.position);
+        destinations.Add(Destination.ParryProjectile, parryProjectileTF.position);
+        destinations.Add(Destination.ParryProjectileSpawn, parryProjectileSpawnTF.position);
     }
 
     private void InitLasers()
