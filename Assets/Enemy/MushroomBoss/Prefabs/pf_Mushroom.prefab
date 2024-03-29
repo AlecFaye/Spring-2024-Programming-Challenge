@@ -595,9 +595,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damageFlash: {fileID: 2560333719101446067}
-  baseHealth: 5
+  baseHealth: 15
   absoluteMinHealth: 0
-  absoluteMaxHealth: 10
+  absoluteMaxHealth: 20
 --- !u!114 &2515737168090521881
 MonoBehaviour:
   m_ObjectHideFlags: 0

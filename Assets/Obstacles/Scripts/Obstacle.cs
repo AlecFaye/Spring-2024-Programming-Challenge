@@ -30,7 +30,7 @@ public class Obstacle : MonoBehaviour
 
     private void CheckDeactivate()
     {
-        if (transform.position.x < -((Camera.main.orthographicSize * 2) + BUFFER))
+        if (transform.position.x < -((Camera.main.orthographicSize * 3) + BUFFER))
             pool.Release(this);
     }
 }

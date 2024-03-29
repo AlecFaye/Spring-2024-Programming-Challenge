@@ -12,13 +12,10 @@ public class ParryHitbox : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player Attack"))
+        if (collision.CompareTag("Player Attack") && collision.TryGetComponent(out Projectile projectile))
         {
-            if (collision.TryGetComponent(out Projectile projectile))
-            {
-                projectile.gameObject.SetActive(false);
-                parryAttack.Parry();
-            }
+            projectile.gameObject.SetActive(false);
+            parryAttack.Parry();
         }
     }
 

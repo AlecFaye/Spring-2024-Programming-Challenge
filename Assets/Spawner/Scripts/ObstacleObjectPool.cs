@@ -8,7 +8,7 @@ public class ObstacleObjectPool : MonoBehaviour
     [SerializeField] private int defaultCapacity = 10;
     [SerializeField] private int maxSize = 10000;
 
-    [HideInInspector] public Obstacle ObstaclePrefab;
+    public Obstacle ObstaclePrefab;
     
     private GameObject parent;
 

@@ -19,6 +19,7 @@ public enum Destination
     Laser,
     ParryProjectile,
     ParryProjectileSpawn,
+    PlatformCreator,
 }
 
 public class BossArena : MonoBehaviour
@@ -44,6 +45,7 @@ public class BossArena : MonoBehaviour
     [SerializeField] private Transform laserTF;
     [SerializeField] private Transform parryProjectileTF;
     [SerializeField] private Transform parryProjectileSpawnTF;
+    [SerializeField] private Transform platformCreatorTF;
     [SerializeField] private GameObject laserHorizontalGO;
     [SerializeField] private GameObject laserVerticalLeftGO;
     [SerializeField] private GameObject laserVerticalRightGO;
@@ -80,6 +82,7 @@ public class BossArena : MonoBehaviour
         destinations.Add(Destination.Laser, laserTF.position);
         destinations.Add(Destination.ParryProjectile, parryProjectileTF.position);
         destinations.Add(Destination.ParryProjectileSpawn, parryProjectileSpawnTF.position);
+        destinations.Add(Destination.PlatformCreator, platformCreatorTF.position);
     }
 
     private void InitLasers()
