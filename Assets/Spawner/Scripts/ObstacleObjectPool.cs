@@ -15,7 +15,7 @@ public class ObstacleObjectPool : MonoBehaviour
     private void Start()
     {
         parent = new($"{ObstaclePrefab.name} (Object Pool)");
-        Pool = new(CreateObstacle, OnGetMoverFromPool, OnReleaseMoverToPool, OnDestroyMover, true, defaultCapacity, maxSize);
+        Pool = new(CreateObstacle, OnGetObstacleFromPool, OnReleaseObstacleToPool, OnDestroyObstacle, true, defaultCapacity, maxSize);
     }
 
     private Obstacle CreateObstacle()
@@ -27,19 +27,19 @@ public class ObstacleObjectPool : MonoBehaviour
         return obstacleObject;
     }
 
-    private void OnGetMoverFromPool(Obstacle mover)
+    private void OnGetObstacleFromPool(Obstacle mover)
     {
         mover.transform.SetPositionAndRotation(Vector3.zero, Quaternion.identity);
 
         mover.gameObject.SetActive(true);
     }
     
-    private void OnReleaseMoverToPool(Obstacle mover)
+    private void OnReleaseObstacleToPool(Obstacle mover)
     {
         mover.gameObject.SetActive(false);
     }
 
-    private void OnDestroyMover(Obstacle mover)
+    private void OnDestroyObstacle(Obstacle mover)
     {
         Destroy(mover.gameObject);
     }

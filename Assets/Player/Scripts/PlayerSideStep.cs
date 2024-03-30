@@ -7,7 +7,9 @@ public class PlayerSideStep : MonoBehaviour
 
     [SerializeField] private Transform[] sideStepPositions;
     [SerializeField] private float speed = 10.0f;
+    [SerializeField] private AudioClip moveAudioClip;
 
+    private int previousIndex = 0;
     private int currentIndex = 0;
 
     private void Update()
@@ -33,10 +35,15 @@ public class PlayerSideStep : MonoBehaviour
         {
             Vector2 sideStepDirection = context.ReadValue<Vector2>();
 
+            previousIndex = currentIndex;
+
             if (sideStepDirection.x > 0)
                 currentIndex = 1;
             else if (sideStepDirection.x < 0)
                 currentIndex = 0;
+
+            if (previousIndex != currentIndex)
+                AudioManager.Instance.PlaySFX(moveAudioClip);
         }
     }
 }

@@ -11,12 +11,13 @@ public class RollAttack : EnemyAbility
     [SerializeField] private Destination startDestination;
     [SerializeField] private Destination rollAttackDestination;
     [SerializeField] private Destination originalDestination;
+    [SerializeField] private SpawnPosition[] dangerPositions;
 
     [Header("Hard Mode Configurations")]
     [SerializeField] private float hardModeRollSpeed;
 
     [Header("Other")]
-    [SerializeField] private SpawnPosition[] dangerPositions;
+    [SerializeField] private AudioClip growAudioClip;
 
     private void Start()
     {
@@ -39,6 +40,8 @@ public class RollAttack : EnemyAbility
     {
         enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedDestination;
         enemy.EnemyAnimationController.SetAnimatorTrigger(EnemyAnimatorParameter.RollAttack);
+
+        AudioManager.Instance.PlaySFX(growAudioClip);
     }
 
     public override void TriggerAbility()

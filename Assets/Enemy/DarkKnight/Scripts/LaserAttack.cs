@@ -11,6 +11,9 @@ public class LaserAttack : EnemyAbility
     [Header("Laser Attack Configurations")]
     [SerializeField] private float chargeAttackTime = 1.0f;
 
+    [Header("Other")]
+    [SerializeField] private AudioClip laserAudioClip;
+
     private readonly Dictionary<LaserType, SpawnPosition> dangerIndicators = new()
     {
         { LaserType.Horizontal, SpawnPosition.Bot },
@@ -37,6 +40,8 @@ public class LaserAttack : EnemyAbility
     public override void TriggerAbility()
     {
         laser.SetActive(true);
+
+        AudioManager.Instance.PlaySFX(laserAudioClip);
     }
 
     private void Move()

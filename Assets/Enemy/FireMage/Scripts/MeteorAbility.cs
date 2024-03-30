@@ -18,6 +18,7 @@ public class MeteorAbility : EnemyAbility
 
     [Header("Other")]
     [SerializeField] private EnemyAnimatorParameter animationToPlayParameter;
+    [SerializeField] private AudioClip meteorAudioClip;
 
     private void Start()
     {
@@ -35,7 +36,9 @@ public class MeteorAbility : EnemyAbility
 
     public override void TriggerAbility()
     {
-        StartCoroutine(StartFireball());
+        AudioManager.Instance.PlaySFX(meteorAudioClip);
+
+        StartCoroutine(StartMeteors());
     }
 
     private void Enemy_OnReachedDestination()
@@ -47,7 +50,7 @@ public class MeteorAbility : EnemyAbility
             DangerIndicatorManager.Instance.DisplayIndicator(spawnIndex);
     }
 
-    private IEnumerator StartFireball()
+    private IEnumerator StartMeteors()
     {
         WaitForSeconds wait = new(delayBetweenMeteors);
 

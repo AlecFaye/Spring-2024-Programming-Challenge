@@ -13,6 +13,9 @@ public class PlatformCreatorAttack : EnemyAbility
     [SerializeField] private ObstacleObjectPool stairsObjectPool;
     [SerializeField] private ObstacleObjectPool dropdownObjectPool;
 
+    [Header("Other")]
+    [SerializeField] private AudioClip swingAudioClip;
+
     private readonly Dictionary<PlatformType, ObstacleObjectPool> platforms = new();
 
     private enum PlatformType
@@ -58,6 +61,8 @@ public class PlatformCreatorAttack : EnemyAbility
         {
             Debug.LogError($"There is no platform of type: {platformType}");
         }
+
+        AudioManager.Instance.PlaySFX(swingAudioClip);
     }
 
     private void Enemy_OnReachedDestination()

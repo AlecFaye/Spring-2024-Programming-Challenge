@@ -14,6 +14,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField] private int absoluteMaxHealth;
     [SerializeField] private float invincibleFrames;
 
+    [Header("Sound Configurations")]
+    [SerializeField] private AudioClip healAudioClip;
+    [SerializeField] private AudioClip shieldAudioClip;
+    [SerializeField] private AudioClip hurtAudioClip;
+
     private HealthSystem healthSystem;
     public HealthSystem HealthSystem => healthSystem;
 
@@ -24,6 +29,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     private float time = 0.0f;
     private float timeWasHit = -999f;
+
+    private Coroutine shieldCoroutine = null;
 
     public bool IsInvincible => timeWasHit + invincibleFrames > time;
 
@@ -60,11 +67,11 @@ public class PlayerStats : MonoBehaviour, IDamageable
         if (isDead || IsInvincible || isShielded)
             return;
 
-        damageFlash.StartFlash();
-
         timeWasHit = time;
-
+        damageFlash.StartFlash();
         healthSystem.Damage(damageAmount);
+
+        AudioManager.Instance.PlaySFX(hurtAudioClip);
     }
 
     public void Heal(int healAmount)
@@ -73,11 +80,16 @@ public class PlayerStats : MonoBehaviour, IDamageable
             return;
 
         healthSystem.Heal(healAmount);
+
+        AudioManager.Instance.PlaySFX(healAudioClip);
     }
 
     public void Shield(float shieldDuration)
     {
-        StartCoroutine(ShieldPlayer(shieldDuration));
+        if (shieldCoroutine != null)
+            StopCoroutine(shieldCoroutine);
+
+        shieldCoroutine = StartCoroutine(ShieldPlayer(shieldDuration));
     }
 
     public Transform GetTransform() => transform;
@@ -86,6 +98,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
     {
         isShielded = true;
         shieldOutline.DisplayOutline();
+
+        AudioManager.Instance.PlaySFX(shieldAudioClip);
 
         yield return new WaitForSeconds(shieldDuration);
 

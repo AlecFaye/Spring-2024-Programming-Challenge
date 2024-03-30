@@ -131,9 +131,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf12f971b87dd484eb8fcba010d9315c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  direction: 0
   speed: 10
   acceleration: 100
   damage: 1
+  hitAudioClip: {fileID: 8300000, guid: f22be13c66b2c1c41ac3fa869d983c12, type: 3}
 --- !u!50 &1913208034842669239
 Rigidbody2D:
   serializedVersion: 4

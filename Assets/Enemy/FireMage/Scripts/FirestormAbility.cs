@@ -17,6 +17,7 @@ public class FirestormAbility : EnemyAbility
 
     [Header("Other")]
     [SerializeField] private EnemyAnimatorParameter animationToPlayParameter;
+    [SerializeField] private AudioClip firestormAudioClip;
 
     private void Start()
     {
@@ -44,6 +45,8 @@ public class FirestormAbility : EnemyAbility
             : firestormSpeed;
 
         projectile.SetSpeed(adjustedSpeed);
+
+        AudioManager.Instance.PlaySFX(firestormAudioClip);
     }
 
     private void Enemy_OnReachedDestination()

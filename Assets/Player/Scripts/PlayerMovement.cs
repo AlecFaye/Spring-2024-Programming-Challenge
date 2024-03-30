@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float grounderDistance = 0.05f;
 
     [Header("Jump Configurations")]
+    [SerializeField] private AudioClip jumpAudioClip;
     [SerializeField] private float jumpPower = 36.0f;
     [SerializeField] private float maxFallSpeed = 40.0f;
     [SerializeField] private float fallAcceleration = 110.0f;
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private float jumpBuffer = 0.2f;
 
     [Header("Dash Configurations")]
+    [SerializeField] private AudioClip dashAudioClip;
     [SerializeField] private float dashDuration;
 
     public bool IsGrounded => isGrounded;
@@ -167,7 +169,9 @@ public class PlayerMovement : MonoBehaviour
         bufferedJumpUsable = false;
         coyoteUsable = false;
         frameVelocity.y = jumpPower;
+
         OnJumped?.Invoke();
+        AudioManager.Instance.PlaySFX(jumpAudioClip);
     }
 
     private void HandleGravity()
@@ -194,6 +198,8 @@ public class PlayerMovement : MonoBehaviour
 
         frameVelocity.y = 0.0f;
         OnDashed?.Invoke();
+
+        AudioManager.Instance.PlaySFX(dashAudioClip);
 
         yield return new WaitForSeconds(dashDuration);
 
