@@ -8598,7 +8598,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5383e339c268a44db5ebb1bc50c9c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossSpawns: 00000000
+  bossSpawns: 01000000
   startSpawnDelay: 5
   bossDelay: 10
 --- !u!1 &2071817075

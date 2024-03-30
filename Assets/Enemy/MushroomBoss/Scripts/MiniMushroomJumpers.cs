@@ -15,6 +15,9 @@ public class MiniMushroomJumpers : EnemyAbility
     [Header("Hard Mode Configurations")]
     [SerializeField] private int hardModeNumberOfMushroomsToSpawn = 10;
 
+    [Header("Other")]
+    [SerializeField] private AudioClip miniMushroomAudioClip;
+
     private void Start()
     {
         OnTriggerAbility += TriggerAbility;
@@ -35,6 +38,8 @@ public class MiniMushroomJumpers : EnemyAbility
         enemy.EnemyAnimationController.SetAnimatorTrigger(EnemyAnimatorParameter.ChargeUp);
 
         StartCoroutine(SpawnMiniMushrooms());
+
+        AudioManager.Instance.PlaySFX(miniMushroomAudioClip);
     }
 
     private IEnumerator SpawnMiniMushrooms()

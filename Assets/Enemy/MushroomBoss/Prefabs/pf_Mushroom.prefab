@@ -52,8 +52,9 @@ MonoBehaviour:
   startDestination: 5
   rollAttackDestination: 6
   originalDestination: 4
-  hardModeRollSpeed: 15
   dangerPositions: 0200000003000000
+  hardModeRollSpeed: 15
+  growAudioClip: {fileID: 8300000, guid: aab326b9f9091b24b928d267d6ad7ab0, type: 3}
 --- !u!1 &993593946194704297
 GameObject:
   m_ObjectHideFlags: 0
@@ -474,6 +475,13 @@ MonoBehaviour:
   hardModeHoverTime: 1
   hardModeSlamSpeed: 75
   endDestination: 4
+  hoverAudioClips:
+  - {fileID: 8300000, guid: d5d7b0ad5135a0a4293e249641386181, type: 3}
+  - {fileID: 8300000, guid: aa0d39f8349af6d4481c0f3c1899b4c1, type: 3}
+  - {fileID: 8300000, guid: ff28dc6c8adf30241b26be63069a5162, type: 3}
+  - {fileID: 8300000, guid: 5cfceae42b36bf5498df1556b89f81f9, type: 3}
+  hoverClipUseDelay: 0.1
+  slamAudioClip: {fileID: 8300000, guid: 21265dda6042bee429a569782d028542, type: 3}
 --- !u!1 &7164836667909845201
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,6 +534,7 @@ MonoBehaviour:
   numberOfMushroomsToSpawn: 6
   spawnDelay: 0.25
   hardModeNumberOfMushroomsToSpawn: 10
+  miniMushroomAudioClip: {fileID: 8300000, guid: 2e56250ead6acca48a0d3773ebe2db65, type: 3}
 --- !u!1 &7807614257624683625
 GameObject:
   m_ObjectHideFlags: 0

@@ -24,6 +24,9 @@ public class HoverSlamAttack : EnemyAbility
 
     [Header("Other")]
     [SerializeField] private Destination endDestination;
+    [SerializeField] private AudioClip[] hoverAudioClips;
+    [SerializeField] private float hoverClipUseDelay = 0.25f;
+    [SerializeField] private AudioClip slamAudioClip;
 
     private void Start()
     {
@@ -59,6 +62,7 @@ public class HoverSlamAttack : EnemyAbility
     private IEnumerator FollowHover()
     {
         float time = 0.0f;
+        float hoverClipTime = 0.0f;
 
         float adjustedHoverTime = enemy.EnemyAI.IsHardModeOn
             ? hardModeHoverTime
@@ -72,6 +76,13 @@ public class HoverSlamAttack : EnemyAbility
             enemy.EnemyMovement.SetDestination(hoverPosition);
 
             time += Time.deltaTime;
+            hoverClipTime += Time.deltaTime;
+
+            if (hoverClipTime >= hoverClipUseDelay)
+            {
+                PlayRandomHoverClip();
+                hoverClipTime = 0.0f;
+            }
 
             yield return null;
         }
@@ -109,6 +120,8 @@ public class HoverSlamAttack : EnemyAbility
 
     private IEnumerator FinishSlam()
     {
+        AudioManager.Instance.PlaySFX(slamAudioClip);
+
         damageCollider.enabled = false;
 
         yield return new WaitForSeconds(slamEndDelay);
@@ -140,5 +153,11 @@ public class HoverSlamAttack : EnemyAbility
         enemy.EnemyMovement.OnReachedDestination -= Enemy_OnReachedEndDestination;
 
         damageCollider.enabled = false;
+    }
+
+    private void PlayRandomHoverClip()
+    {
+        int randomIndex = Random.Range(0, hoverAudioClips.Length);
+        AudioManager.Instance.PlaySFX(hoverAudioClips[randomIndex]);
     }
 }
