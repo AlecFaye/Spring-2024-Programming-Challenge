@@ -15,9 +15,13 @@ public class PickupSpawner : MonoBehaviour
     {
         spawnerPositions = SpawnerInfo.Instance.SpawnerPositions;
 
-        StartCoroutine(StartPickupSpawn());
+        TutorialUI.Instance.OnCompletedTutorial += StartSpawn;
     }
 
+    private void StartSpawn()
+    {
+        StartCoroutine(StartPickupSpawn());
+    }
     private IEnumerator StartPickupSpawn()
     {
         yield return new WaitForSeconds(minSpawnDelay);

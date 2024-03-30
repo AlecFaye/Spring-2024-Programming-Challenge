@@ -23,10 +23,15 @@ public class WallSpawner : MonoBehaviour
     {
         spawnerPositions = SpawnerInfo.Instance.SpawnerPositions;
 
-        StartCoroutine(StartObstacleSpawn());
+        TutorialUI.Instance.OnCompletedTutorial += StartSpawn;
 
         BossSpawner.Instance.OnSpawnedBoss += Boss_OnSpawned;
         BossSpawner.Instance.OnDefeatedBoss += Boss_OnDefeated;
+    }
+
+    private void StartSpawn()
+    {
+        StartCoroutine(StartObstacleSpawn());
     }
 
     private IEnumerator StartObstacleSpawn()

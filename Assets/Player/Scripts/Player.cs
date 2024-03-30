@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Player : MonoBehaviour
@@ -10,6 +11,7 @@ public class Player : MonoBehaviour
     public PlayerAttack PlayerAttack;
 
     [SerializeField] private GameObject deathPanelUI;
+    [SerializeField] private GameObject pauseMenuUI;
 
     private void Awake()
     {
@@ -19,6 +21,7 @@ public class Player : MonoBehaviour
         Instance = this;
 
         deathPanelUI.SetActive(false);
+        pauseMenuUI.SetActive(false);
     }
 
     private void Start()
@@ -29,5 +32,22 @@ public class Player : MonoBehaviour
     private void Player_OnDie()
     {
         deathPanelUI.SetActive(true);
+    }
+
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (context.started)
+        {
+            if (Time.timeScale == 1.0f)
+            {
+                pauseMenuUI.SetActive(true);
+                Time.timeScale = 0.0f;
+            }
+            else
+            {
+                pauseMenuUI.SetActive(false);
+                Time.timeScale = 1.0f;
+            }
+        }
     }
 }
