@@ -17,6 +17,7 @@ public class BossSpawner : MonoBehaviour
     private float timeBossWasDefeated = 0.0f;
 
     private Transform[] spawnerPositions;
+    private bool isFinishedTutorial = false;
 
     public bool IsFightingBoss { get; private set; }
 
@@ -31,18 +32,25 @@ public class BossSpawner : MonoBehaviour
     private void Start()
     {
         spawnerPositions = SpawnerInfo.Instance.SpawnerPositions;
+
+        TutorialUI.Instance.OnCompletedTutorial += StartSpawn;
     }
 
     private void Update()
     {
         time += Time.deltaTime;
 
-        if (time >= timeBossWasDefeated + bossDelay && !IsFightingBoss)
+        if (time >= timeBossWasDefeated + bossDelay && !IsFightingBoss && !isFinishedTutorial)
         {
             StartCoroutine(SpawnBoss());
             OnSpawnedBoss?.Invoke();
             IsFightingBoss = true;
         }
+    }
+
+    private void StartSpawn()
+    {
+        isFinishedTutorial = true;
     }
 
     private IEnumerator SpawnBoss()
