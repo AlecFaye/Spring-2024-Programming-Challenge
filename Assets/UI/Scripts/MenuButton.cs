@@ -11,7 +11,10 @@ public class MenuButton : MonoBehaviour
         GetComponent<Button>().onClick.AddListener(() =>
         {
             if (LevelLoader.Instance != null)
+            {
                 LevelLoader.Instance.LoadLevel(sceneName);
+                Time.timeScale = 1.0f;
+            }
         });
     }
 }
