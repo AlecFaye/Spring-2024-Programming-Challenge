@@ -246,6 +246,7 @@ MonoBehaviour:
   hardModeFireballSpeed: -20
   hardModeDelayBetweenFireballs: 0.15
   animationToPlayParameter: 2
+  fireballAudioClip: {fileID: 8300000, guid: 63d281a61ba73d749840a33100b8a5c7, type: 3}
 --- !u!114 &1057199782872349848
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -316,6 +317,7 @@ MonoBehaviour:
   delayBetweenMeteors: 0.5
   hardModeNumberOfMeteors: 6
   animationToPlayParameter: 2
+  meteorAudioClip: {fileID: 8300000, guid: 63d281a61ba73d749840a33100b8a5c7, type: 3}
 --- !u!114 &955286727074803613
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -386,6 +388,7 @@ MonoBehaviour:
   firestormSpeed: -10
   hardModeFirestormSpeed: -17.5
   animationToPlayParameter: 1
+  firestormAudioClip: {fileID: 8300000, guid: 539554318e47a914c849326c87a05e92, type: 3}
 --- !u!114 &6963059121962860890
 MonoBehaviour:
   m_ObjectHideFlags: 0

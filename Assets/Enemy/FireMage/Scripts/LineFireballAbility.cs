@@ -21,6 +21,7 @@ public class LineFireballAbility : EnemyAbility
 
     [Header("Other")]
     [SerializeField] private EnemyAnimatorParameter animationToPlayParameter;
+    [SerializeField] private AudioClip fireballAudioClip;
 
     private void Start()
     {
@@ -38,6 +39,8 @@ public class LineFireballAbility : EnemyAbility
 
     public override void TriggerAbility()
     {
+        AudioManager.Instance.PlaySFX(fireballAudioClip);
+
         StartCoroutine(StartFireball());
     }
 
