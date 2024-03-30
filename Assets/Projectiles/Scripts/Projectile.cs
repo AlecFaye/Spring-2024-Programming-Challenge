@@ -14,6 +14,7 @@ public class Projectile : MonoBehaviour
     [SerializeField] private float speed = 10;
     [SerializeField] private float acceleration = 100;
     [SerializeField] private int damage = 1;
+    [SerializeField] private AudioClip hitAudioClip;
 
     private Vector2 frameVelocity;
     private Rigidbody2D rb;
@@ -43,7 +44,11 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.TryGetComponent(out IDamageable damageable))
+        {
             damageable.TakeDamage(null, damage);
+            if (hitAudioClip)
+                AudioManager.Instance.PlaySFX(hitAudioClip);
+        }
     }
 
     public void SetPool(ObjectPool<Projectile> pool)
