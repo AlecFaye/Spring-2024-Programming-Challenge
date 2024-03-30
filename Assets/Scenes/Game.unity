@@ -569,6 +569,7 @@ GameObject:
   m_Component:
   - component: {fileID: 286367175}
   - component: {fileID: 286367176}
+  - component: {fileID: 286367177}
   m_Layer: 0
   m_Name: Audio
   m_TagString: Untagged
@@ -609,6 +610,21 @@ MonoBehaviour:
   fireMageBGM: {fileID: 8300000, guid: c60476e1f767ce44cb742b250cdb0ec3, type: 3}
   mushroomBGM: {fileID: 8300000, guid: ca03596f31264f44abd6628522a0bf01, type: 3}
   darkKnightBGM: {fileID: 8300000, guid: 76467b2810aff9e41968e75106ab0802, type: 3}
+--- !u!114 &286367177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 286367174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5bbb76bd3e9815e44b080f835c9d1a8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCapacity: 10
+  maxSize: 10000
+  SFXObjectPrefab: {fileID: -4064017358940219215, guid: bc0396488ffeac748b6e3be4c97e2f4e, type: 3}
 --- !u!1 &318573712
 GameObject:
   m_ObjectHideFlags: 0

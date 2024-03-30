@@ -13,11 +13,15 @@ public class AudioManager : MonoBehaviour
 {
     public static AudioManager Instance { get; private set; }
 
+    [Header("Music Configurations")]
     [SerializeField] private AudioSource musicAudioSource;
     [SerializeField] private AudioClip regularBGM;
     [SerializeField] private AudioClip fireMageBGM;
     [SerializeField] private AudioClip mushroomBGM;
     [SerializeField] private AudioClip darkKnightBGM;
+
+    [Header("SFX Configurations")]
+    [SerializeField] private SFXObjectPool sfxObjectPool;
 
     private readonly Dictionary<BGMType, AudioClip> backgroundMusic = new();
 
@@ -49,6 +53,12 @@ public class AudioManager : MonoBehaviour
     public void PlayRegularBGM()
     {
         PlayBGM(BGMType.Regular);
+    }
+
+    public void PlaySFX(AudioClip clip)
+    {
+        sfxObjectPool.Pool.Get(out SFXObject sfxObject);
+        sfxObject.StartPlaying(clip);
     }
 
     private void InitBGM()
