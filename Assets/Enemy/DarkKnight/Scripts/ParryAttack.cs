@@ -13,6 +13,9 @@ public class ParryAttack : EnemyAbility
     [SerializeField] private Destination parryProjectileDestination;
     [SerializeField] private ParryHitbox parryHitbox;
 
+    [Header("Other")]
+    [SerializeField] private AudioClip parryAudioClip;
+
     private void Start()
     {
         OnTriggerAbility += TriggerAbility;
@@ -37,6 +40,8 @@ public class ParryAttack : EnemyAbility
     public void Parry()
     {
         enemy.EnemyAnimationController.SetAnimatorTrigger(EnemyAnimatorParameter.Block);
+
+        AudioManager.Instance.PlaySFX(parryAudioClip);
     }
 
     private void Enemy_OnReachedDestination()

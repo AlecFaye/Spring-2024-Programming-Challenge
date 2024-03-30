@@ -55,6 +55,7 @@ MonoBehaviour:
   hallwayObjectPool: {fileID: 4431954741377675352}
   stairsObjectPool: {fileID: 2284219608327744220}
   dropdownObjectPool: {fileID: 232066115234149701}
+  swingAudioClip: {fileID: 8300000, guid: 9d0254d6131da8d4eb1022736d42b461, type: 3}
 --- !u!1 &993593946194704297
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,6 +223,7 @@ MonoBehaviour:
   enemy: {fileID: 2290819740826680190}
   destination: 11
   chargeAttackTime: 0.9
+  laserAudioClip: {fileID: 8300000, guid: e850686fbabfee84fb8e313fa229ba43, type: 3}
 --- !u!1 &3002808060132629063
 GameObject:
   m_ObjectHideFlags: 0
@@ -785,6 +787,7 @@ MonoBehaviour:
   projectileObjectPool: {fileID: 3652811080342518139}
   parryProjectileDestination: 13
   parryHitbox: {fileID: 2499916398813827244}
+  parryAudioClip: {fileID: 8300000, guid: a73c43b282db3cc4c803c0e3d8a50b81, type: 3}
 --- !u!114 &3652811080342518139
 MonoBehaviour:
   m_ObjectHideFlags: 0
