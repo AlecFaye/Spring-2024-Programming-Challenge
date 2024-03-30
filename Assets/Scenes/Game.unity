@@ -610,6 +610,7 @@ MonoBehaviour:
   fireMageBGM: {fileID: 8300000, guid: c60476e1f767ce44cb742b250cdb0ec3, type: 3}
   mushroomBGM: {fileID: 8300000, guid: ca03596f31264f44abd6628522a0bf01, type: 3}
   darkKnightBGM: {fileID: 8300000, guid: 76467b2810aff9e41968e75106ab0802, type: 3}
+  sfxObjectPool: {fileID: 286367177}
 --- !u!114 &286367177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7331,12 +7332,14 @@ MonoBehaviour:
     m_Bits: 1727
   groundingForce: -1.5
   grounderDistance: 0.05
+  jumpAudioClip: {fileID: 8300000, guid: dd311a1712280b44ba9e503bfc09bcfa, type: 3}
   jumpPower: 28
   maxFallSpeed: 20
   fallAcceleration: 55
   jumpEndEarlyGravityModifier: 3
   coyoteTime: 0.075
   jumpBuffer: 0.2
+  dashAudioClip: {fileID: 8300000, guid: 15f84d445575889448ccbc0b0c761165, type: 3}
   dashDuration: 0.5
 --- !u!50 &1761976740
 Rigidbody2D:
@@ -7569,6 +7572,8 @@ MonoBehaviour:
   absoluteMinHealth: 0
   absoluteMaxHealth: 10
   invincibleFrames: 1
+  healAudioClip: {fileID: 8300000, guid: f4036b3d0ee8d194c81703477b57a113, type: 3}
+  hurtAudioClip: {fileID: 8300000, guid: ba04246b288bc634db73b80874f48620, type: 3}
 --- !u!114 &1761976745
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7637,6 +7642,7 @@ MonoBehaviour:
   projectileSpawner: {fileID: 1761976749}
   releaseAttackLocationTF: {fileID: 1595547791}
   attackCooldown: 0.5
+  attackAudioClip: {fileID: 8300000, guid: dca9f38b3eb716d4aa791fcf8570fc37, type: 3}
 --- !u!114 &1761976748
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7653,6 +7659,7 @@ MonoBehaviour:
   - {fileID: 339694011}
   - {fileID: 727435762}
   speed: 10
+  moveAudioClip: {fileID: 8300000, guid: 0f342ea5b45a688409d5b12da8b3a7e2, type: 3}
 --- !u!114 &1761976749
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8545,8 +8552,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupObstacles: 0000000002000000
   pickupSpawnPositions: 00000000010000000200000003000000
-  minSpawnDelay: 60
-  maxSpawnDelay: 85
+  minSpawnDelay: 1
+  maxSpawnDelay: 2
 --- !u!1 &2069090782
 GameObject:
   m_ObjectHideFlags: 0

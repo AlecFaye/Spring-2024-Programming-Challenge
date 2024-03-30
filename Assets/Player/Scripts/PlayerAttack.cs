@@ -11,6 +11,7 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField] private ProjectileObjectPool projectileSpawner;
     [SerializeField] private Transform releaseAttackLocationTF;
     [SerializeField] private float attackCooldown = 0.5f;
+    [SerializeField] private AudioClip attackAudioClip;
 
     public bool IsAttacking => !canAttack;
     private bool canAttack = true;
@@ -39,6 +40,7 @@ public class PlayerAttack : MonoBehaviour
     {
         canAttack = false;
         OnAttackStarted?.Invoke();
+        AudioManager.Instance.PlaySFX(attackAudioClip);
 
         yield return new WaitForSeconds(attackCooldown);
 
