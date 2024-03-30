@@ -7573,6 +7573,7 @@ MonoBehaviour:
   absoluteMaxHealth: 10
   invincibleFrames: 1
   healAudioClip: {fileID: 8300000, guid: f4036b3d0ee8d194c81703477b57a113, type: 3}
+  shieldAudioClip: {fileID: 8300000, guid: 31b8fd42fbe2f52439fa49ec61233849, type: 3}
   hurtAudioClip: {fileID: 8300000, guid: ba04246b288bc634db73b80874f48620, type: 3}
 --- !u!114 &1761976745
 MonoBehaviour:

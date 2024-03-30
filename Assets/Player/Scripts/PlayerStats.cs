@@ -16,6 +16,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     [Header("Sound Configurations")]
     [SerializeField] private AudioClip healAudioClip;
+    [SerializeField] private AudioClip shieldAudioClip;
     [SerializeField] private AudioClip hurtAudioClip;
 
     private HealthSystem healthSystem;
@@ -28,6 +29,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     private float time = 0.0f;
     private float timeWasHit = -999f;
+
+    private Coroutine shieldCoroutine = null;
 
     public bool IsInvincible => timeWasHit + invincibleFrames > time;
 
@@ -83,7 +86,10 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     public void Shield(float shieldDuration)
     {
-        StartCoroutine(ShieldPlayer(shieldDuration));
+        if (shieldCoroutine != null)
+            StopCoroutine(shieldCoroutine);
+
+        shieldCoroutine = StartCoroutine(ShieldPlayer(shieldDuration));
     }
 
     public Transform GetTransform() => transform;
@@ -92,6 +98,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
     {
         isShielded = true;
         shieldOutline.DisplayOutline();
+
+        AudioManager.Instance.PlaySFX(shieldAudioClip);
 
         yield return new WaitForSeconds(shieldDuration);
 
