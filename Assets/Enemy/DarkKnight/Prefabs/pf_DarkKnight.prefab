@@ -582,6 +582,7 @@ MonoBehaviour:
   EnemyMovement: {fileID: 2515737168090521881}
   EnemyAnimationController: {fileID: 8772768230800062675}
   EnemyAI: {fileID: 1535550410153797018}
+  bgmType: 3
 --- !u!114 &844492392466896997
 MonoBehaviour:
   m_ObjectHideFlags: 0

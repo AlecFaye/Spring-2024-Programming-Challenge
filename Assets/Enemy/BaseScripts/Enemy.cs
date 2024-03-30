@@ -11,6 +11,8 @@ public class Enemy : MonoBehaviour
     public EnemyAnimationController EnemyAnimationController;
     public EnemyAI EnemyAI;
 
+    [SerializeField] private BGMType bgmType;
+
     private ObjectPool<Enemy> pool;
 
     private void Start()
@@ -21,12 +23,16 @@ public class Enemy : MonoBehaviour
     private void Enemy_OnDie()
     {
         StartCoroutine(DisableEnemy());
+
+        AudioManager.Instance.PlayRegularBGM();
     }
 
     private void OnEnable()
     {
         if (EnemyStats.IsDead)
             EnemyStats.HealthSystem?.Revive();
+
+        AudioManager.Instance.PlayBGM(bgmType);
     }
 
     public void SetPool(ObjectPool<Enemy> pool)
