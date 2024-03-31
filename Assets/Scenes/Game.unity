@@ -2072,7 +2072,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &295842933
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12721,7 +12721,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   notGroundLayerMask:
     serializedVersion: 2
-    m_Bits: 1727
+    m_Bits: 1791
   groundingForce: -1.5
   grounderDistance: 0.05
   jumpAudioClip: {fileID: 8300000, guid: dd311a1712280b44ba9e503bfc09bcfa, type: 3}
@@ -14812,9 +14812,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5383e339c268a44db5ebb1bc50c9c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossSpawns: 02000000
+  bossSpawns: 000000000100000002000000
   startSpawnDelay: 5
-  bossDelay: 75
+  bossDelay: 85
 --- !u!1 &2071817075
 GameObject:
   m_ObjectHideFlags: 0

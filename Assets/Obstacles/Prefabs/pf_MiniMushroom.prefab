@@ -46,6 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  damageLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!61 &2752886479236576253
 BoxCollider2D:
   m_ObjectHideFlags: 0
