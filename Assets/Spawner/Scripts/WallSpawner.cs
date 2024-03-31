@@ -43,7 +43,7 @@ public class WallSpawner : MonoBehaviour
             ObstacleInfo obstacleInfo = ChooseRandomWallObstacle();
             SpawnObstacle(obstacleInfo);
 
-            float difficultyPercent = Mathf.Clamp(GameTimer.Instance.CurrentTimeInSeconds / SpawnerInfo.DifficultyTime, 0, 1);
+            float difficultyPercent = Mathf.Clamp(GameTimer.Instance.CurrentTimeInSeconds / SpawnerInfo.Instance.DifficultyTime, 0, 1);
             float spawnDelay = obstacleSpawnDelay * spawnDelayDifficultyCurve.Evaluate(difficultyPercent);
 
             yield return new WaitForSeconds(spawnDelay);

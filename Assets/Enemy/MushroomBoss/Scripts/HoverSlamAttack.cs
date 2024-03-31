@@ -17,6 +17,7 @@ public class HoverSlamAttack : EnemyAbility
     [SerializeField] private float slamDelay = 0.25f;
     [SerializeField] private float slamEndDelay = 0.25f;
     [SerializeField] private float slamSpeed = 50.0f;
+    [SerializeField] private GameObject impactDustPrefab;
 
     [Header("Hard Mode Configurations")]
     [SerializeField] private float hardModeHoverTime = 1.0f;
@@ -27,6 +28,13 @@ public class HoverSlamAttack : EnemyAbility
     [SerializeField] private AudioClip[] hoverAudioClips;
     [SerializeField] private float hoverClipUseDelay = 0.25f;
     [SerializeField] private AudioClip slamAudioClip;
+
+    private GameObject impactDust;
+
+    private void Awake()
+    {
+        impactDust = Instantiate(impactDustPrefab);
+    }
 
     private void Start()
     {
@@ -64,7 +72,7 @@ public class HoverSlamAttack : EnemyAbility
         float time = 0.0f;
         float hoverClipTime = 0.0f;
 
-        float adjustedHoverTime = enemy.EnemyAI.IsHardModeOn
+        float adjustedHoverTime = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeHoverTime
             : hoverTime;
 
@@ -101,7 +109,7 @@ public class HoverSlamAttack : EnemyAbility
         Vector2 destinationPosition = BossArena.Instance.GetDestination(slamDestination);
         Vector2 slamPosition = new(transform.position.x, destinationPosition.y);
 
-        float adjustedSlamSpeed = enemy.EnemyAI.IsHardModeOn
+        float adjustedSlamSpeed = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeSlamSpeed
             : slamSpeed;
 
@@ -121,6 +129,10 @@ public class HoverSlamAttack : EnemyAbility
     private IEnumerator FinishSlam()
     {
         AudioManager.Instance.PlaySFX(slamAudioClip);
+
+        Vector2 slamPosition = new(transform.position.x, BossArena.Instance.GetDestination(slamDestination).y);
+        impactDust.transform.position = slamPosition;
+        impactDust.gameObject.SetActive(true);
 
         damageCollider.enabled = false;
 

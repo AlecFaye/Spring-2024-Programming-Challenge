@@ -7,6 +7,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField] private HealthBar healthBar;
     [SerializeField] private DamageFlash damageFlash;
     [SerializeField] private Outline shieldOutline;
+    [SerializeField] private GameObject healAnimation;
 
     [Header("Health Configurations")]
     [SerializeField] private int healthAmount;
@@ -80,6 +81,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
             return;
 
         healthSystem.Heal(healAmount);
+        healAnimation.SetActive(true);
 
         AudioManager.Instance.PlaySFX(healAudioClip);
     }

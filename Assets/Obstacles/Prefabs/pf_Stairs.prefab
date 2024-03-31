@@ -2464,7 +2464,7 @@ MonoBehaviour:
   damage: 1
   damageLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 8
 --- !u!61 &7047621623181541384
 BoxCollider2D:
   m_ObjectHideFlags: 0

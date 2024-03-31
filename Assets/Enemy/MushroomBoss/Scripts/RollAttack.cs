@@ -55,7 +55,7 @@ public class RollAttack : EnemyAbility
         enemy.EnemyMovement.SetDestination(destinationPosition);
         enemy.EnemyMovement.OnReachedDestination += Enemy_ReachedFirstDestination;
 
-        float adjustedRollSpeed = enemy.EnemyAI.IsHardModeOn
+        float adjustedRollSpeed = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeRollSpeed
             : rollSpeed;
         enemy.EnemyMovement.SetSpeed(adjustedRollSpeed);

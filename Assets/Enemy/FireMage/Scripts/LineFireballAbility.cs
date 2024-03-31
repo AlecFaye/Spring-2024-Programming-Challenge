@@ -55,15 +55,15 @@ public class LineFireballAbility : EnemyAbility
 
     private IEnumerator StartFireball()
     {
-        float adjustedDelay = enemy.EnemyAI.IsHardModeOn
+        float adjustedDelay = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeDelayBetweenFireballs
             : delayBetweenFireballs;
 
-        int adjustedFireballs = enemy.EnemyAI.IsHardModeOn
+        int adjustedFireballs = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeNumberOfFireballs
             : numberOfFireballs;
 
-        float adjustedFireballSpeed = enemy.EnemyAI.IsHardModeOn
+        float adjustedFireballSpeed = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeFireballSpeed
             : fireballSpeed;
 

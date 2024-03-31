@@ -7,8 +7,6 @@ public class EnemyAI : MonoBehaviour
     public delegate void EnemyAIEvent();
     public EnemyAIEvent OnHardModeEngaged;
 
-    private const float HARD_MODE_PERCENT = 0.5f;
-
     [SerializeField] private Enemy enemy;
     [SerializeField] private EnemyAbility[] enemyAbilities;
     [SerializeField] private Destination entranceDestination;
@@ -19,8 +17,6 @@ public class EnemyAI : MonoBehaviour
     private bool isCurrentlyEntering = true;
     private bool isAttacking = false;
     private bool isCoolingDown = false;
-
-    public bool IsHardModeOn { get; private set; }
 
     private void Start()
     {
@@ -37,9 +33,7 @@ public class EnemyAI : MonoBehaviour
         enemy.EnemyMovement.SetDestination(entrancePosition);
         enemy.EnemyMovement.OnReachedDestination += Enemy_ReachedEntranceDestination;
 
-        IsHardModeOn = (GameTimer.Instance.CurrentTimeInSeconds / SpawnerInfo.DifficultyTime) > HARD_MODE_PERCENT;
-
-        if (IsHardModeOn)
+        if (SpawnerInfo.Instance.IsHardModeOn)
             OnHardModeEngaged?.Invoke();
     }
 

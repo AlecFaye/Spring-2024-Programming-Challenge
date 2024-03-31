@@ -13,12 +13,16 @@ public enum SpawnPosition
 public class SpawnerInfo : MonoBehaviour
 {
     public static SpawnerInfo Instance {  get; private set; }
-    public static float DifficultyTime = 10 * 30;
 
     [SerializeField] private Transform spawnPositionsTF;
+    [SerializeField] private float hardModePercent = 0.5f;
+    [SerializeField] private float difficultyTime = 10 * 60;
 
     private Transform[] spawnerPositions;
     public Transform[] SpawnerPositions => spawnerPositions;
+
+    public bool IsHardModeOn { get; private set; }
+    public float DifficultyTime => difficultyTime;
 
     private void Awake()
     {
@@ -28,6 +32,11 @@ public class SpawnerInfo : MonoBehaviour
         Instance = this;
 
         InitSpawnPositions();
+    }
+
+    private void Update()
+    {
+        IsHardModeOn = (GameTimer.Instance.CurrentTimeInSeconds / difficultyTime) > hardModePercent;
     }
 
     private void InitSpawnPositions()
