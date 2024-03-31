@@ -63,6 +63,9 @@ public class BossSpawner : MonoBehaviour
 
     private IEnumerator SpawnBoss()
     {
+        if (undefeatedBosses.Count <= 0)
+            InitBossDefeatedDictionary();
+
         bossType = ChooseBoss();
 
         yield return new WaitForSeconds(startSpawnDelay);
@@ -76,16 +79,8 @@ public class BossSpawner : MonoBehaviour
 
     private EnemyType ChooseBoss()
     {
-        if (undefeatedBosses.Count > 0)
-        {
-            int randomIndex = Random.Range(0, undefeatedBosses.Count);
-            return undefeatedBosses[randomIndex];
-        }
-        else
-        {
-            int randomIndex = Random.Range(0, bossSpawns.Length);
-            return bossSpawns[randomIndex];
-        }
+        int randomIndex = Random.Range(0, undefeatedBosses.Count);
+        return undefeatedBosses[randomIndex];
     }
 
     public void Spawn_BossDefeated()
