@@ -54,7 +54,7 @@ public class LaserAttack : EnemyAbility
 
     private void InitLaser()
     {
-        if (enemy.EnemyAI.IsHardModeOn)
+        if (SpawnerInfo.Instance.IsHardModeOn)
             laserType = ChooseRandomLaser();
         else
             laserType = LaserType.Horizontal;

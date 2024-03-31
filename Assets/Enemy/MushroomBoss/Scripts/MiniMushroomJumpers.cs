@@ -49,7 +49,7 @@ public class MiniMushroomJumpers : EnemyAbility
         Transform spawnTF = SpawnerInfo.Instance.SpawnerPositions[(int)spawnIndex];
         ObstacleObjectPool obstacleSpawner = ObstacleObjectPoolManager.Instance.GetObstacleSpawner(ObstacleType.MiniMushroom);
 
-        int adjustedSpawn = enemy.EnemyAI.IsHardModeOn
+        int adjustedSpawn = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeNumberOfMushroomsToSpawn
             : numberOfMushroomsToSpawn;
 

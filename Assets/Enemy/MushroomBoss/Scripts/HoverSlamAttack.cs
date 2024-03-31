@@ -72,7 +72,7 @@ public class HoverSlamAttack : EnemyAbility
         float time = 0.0f;
         float hoverClipTime = 0.0f;
 
-        float adjustedHoverTime = enemy.EnemyAI.IsHardModeOn
+        float adjustedHoverTime = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeHoverTime
             : hoverTime;
 
@@ -109,7 +109,7 @@ public class HoverSlamAttack : EnemyAbility
         Vector2 destinationPosition = BossArena.Instance.GetDestination(slamDestination);
         Vector2 slamPosition = new(transform.position.x, destinationPosition.y);
 
-        float adjustedSlamSpeed = enemy.EnemyAI.IsHardModeOn
+        float adjustedSlamSpeed = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeSlamSpeed
             : slamSpeed;
 

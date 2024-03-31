@@ -54,7 +54,7 @@ public class MeteorAbility : EnemyAbility
     {
         WaitForSeconds wait = new(delayBetweenMeteors);
 
-        int adjustedNumberOfMeteors = enemy.EnemyAI.IsHardModeOn
+        int adjustedNumberOfMeteors = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeNumberOfMeteors
             : numberOfMeteors;
 

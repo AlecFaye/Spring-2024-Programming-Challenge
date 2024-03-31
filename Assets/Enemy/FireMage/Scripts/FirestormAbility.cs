@@ -40,7 +40,7 @@ public class FirestormAbility : EnemyAbility
         firestormSpawner.Pool.Get(out Projectile projectile);
         projectile.transform.position = spawnTF.position;
 
-        float adjustedSpeed = enemy.EnemyAI.IsHardModeOn
+        float adjustedSpeed = SpawnerInfo.Instance.IsHardModeOn
             ? hardModeFirestormSpeed
             : firestormSpeed;
 
