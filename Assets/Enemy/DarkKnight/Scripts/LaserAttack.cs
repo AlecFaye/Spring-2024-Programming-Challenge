@@ -7,6 +7,7 @@ public class LaserAttack : EnemyAbility
     [Header("References")]
     [SerializeField] private Enemy enemy;
     [SerializeField] private Destination destination;
+    [SerializeField] private ImageFiller laserGaugeFiller;
 
     [Header("Laser Attack Configurations")]
     [SerializeField] private float chargeAttackTime = 1.0f;
@@ -74,6 +75,9 @@ public class LaserAttack : EnemyAbility
 
     private IEnumerator StartLaserAttack()
     {
+        laserGaugeFiller.gameObject.SetActive(true);
+        laserGaugeFiller.StartFill(chargeAttackTime);
+
         yield return new WaitForSeconds(chargeAttackTime);
 
         enemy.EnemyAnimationController.SetAnimatorTrigger(EnemyAnimatorParameter.FlameAttack);
