@@ -68,6 +68,7 @@ public class PlayerStats : MonoBehaviour, IDamageable, IBank
 
     private void Player_OnRevive()
     {
+        Time.timeScale = 1.0f;
         isDead = false;
     }
 

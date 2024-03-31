@@ -14257,7 +14257,7 @@ MonoBehaviour:
   damageFlash: {fileID: 1761976745}
   shieldOutline: {fileID: 1761976746}
   healAnimation: {fileID: 1039762255}
-  healthAmount: 5
+  healthAmount: 1
   absoluteMinHealth: 0
   absoluteMaxHealth: 10
   invincibleFrames: 1
