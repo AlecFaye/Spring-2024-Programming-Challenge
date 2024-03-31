@@ -16,17 +16,25 @@ public class PlayerAttack : MonoBehaviour
     public bool IsAttacking => !canAttack;
     private bool canAttack = true;
 
+    private bool isHoldingAttack = false;
+
     private void Start()
     {
         OnAttackReleased += Player_OnAttackReleased;
     }
 
+    private void Update()
+    {
+        if (isHoldingAttack && canAttack)
+            StartCoroutine(StartAttack());
+    }
+
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if (context.started && canAttack)
-        {
-            StartCoroutine(StartAttack());
-        }
+        if (context.started)
+            isHoldingAttack = true;
+        else if (context.canceled)
+            isHoldingAttack = false;
     }
 
     private void Player_OnAttackReleased()

@@ -12,7 +12,7 @@ public enum SpawnPosition
 
 public class SpawnerInfo : MonoBehaviour
 {
-    public static SpawnerInfo Instance {  get; private set; }
+    public static SpawnerInfo Instance { get; private set; }
 
     [SerializeField] private Transform spawnPositionsTF;
     [SerializeField] private float hardModePercent = 0.5f;
