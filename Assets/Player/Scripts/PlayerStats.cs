@@ -120,20 +120,13 @@ public class PlayerStats : MonoBehaviour, IDamageable, IBank
 
     public void Deposit(int amount)
     {
+        if (IsDead)
+            return;
+
         coins += amount;
 
         coinsText.text = $"{coins}";
     }
 
-    public void Withdraw(int amount)
-    {
-        if (coins - amount < 0)
-            return;
-
-        coins -= amount;
-
-        coinsText.text = $"{coins}";
-    }
-
-    public int GetBalance(int amount) => coins;
+    public int GetBalance() => coins;
 }
