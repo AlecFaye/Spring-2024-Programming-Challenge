@@ -19,6 +19,7 @@ public class PlayerStats : MonoBehaviour, IDamageable, IBank
     [Header("Sound Configurations")]
     [SerializeField] private AudioClip healAudioClip;
     [SerializeField] private AudioClip shieldAudioClip;
+    [SerializeField] private AudioClip coinAudioClip;
     [SerializeField] private AudioClip hurtAudioClip;
 
     [Header("Coins Configurations")]
@@ -124,8 +125,9 @@ public class PlayerStats : MonoBehaviour, IDamageable, IBank
             return;
 
         coins += amount;
-
         coinsText.text = $"{coins}";
+
+        AudioManager.Instance.PlaySFX(coinAudioClip);
     }
 
     public int GetBalance() => coins;

@@ -9,9 +9,13 @@ public class ParryAttack : EnemyAbility
 
     [Header("Parry Attack Configurations")]
     [SerializeField] private float parryDuration = 2.5f;
+    [SerializeField] private float parryProjectileSpeed = 10.0f;
     [SerializeField] private ProjectileObjectPool projectileObjectPool;
     [SerializeField] private Destination parryProjectileDestination;
     [SerializeField] private ParryHitbox parryHitbox;
+
+    [Header("Hard Mode Configurations")]
+    [SerializeField] private float hardModeParryProjectileSpeed = 17.5f;
 
     [Header("Other")]
     [SerializeField] private AudioClip parryAudioClip;
@@ -35,6 +39,11 @@ public class ParryAttack : EnemyAbility
         Vector2 projectileSpawnPosition = BossArena.Instance.GetDestination(parryProjectileDestination);
         projectileObjectPool.Pool.Get(out Projectile projectile);
         projectile.transform.position = projectileSpawnPosition;
+
+        float adjustedProjectileSpeed = SpawnerInfo.Instance.IsHardModeOn
+            ? hardModeParryProjectileSpeed
+            : parryProjectileSpeed;
+        projectile.SetSpeed(adjustedProjectileSpeed);
     }
 
     public void Parry()
