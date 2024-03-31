@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class BossSpawner : MonoBehaviour
@@ -19,7 +20,11 @@ public class BossSpawner : MonoBehaviour
     private Transform[] spawnerPositions;
     private bool isFinishedTutorial = false;
 
+    private List<EnemyType> undefeatedBosses = new();
+
     public bool IsFightingBoss { get; private set; }
+
+    private EnemyType bossType;
 
     private void Awake()
     {
@@ -27,6 +32,8 @@ public class BossSpawner : MonoBehaviour
             Debug.LogError("There is more than one Boss Spawner in the scene.");
 
         Instance = this;
+
+        InitBossDefeatedDictionary();
     }
 
     private void Start()
@@ -56,7 +63,7 @@ public class BossSpawner : MonoBehaviour
 
     private IEnumerator SpawnBoss()
     {
-        EnemyType bossType = ChooseBoss();
+        bossType = ChooseBoss();
 
         yield return new WaitForSeconds(startSpawnDelay);
 
@@ -69,8 +76,16 @@ public class BossSpawner : MonoBehaviour
 
     private EnemyType ChooseBoss()
     {
-        int randomIndex = Random.Range(0, bossSpawns.Length);
-        return bossSpawns[randomIndex];
+        if (undefeatedBosses.Count > 0)
+        {
+            int randomIndex = Random.Range(0, undefeatedBosses.Count);
+            return undefeatedBosses[randomIndex];
+        }
+        else
+        {
+            int randomIndex = Random.Range(0, bossSpawns.Length);
+            return bossSpawns[randomIndex];
+        }
     }
 
     public void Spawn_BossDefeated()
@@ -78,5 +93,12 @@ public class BossSpawner : MonoBehaviour
         IsFightingBoss = false;
         timeBossWasDefeated = time;
         OnDefeatedBoss?.Invoke();
+        undefeatedBosses.Remove(bossType);
+    }
+
+    private void InitBossDefeatedDictionary()
+    {
+        for (int index = 0; index < System.Enum.GetValues(typeof(EnemyType)).Length; index++)
+            undefeatedBosses.Add((EnemyType)index);
     }
 }
