@@ -18036,7 +18036,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossSpawns: 000000000100000002000000
   startSpawnDelay: 5
-  bossDelay: 5
+  bossDelay: 75
 --- !u!1 &2071817075
 GameObject:
   m_ObjectHideFlags: 0
