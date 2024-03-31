@@ -38,9 +38,10 @@ public class BossSpawner : MonoBehaviour
 
     private void Update()
     {
-        time += Time.deltaTime;
+        if (isFinishedTutorial)
+            time += Time.deltaTime;
 
-        if (time >= timeBossWasDefeated + bossDelay && !IsFightingBoss && !isFinishedTutorial)
+        if (time >= timeBossWasDefeated + bossDelay && !IsFightingBoss && isFinishedTutorial)
         {
             StartCoroutine(SpawnBoss());
             OnSpawnedBoss?.Invoke();
