@@ -13,6 +13,7 @@ public enum ObstacleType
     Wall_1100,
     Wall_1101,
     Wall_1110,
+    Coin,
 }
 
 public class ObstacleObjectPoolManager : MonoBehaviour
