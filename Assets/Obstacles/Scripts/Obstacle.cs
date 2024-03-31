@@ -23,6 +23,11 @@ public class Obstacle : MonoBehaviour
         CheckDeactivate();
     }
 
+    private void OnDisable()
+    {
+        pool.Release(this);
+    }
+
     public void SetPool(ObjectPool<Obstacle> pool)
     {
         this.pool = pool;
@@ -31,6 +36,6 @@ public class Obstacle : MonoBehaviour
     private void CheckDeactivate()
     {
         if (transform.position.x < -((Camera.main.orthographicSize * 3) + BUFFER))
-            pool.Release(this);
+            gameObject.SetActive(false);
     }
 }

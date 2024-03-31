@@ -1,7 +1,8 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
-public class PlayerStats : MonoBehaviour, IDamageable
+public class PlayerStats : MonoBehaviour, IDamageable, IBank
 {
     [Header("References")]
     [SerializeField] private HealthBar healthBar;
@@ -20,6 +21,9 @@ public class PlayerStats : MonoBehaviour, IDamageable
     [SerializeField] private AudioClip shieldAudioClip;
     [SerializeField] private AudioClip hurtAudioClip;
 
+    [Header("Coins Configurations")]
+    [SerializeField] private TextMeshProUGUI coinsText;
+
     private HealthSystem healthSystem;
     public HealthSystem HealthSystem => healthSystem;
 
@@ -33,6 +37,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     private Coroutine shieldCoroutine = null;
 
+    private int coins = 0;
+
     public bool IsInvincible => timeWasHit + invincibleFrames > time;
 
     private void Awake()
@@ -40,6 +46,8 @@ public class PlayerStats : MonoBehaviour, IDamageable
         healthSystem = new(healthAmount, absoluteMinHealth, absoluteMaxHealth);
 
         healthBar.Init(healthSystem);
+
+        coinsText.text = $"{coins}";
     }
 
     private void Start()
@@ -60,6 +68,7 @@ public class PlayerStats : MonoBehaviour, IDamageable
 
     private void Player_OnRevive()
     {
+        Time.timeScale = 1.0f;
         isDead = false;
     }
 
@@ -108,4 +117,16 @@ public class PlayerStats : MonoBehaviour, IDamageable
         shieldOutline.RemoveOutline();
         isShielded = false;
     }
+
+    public void Deposit(int amount)
+    {
+        if (IsDead)
+            return;
+
+        coins += amount;
+
+        coinsText.text = $"{coins}";
+    }
+
+    public int GetBalance() => coins;
 }

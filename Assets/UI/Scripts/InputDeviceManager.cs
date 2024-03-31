@@ -24,6 +24,11 @@ public class InputDeviceManager : MonoBehaviour
         Instance = this;
     }
 
+    private void Start()
+    {
+        OnControlsChanged(Player.Instance.PlayerInput);
+    }
+
     public void OnControlsChanged(PlayerInput playerInput)
     {
         CurrentDevice = (InputDevice)System.Enum.Parse(typeof(InputDevice), playerInput.currentControlScheme);

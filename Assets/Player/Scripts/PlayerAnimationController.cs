@@ -46,6 +46,11 @@ public class PlayerAnimationController : MonoBehaviour
         Player.Instance.PlayerAttack.OnAttackReleased?.Invoke();
     }
 
+    public void FinishedDeath()
+    {
+        Time.timeScale = 0.0f;
+    }
+
     private void Player_OnJumped()
     {
         animator.SetTrigger(PlayerAnimatorParameter.Jump.ToString());

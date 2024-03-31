@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     public PlayerMovement PlayerMovement;
     public PlayerStats PlayerStats;
     public PlayerAttack PlayerAttack;
+    public PlayerInput PlayerInput;
 
     [SerializeField] private GameObject deathPanelUI;
     [SerializeField] private GameObject pauseMenuUI;

@@ -1,5 +1,7 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class TutorialUI : MonoBehaviour
 {
@@ -8,10 +10,23 @@ public class TutorialUI : MonoBehaviour
     public delegate void TutorialUIEvent();
     public TutorialUIEvent OnCompletedTutorial;
 
+    [Header("Tutorial Configurations")]
     [SerializeField] private GameObject tutorialObject;
     [SerializeField] private GameObject[] tutorials;
     [SerializeField] private float tutorialShowTime = 5.0f;
     [SerializeField] private float tutorialShowDelay = 1.0f;
+
+    [Header("Skip Configurations")]
+    [SerializeField] private GameObject skipObject;
+    [SerializeField] private GameObject skipTextObject;
+    [SerializeField] private GameObject skipImageObject;
+    [SerializeField] private Image skipImage;
+    [SerializeField] private float skipTime = 1.0f;
+
+    private float time = 0.0f;
+
+    private bool isTutorialFinished = false;
+    private bool isHoldingDownSkip = false;
 
     private void Awake()
     {
@@ -19,6 +34,8 @@ public class TutorialUI : MonoBehaviour
             Debug.LogError("There is more than one instance of Tutorial UI in the scene");
 
         Instance = this;
+
+        skipImageObject.SetActive(false);
     }
 
     private void Start()
@@ -26,6 +43,39 @@ public class TutorialUI : MonoBehaviour
         DisableTutorials();
 
         StartCoroutine(StartTutorial());
+    }
+
+    private void Update()
+    {
+        if (isTutorialFinished || !isHoldingDownSkip)
+            return;
+
+        time += Time.deltaTime;
+
+        skipImage.fillAmount = (time / skipTime);
+
+        if (time > skipTime)
+            FinishTutorial();
+    }
+
+    public void OnSkip(InputAction.CallbackContext context)
+    {
+        if (isTutorialFinished)
+            return;
+
+        if (context.started)
+        {
+            time = 0.0f;
+            isHoldingDownSkip = true;
+            skipTextObject.SetActive(false);
+            skipImageObject.SetActive(true);
+        }
+        else if (context.canceled)
+        {
+            isHoldingDownSkip = false;
+            skipTextObject.SetActive(true);
+            skipImageObject.SetActive(false);
+        }
     }
 
     private IEnumerator StartTutorial()
@@ -44,7 +94,7 @@ public class TutorialUI : MonoBehaviour
             tutorialObject.SetActive(false);
         }
 
-        OnCompletedTutorial?.Invoke();
+        FinishTutorial();
     }
 
     private void DisableTutorials()
@@ -52,5 +102,14 @@ public class TutorialUI : MonoBehaviour
         foreach (GameObject tutorial in tutorials)
             tutorial.SetActive(false);
         tutorialObject.SetActive(false);
+    }
+    
+    private void FinishTutorial()
+    {
+        isTutorialFinished = true;
+        StopAllCoroutines();
+        tutorialObject.SetActive(false);
+        OnCompletedTutorial?.Invoke();
+        skipObject.SetActive(false);
     }
 }
