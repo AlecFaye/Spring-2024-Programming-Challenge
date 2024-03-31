@@ -291,6 +291,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  damageLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!61 &6653742597570021967
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -382,6 +385,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  damageLayer:
+    serializedVersion: 2
+    m_Bits: 8
 --- !u!58 &8707871968024609576
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -472,6 +478,7 @@ MonoBehaviour:
   slamDelay: 1
   slamEndDelay: 0.5
   slamSpeed: 50
+  impactDustPrefab: {fileID: 3711050176123184057, guid: f826f32df9dfb7244ac9272b21c8d174, type: 3}
   hardModeHoverTime: 1
   hardModeSlamSpeed: 75
   endDestination: 4
