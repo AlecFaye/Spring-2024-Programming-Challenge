@@ -2194,7 +2194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 336217700}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 5.5, y: -2, z: 0}
+  m_LocalPosition: {x: 4, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3605,6 +3605,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e774fb25b3a6347804d2eae26d609b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minOpacity: 50
+  maxOpacity: 200
+  numberOfFlickers: 3
+  displayTime: 1.5
 --- !u!1001 &561084803
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4679,6 +4683,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e774fb25b3a6347804d2eae26d609b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minOpacity: 50
+  maxOpacity: 200
+  numberOfFlickers: 3
+  displayTime: 1.5
 --- !u!1 &769111601
 GameObject:
   m_ObjectHideFlags: 0
@@ -7594,6 +7602,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e774fb25b3a6347804d2eae26d609b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minOpacity: 50
+  maxOpacity: 200
+  numberOfFlickers: 3
+  displayTime: 1.5
 --- !u!1 &984714872
 GameObject:
   m_ObjectHideFlags: 0
@@ -8274,6 +8286,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e774fb25b3a6347804d2eae26d609b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minOpacity: 50
+  maxOpacity: 200
+  numberOfFlickers: 3
+  displayTime: 1.5
 --- !u!1 &1050530104
 GameObject:
   m_ObjectHideFlags: 0
@@ -12157,6 +12173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e774fb25b3a6347804d2eae26d609b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minOpacity: 50
+  maxOpacity: 200
+  numberOfFlickers: 3
+  displayTime: 1.5
 --- !u!1 &1693584685
 GameObject:
   m_ObjectHideFlags: 0
@@ -12736,6 +12756,14 @@ PrefabInstance:
     - target: {fileID: 5547996635838298367, guid: 21407a71ac72bbb4695b6d6226986830, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399517705026174411, guid: 21407a71ac72bbb4695b6d6226986830, type: 3}
+      propertyPath: m_Size.x
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 6399517705026174411, guid: 21407a71ac72bbb4695b6d6226986830, type: 3}
+      propertyPath: m_Offset.x
+      value: -3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14763,8 +14791,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pickupObstacles: 0000000002000000
   pickupSpawnPositions: 00000000010000000200000003000000
-  minSpawnDelay: 1
-  maxSpawnDelay: 2
+  minSpawnDelay: 60
+  maxSpawnDelay: 75
 --- !u!1 &2047682412
 GameObject:
   m_ObjectHideFlags: 0
@@ -14945,9 +14973,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5383e339c268a44db5ebb1bc50c9c1f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bossSpawns: 01000000
+  bossSpawns: 000000000100000002000000
   startSpawnDelay: 5
-  bossDelay: 5
+  bossDelay: 75
 --- !u!1 &2071817075
 GameObject:
   m_ObjectHideFlags: 0
@@ -15274,6 +15302,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20e774fb25b3a6347804d2eae26d609b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minOpacity: 50
+  maxOpacity: 200
+  numberOfFlickers: 3
+  displayTime: 1.5
 --- !u!1 &2144943658
 GameObject:
   m_ObjectHideFlags: 0
